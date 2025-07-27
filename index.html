@@ -4,14 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Minicurso: Aprender React com Jogo de Cartas de Recursos</title>
+  <title>Aprenda React Desenvolvendo um Jogo de Cartas de
+    Recursos</title>
   <link rel="stylesheet" href="style.css" />
 
   <!-- Fontes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Jersey+25&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Press+Start+2P&display=swap" rel="stylesheet">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Jersey+25&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Press+Start+2P&display=swap"
+    rel="stylesheet" />
 </head>
 
 <body>
@@ -22,7 +24,7 @@
     <a href="#instalacao" class="nav-link">Instalação</a>
     <a href="#typescript-react" class="nav-link">TypeScript e React</a>
     <a href="#componentes" class="nav-link">Componentes</a>
-     <a href="#app-component-teorico" class="nav-link">Componente App (Teoria)</a>
+    <a href="#app-component-teorico" class="nav-link">Componente App (Teoria)</a>
     <a href="#props" class="nav-link">Propriedades (Props)</a>
     <a href="#estado" class="nav-link">Estado</a>
     <a href="#modelagem-cartas" class="nav-link">Modelagem de Cartas</a>
@@ -34,65 +36,216 @@
   </nav>
 
   <main id="main-doc">
-    <h1>Minicurso: Como aprender REACT fazendo um jogo de cartas</h1>
+    <h1>Aprenda React Desenvolvendo um Jogo de Cartas de
+      Recursos</h1>
 
     <section id="introducao" class="main-section">
       <h2>Introdução</h2>
-      <p>
-        Bem-vindo ao minicurso onde você vai aprender React desenvolvendo um
-        jogo de cartas! Neste curso, vamos abordar os conceitos fundamentais
-        do React enquanto construímos um jogo onde os jogadores gerenciam
-        recursos e constroem novas cartas a partir desses recursos.
-      </p>
+      <div class="intro-container">
+        <div class="intro-header">
+          <h3>
+            Bem-vindo ao minicurso
+            <strong>"Aprenda React Desenvolvendo um Jogo de Cartas de
+              Recursos"</strong>
+          </h3>
+          <p>
+            Nesse minicurso você vai aprender React desenvolvendo um
+            jogo de cartas! Iremos abordar os conceitos fundamentais
+            do React enquanto construímos um jogo onde os jogadores gerenciam
+            recursos e constroem novas cartas a partir desses recursos.
+          </p>
+        </div>
 
-      <p>Vamos trabalhar com:</p>
-      <ul>
-        <li><strong>HTML</strong>: A estrutura básica da nossa aplicação</li>
-        <li>
-          <strong>CSS</strong>: Para estilizar nosso jogo e torná-lo
-          visualmente atraente
-        </li>
-        <li>
-          <strong>TypeScript</strong>: Para adicionar tipagem estática ao
-          nosso código JavaScript
-        </li>
-        <li>
-          <strong>React com TypeScript</strong>: A biblioteca principal que
-          vamos aprender para desenvolvimento seguro
-        </li>
-        <li>
-          <strong>useReducer</strong> para gerenciamento de estado complexo
-        </li>
-        <li><strong>Context API</strong> para compartilhamento de estado</li>
-        <li>
-          <strong>Componentes reutilizáveis</strong> para cartas e recursos
-        </li>
-      </ul>
-      <p>
-        O jogo que vamos desenvolver é um jogo de cartas estratégico onde cada
-        jogador começa com um conjunto básico de cartas de recurso (como
-        madeira, pedra e ouro) e pode usar esses recursos para construir
-        cartas mais avançadas.
-      </p>
+        <div class="learning-points">
+          <h3>O que você vai aprender</h3>
+          <div class="learning-grid">
+            <div class="learning-card">
+              <h4>Fundamentos do React</h4>
+              <ul>
+                <li>Filosofia de componentes</li>
+                <li>Trabalhando com JSX</li>
+                <li>Gerenciamento de estado</li>
+              </ul>
+            </div>
+            <div class="learning-card">
+              <h4>TypeScript no React</h4>
+              <ul>
+                <li>Tipagem de props e estados</li>
+                <li>Interfaces para estruturas complexas</li>
+                <li>Benefícios da tipagem estática</li>
+              </ul>
+            </div>
+            <div class="learning-card">
+              <h4>Mecânicas de Jogo</h4>
+              <ul>
+                <li>Sistema de recursos</li>
+                <li>Construção de cartas</li>
+                <li>Gerenciamento de turnos</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-features">
+          <h3>Estrutura do Jogo</h3>
+          <div class="feature-list">
+            <div class="feature-item">
+              <p>
+                <strong>Sistema de Recursos Básicos</strong>: Madeira, pedra e
+                ouro como base
+              </p>
+            </div>
+            <div class="feature-item">
+              <p>
+                <strong>Cartas de Construção</strong>: Transforme recursos
+                básicos em estruturas valiosas
+              </p>
+            </div>
+            <div class="feature-item">
+              <p>
+                <strong>Progressão Estratégica</strong>: Cada decisão afeta o
+                desenvolvimento futuro
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-stack">
+          <h3>Tecnologias Utilizadas</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Tecnologia</th>
+                <th>Papel no Projeto</th>
+                <th>Benefícios</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>React</td>
+                <td>Biblioteca principal</td>
+                <td>Componentização, reatividade</td>
+              </tr>
+              <tr>
+                <td>TypeScript</td>
+                <td>Tipagem estática</td>
+                <td>Maior segurança no desenvolvimento</td>
+              </tr>
+              <tr>
+                <td>Framer Motion</td>
+                <td>Animações</td>
+                <td>Experiência de usuário mais rica</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prerequisites">
+          <h3>Pré-requisitos</h3>
+          <p>Para aproveitar ao máximo este curso, é recomendável:</p>
+          <ul class="prereq-list">
+            <li>Conhecimento básico de HTML e CSS</li>
+            <li>Familiaridade com JavaScript ES6+</li>
+            <li>Noções de programação orientada a objetos</li>
+            <li>Node.js instalado</li>
+          </ul>
+          <p class="note">
+            Não se preocupe se alguns conceitos forem novos - vamos explicar
+            cada um no contexto do jogo!
+          </p>
+        </div>
+      </div>
     </section>
 
     <section id="objetivos" class="main-section">
-      <h2>Objetivos</h2>
-      <p>
-        O principal objetivo deste minicurso é aprender React de forma
-        prática, aplicando seus conceitos fundamentais no desenvolvimento de
-        um jogo de cartas funcional.
-      </p>
+      <h2>Objetivos Detalhados</h2>
 
-      <p>No final do curso, você será capaz de:</p>
-      <ul>
-        <li>Entender os conceitos básicos do React</li>
-        <li>Criar componentes reutilizáveis</li>
-        <li>Gerenciar estado em uma aplicação React</li>
-        <li>Trabalhar com TypeScript em projetos React</li>
-        <li>Adicionar animações com Framer Motion</li>
-        <li>Estruturar um projeto completo</li>
-      </ul>
+      <div class="goals-container">
+        <div class="main-goals">
+          <h3>Ao final deste minicurso, você será capaz de:</h3>
+
+          <div class="goal-card">
+            <h4>1. Entender os conceitos básicos do React</h4>
+            <ul>
+              <li>
+                <strong>Componentização</strong>: Dividir a aplicação em
+                componentes reutilizáveis
+              </li>
+              <li>
+                <strong>JSX</strong>: Trabalhar com a sintaxe que combina HTML
+                e JavaScript
+              </li>
+              <li>
+                <strong>Ciclo de vida</strong>: Compreender montagem,
+                atualização e desmontagem
+              </li>
+              <li>
+                <strong>Hooks</strong>: Utilizar useState, useEffect,
+                useContext e useReducer
+              </li>
+            </ul>
+          </div>
+
+          <div class="goal-card">
+            <h4>2. Criar componentes reutilizáveis</h4>
+            <ul>
+              <li>
+                <strong>Design de Componentes</strong>: Planejar estrutura e
+                responsabilidades
+              </li>
+              <li>
+                <strong>Props</strong>: Passar dados entre componentes
+                eficientemente
+              </li>
+              <li>
+                <strong>Composição</strong>: Construir componentes complexos a
+                partir de simples
+              </li>
+              <li>
+                <strong>Estilização</strong>: Aplicar CSS de forma
+                modularizada
+              </li>
+            </ul>
+          </div>
+
+          <div class="goal-card">
+            <h4>3. Gerenciar estado em uma aplicação React</h4>
+            <ul>
+              <li>
+                <strong>Estado Local</strong>: Usar useState para dados
+                específicos
+              </li>
+              <li>
+                <strong>Estado Global</strong>: Implementar useReducer +
+                Context API
+              </li>
+              <li>
+                <strong>Imutabilidade</strong>: Trabalhar corretamente com
+                atualizações
+              </li>
+              <li>
+                <strong>Derivação de Estado</strong>: Calcular valores a
+                partir do estado
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="final-outcome">
+          <h3>Resultado Final</h3>
+          <p>Ao concluir este curso, você terá:</p>
+          <ol>
+            <li>
+              Um jogo de cartas funcional construído com React e TypeScript
+            </li>
+            <li>Experiência prática em gerenciamento de estado complexo</li>
+            <li>
+              Habilidades para estruturar aplicações React profissionais
+            </li>
+            <li>Base sólida para expandir o projeto ou criar novos</li>
+          </ol>
+        </div>
+      </div>
     </section>
 
     <section id="instalacao" class="main-section">
@@ -128,7 +281,8 @@ npm install --save-dev @types/react @types/react-dom</pre>
       <h2>TypeScript e React</h2>
       <p>
         TypeScript é um superset de JavaScript que adiciona tipagem estática
-        ao código. Quando usado com React, ele nos ajuda a:
+        ao código, ou seja, ele inclui tudo que o JavaScript tem e ainda
+        adiciona novos recursos. Quando usado com React, ele nos ajuda a:
       </p>
 
       <ul>
@@ -354,8 +508,8 @@ const RecursoIcon: React.FC&lt;RecursoIconProps&gt; = ({ tipo, quantidade }) => 
         <li><strong>Organizar a estrutura geral</strong> da aplicação</li>
         <li><strong>Gerenciar o estado global</strong> do jogo</li>
         <li>
-          <strong>Renderizar todos os subcomponentes</strong> (como
-          jogadores, cartas, etc.)
+          <strong>Renderizar todos os subcomponentes</strong> (como jogadores,
+          cartas, etc.)
         </li>
         <li>
           <strong>Definir a lógica principal</strong> (turnos, regras,
