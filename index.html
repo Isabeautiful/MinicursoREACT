@@ -4,1108 +4,1912 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Minicurso: Aprender React com Jogo de Cartas de Recursos</title>
+  <title>Minicurso: Aprender React com Jogo de Cartas - Conceitos Fundamentais</title>
   <link rel="stylesheet" href="style.css" />
 
   <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Jersey+25&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Press+Start+2P&display=swap" rel="stylesheet">
-
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Jersey+25&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Press+Start+2P&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
   <nav id="navbar" class="no-print">
     <img src="./logo.png" alt="logoInova" class="logo no-print" />
     <a href="#introducao" class="nav-link">Introdução</a>
-    <a href="#objetivos" class="nav-link">Objetivos</a>
+    <a href="#typescript-conceito" class="nav-link">TypeScript</a>
+    <a href="#react-conceito" class="nav-link">React</a>
+    <a href="#componentes-conceito" class="nav-link">Componentes</a>
+    <a href="#jsx-conceito" class="nav-link">JSX</a>
+    <a href="#props-conceito" class="nav-link">Props</a>
+    <a href="#estado-conceito" class="nav-link">Estado</a>
+    <a href="#hooks-conceito" class="nav-link">Hooks</a>
     <a href="#instalacao" class="nav-link">Instalação</a>
-    <a href="#typescript-react" class="nav-link">TypeScript e React</a>
-    <a href="#componentes" class="nav-link">Componentes</a>
-     <a href="#app-component-teorico" class="nav-link">Componente App (Teoria)</a>
-    <a href="#props" class="nav-link">Propriedades (Props)</a>
-    <a href="#estado" class="nav-link">Estado</a>
-    <a href="#modelagem-cartas" class="nav-link">Modelagem de Cartas</a>
-    <a href="#use-reducer" class="nav-link">useReducer</a>
-    <a href="#context-api" class="nav-link">Context API</a>
-    <a href="#app-component" class="nav-link">Componente App (Completo)</a>
-    <a href="#animacoes" class="nav-link">Animações</a>
+    <a href="#implementacao-jogo" class="nav-link">Implementação</a>
     <a href="#conclusao" class="nav-link">Conclusão</a>
   </nav>
 
   <main id="main-doc">
-    <h1>Minicurso: Como aprender REACT fazendo um jogo de cartas</h1>
+    <h1>Minicurso: Aprender REACT fazendo um jogo de cartas</h1>
 
     <section id="introducao" class="main-section">
-      <h2>Introdução</h2>
-      <p>
-        Bem-vindo ao minicurso onde você vai aprender React desenvolvendo um
-        jogo de cartas! Neste curso, vamos abordar os conceitos fundamentais
-        do React enquanto construímos um jogo onde os jogadores gerenciam
-        recursos e constroem novas cartas a partir desses recursos.
-      </p>
+      <h2>🎯 Introdução: Aprendendo Conceitos Primeiro</h2>
+      <p>Neste minicurso, vamos adotar uma abordagem <strong>conceitual primeiro</strong>. Antes de colocar a mão na
+        massa, você vai entender profundamente os conceitos do React e TypeScript. Só depois partiremos para a
+        implementação do nosso jogo de cartas.</p>
 
-      <p>Vamos trabalhar com:</p>
-      <ul>
-        <li><strong>HTML</strong>: A estrutura básica da nossa aplicação</li>
-        <li>
-          <strong>CSS</strong>: Para estilizar nosso jogo e torná-lo
-          visualmente atraente
-        </li>
-        <li>
-          <strong>TypeScript</strong>: Para adicionar tipagem estática ao
-          nosso código JavaScript
-        </li>
-        <li>
-          <strong>React com TypeScript</strong>: A biblioteca principal que
-          vamos aprender para desenvolvimento seguro
-        </li>
-        <li>
-          <strong>useReducer</strong> para gerenciamento de estado complexo
-        </li>
-        <li><strong>Context API</strong> para compartilhamento de estado</li>
-        <li>
-          <strong>Componentes reutilizáveis</strong> para cartas e recursos
-        </li>
-      </ul>
-      <p>
-        O jogo que vamos desenvolver é um jogo de cartas estratégico onde cada
-        jogador começa com um conjunto básico de cartas de recurso (como
-        madeira, pedra e ouro) e pode usar esses recursos para construir
-        cartas mais avançadas.
-      </p>
+      <div class="learning-path">
+        <h3>📚 Nosso Roteiro de Aprendizado:</h3>
+        <ol>
+          <li><strong>Fundamentos</strong>: TypeScript e React</li>
+          <li><strong>Blocos de Construção</strong>: Componentes e JSX</li>
+          <li><strong>Comunicação</strong>: Props e Estado</li>
+          <li><strong>Ferramentas</strong>: Hooks do React</li>
+          <li><strong>Prática</strong>: Implementação do Jogo</li>
+        </ol>
+      </div>
     </section>
 
-    <section id="objetivos" class="main-section">
-      <h2>Objetivos</h2>
-      <p>
-        O principal objetivo deste minicurso é aprender React de forma
-        prática, aplicando seus conceitos fundamentais no desenvolvimento de
-        um jogo de cartas funcional.
-      </p>
+    <!-- SEÇÃO 1: TYPESCRIPT -->
+    <section id="typescript-conceito" class="main-section">
+      <h2>🔷 TypeScript: JavaScript com Superpoderes</h2>
 
-      <p>No final do curso, você será capaz de:</p>
+      <div class="analogy">
+        <h3>💡 Analogia: Receita de Bolo vs Instruções Vagas</h3>
+        <div class="analogy-item">
+          <p><strong>JavaScript (Instruções Vagas):</strong><br>
+            "Misture ingredientes e asse" - Pode dar certo, mas também pode dar muito errado!</p>
+        </div>
+        <div class="analogy-item">
+          <p><strong>TypeScript (Receita Detalhada):</strong><br>
+            "Misture 2 xícaras de farinha, 3 ovos, asse a 180°C por 30min" - Resultado previsível e consistente!</p>
+        </div>
+      </div>
+
+      <h3>O que é TypeScript?</h3>
+      <p>TypeScript é um <strong>superset</strong> do JavaScript que adiciona <strong>tipagem estática</strong>. Isso
+        significa que podemos definir tipos para nossas variáveis, funções e objetos, permitindo que erros sejam
+        detectados durante o desenvolvimento, antes mesmo de executar o código.</p>
+
+      <h3>Benefícios do TypeScript</h3>
       <ul>
-        <li>Entender os conceitos básicos do React</li>
-        <li>Criar componentes reutilizáveis</li>
-        <li>Gerenciar estado em uma aplicação React</li>
-        <li>Trabalhar com TypeScript em projetos React</li>
-        <li>Adicionar animações com Framer Motion</li>
-        <li>Estruturar um projeto completo</li>
+        <li>🚫 <strong>Detecção de Erros Antecipada</strong>: Encontra bugs durante a escrita do código</li>
+        <li>🔍 <strong>Autocomplete Inteligente</strong>: Editores sugerem propriedades e métodos corretos</li>
+        <li>📖 <strong>Documentação Automática</strong>: Os tipos servem como documentação viva</li>
+        <li>🔄 <strong>Refatoração Segura</strong>: Mudanças no código são mais seguras e previsíveis</li>
       </ul>
+
+      <h3>Exemplos Práticos de TypeScript</h3>
+
+      <div class="code-container">
+        <pre>
+// JavaScript (sem tipos)
+function calcularArea(raio) {
+    return Math.PI * raio * raio;
+}
+
+// TypeScript (com tipos)
+function calcularArea(raio: number): number {
+    return Math.PI * raio * raio;
+}
+
+// ⚠️ Isso geraria um erro em TypeScript:
+// calcularArea("5"); // ERRO: Argumento do tipo string não é atribuível ao tipo number</pre>
+        <button class="copy-btn no-print">Copiar</button>
+      </div>
+
+      <div class="code-container">
+        <pre>
+// Interface para nosso jogo de cartas
+interface Carta {
+    id: string;
+    titulo: string;
+    custo: Recurso[];
+    tipo: 'recurso' | 'construcao' | 'especial';
+}
+
+interface Recurso {
+    tipo: 'madeira' | 'pedra' | 'ouro';
+    quantidade: number;
+}
+
+// Agora temos autocomplete e verificação de tipos!
+const minhaCarta: Carta = {
+    id: "carta-1",
+    titulo: "Floresta",
+    custo: [{ tipo: "madeira", quantidade: 2 }],
+    tipo: "recurso"
+    // Se esquecermos uma propriedade, o TypeScript avisa!
+};</pre>
+        <button class="copy-btn no-print">Copiar</button>
+      </div>
     </section>
 
+    <!-- SEÇÃO 2: REACT -->
+    <section id="react-conceito" class="main-section">
+      <h2>⚛️ React: A Biblioteca para Interfaces</h2>
+
+      <div class="analogy">
+        <h3>💡 Analogia: Fábrica de Carros vs Montagem Manual</h3>
+        <div class="analogy-item">
+          <p><strong>HTML/CSS/JS Tradicional (Montagem Manual):</strong><br>
+            Como montar um carro peça por peça manualmente - trabalhoso e propenso a erros.</p>
+        </div>
+        <div class="analogy-item">
+          <p><strong>React (Linha de Montagem):</strong><br>
+            Como uma fábrica automatizada - componentes padronizados que se encaixam perfeitamente.</p>
+        </div>
+      </div>
+
+      <h3>O que é React?</h3>
+      <p>React é uma <strong>biblioteca JavaScript</strong> para construir interfaces de usuário. Sua principal
+        característica é o conceito de <strong>componentes</strong> - pedaços de código reutilizáveis que representam
+        partes da interface.</p>
+
+      <h3>Princípios Fundamentais do React</h3>
+      <ul>
+        <li>🧩 <strong>Componentes</strong>: Divida a UI em partes independentes e reutilizáveis</li>
+        <li>📦 <strong>Props</strong>: Passe dados para os componentes (entradas)</li>
+        <li>🔄 <strong>Estado</strong>: Gerencie dados que mudam com o tempo</li>
+        <li>⚡ <strong>Renderização Declarativa</strong>: Descreva COMO a UI deve ser, não COMO mudá-la</li>
+      </ul>
+
+      <h3>Declarativo vs Imperativo</h3>
+
+      <div class="code-container">
+        <pre>
+// ABORDAGEM IMPERATIVA (jQuery style)
+// "COMO fazer" - passo a passo manual
+function atualizarContador() {
+    const valor = parseInt($('#contador').text());
+    const novoValor = valor + 1;
+    $('#contador').text(novoValor);
+    if (novoValor > 5) {
+        $('#contador').addClass('destaque');
+    }
+}
+
+// ABORDAGEM DECLARATIVA (React)
+// "O QUE queremos" - resultado desejado
+function Contador() {
+    const [valor, setValor] = useState(0);
+    
+    return (
+        &lt;div className={valor > 5 ? 'destaque' : ''}&gt;
+            {valor}
+        &lt;/div&gt;
+    );
+}</pre>
+        <button class="copy-btn no-print">Copiar</button>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3: COMPONENTES -->
+    <section id="componentes-conceito" class="main-section">
+      <h2>🧩 Componentes: Blocos de Construção do React</h2>
+
+      <div class="analogy">
+        <h3>💡 Analogia: Peças de Lego vs Escultura em Pedra</h3>
+        <div class="analogy-item">
+          <p><strong>Desenvolvimento Tradicional (Escultura):</strong><br>
+            Como esculpir uma estátua em mármore - se errar, tem que começar de novo.</p>
+        </div>
+        <div class="analogy-item">
+          <p><strong>Componentes React (Lego):</strong><br>
+            Como montar com peças de Lego - componentes encaixáveis, reutilizáveis e modulares.</p>
+        </div>
+      </div>
+
+      <h3>O que são Componentes?</h3>
+      <p>Componentes são <strong>funções JavaScript</strong> que retornam elementos de interface (JSX). Eles permitem
+        dividir a UI em partes independentes, reutilizáveis e de responsabilidade única.</p>
+
+      <h3>Tipos de Componentes</h3>
+
+      <div class="component-types">
+        <div class="component-type">
+          <h4>🧱 Componentes de UI (Presentacionais)</h4>
+          <p><strong>Função:</strong> Aparência visual<br>
+            <strong>Características:</strong> Recebem dados via props, não têm estado próprio<br>
+            <strong>Exemplo:</strong> Botão, Card, Input
+          </p>
+        </div>
+
+        <div class="component-type">
+          <h4>⚙️ Componentes de Lógica (Containers)</h4>
+          <p><strong>Função:</strong> Gerenciar estado e lógica<br>
+            <strong>Características:</strong> Têm estado, fazem chamadas de API<br>
+            <strong>Exemplo:</strong> Lista de usuários, Formulário complexo
+          </p>
+        </div>
+      </div>
+
+      <h3>Exemplo: Componente Carta</h3>
+      <div class="code-container">
+        <pre>
+// Componente de UI (Presentacional)
+interface CartaProps {
+    titulo: string;
+    descricao: string;
+    custo: number;
+    imagem?: string;
+}
+
+function Carta({ titulo, descricao, custo, imagem }: CartaProps) {
+    return (
+        &lt;div className="carta"&gt;
+            {imagem && &lt;img src={imagem} alt={titulo} /&gt;}
+            &lt;h3&gt;{titulo}&lt;/h3&gt;
+            &lt;p&gt;{descricao}&lt;/p&gt;
+            &lt;div className="custo"&gt;{custo} recursos&lt;/div&gt;
+        &lt;/div&gt;
+    );
+}
+
+// Uso do componente
+&lt;Carta 
+    titulo="Floresta"
+    descricao="Produz 2 madeiras por turno"
+    custo={3}
+    imagem="/floresta.png"
+/&gt;</pre>
+        <button class="copy-btn no-print">Copiar</button>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4: JSX -->
+    <section id="jsx-conceito" class="main-section">
+      <h2>🎨 JSX: HTML no JavaScript</h2>
+
+      <div class="analogy">
+        <h3>💡 Analogia: Cozinha Separada vs Cozinha Integrada</h3>
+        <div class="analogy-item">
+          <p><strong>HTML/JS Separados (Cozinhas Separadas):</strong><br>
+            Como ter a cozinha em um cômodo e os ingredientes em outro - muita ida e volta.</p>
+        </div>
+        <div class="analogy-item">
+          <p><strong>JSX (Cozinha Integrada):</strong><br>
+            Como ter tudo organizado no mesmo ambiente - eficiente e prático.</p>
+        </div>
+      </div>
+
+      <h3>O que é JSX?</h3>
+      <p>JSX é uma <strong>extensão de sintaxe</strong> do JavaScript que permite escrever HTML dentro do código
+        JavaScript. É como o React "descreve" como a interface deve ficar.</p>
+
+      <h3>Regras do JSX</h3>
+      <ul>
+        <li>🔤 <strong>className</strong> em vez de <code>class</code></li>
+        <li>🏷️ <strong>Tags devem ser fechadas</strong> (<code>&lt;img /&gt;</code>, <code>&lt;br /&gt;</code>)</li>
+        <li>📦 <strong>Um elemento pai</strong> por componente (ou usar <code>&lt;&gt;&lt;/&gt;</code>)</li>
+        <li>🧮 <strong>JavaScript entre {}</strong> para expressões</li>
+      </ul>
+
+      <h3>Exemplos de JSX</h3>
+
+      <div class="code-container">
+        <pre>
+// JSX Básico
+function Saudacao({ nome }) {
+    return (
+        &lt;div className="saudacao"&gt;
+            &lt;h1&gt;Olá, {nome}!&lt;/h1&gt;
+            &lt;p&gt;Hoje é {new Date().toLocaleDateString()}&lt;/p&gt;
+        &lt;/div&gt;
+    );
+}
+
+// JSX com Condicional
+function StatusJogador({ recursos, turnoAtivo }) {
+    return (
+        &lt;div className={`jogador ${turnoAtivo ? 'ativo' : 'inativo'}`}&gt;
+            &lt;h2&gt;Seus Recursos&lt;/h2&gt;
+            {recursos.length > 0 ? (
+                &lt;ul&gt;
+                    {recursos.map(recurso => (
+                        &lt;li key={recurso.tipo}&gt;
+                            {recurso.tipo}: {recurso.quantidade}
+                        &lt;/li&gt;
+                    ))}
+                &lt;/ul&gt;
+            ) : (
+                &lt;p&gt;Você não tem recursos!&lt;/p&gt;
+            )}
+        &lt;/div&gt;
+    );
+}</pre>
+        <button class="copy-btn no-print">Copiar</button>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 5: PROPS -->
+    <section id="props-conceito" class="main-section">
+      <h2>📦 Props: Comunicação entre Componentes</h2>
+
+      <div class="analogy">
+        <h3>💡 Analogia: Caixa de Entrada vs Telepatia</h3>
+        <div class="analogy-item">
+          <p><strong>Sem Props (Telepatia):</strong><br>
+            Como esperar que componentes adivinhem o que precisam - não funciona!</p>
+        </div>
+        <div class="analogy-item">
+          <p><strong>Com Props (Caixa de Entrada):</strong><br>
+            Como enviar uma encomenda com instruções claras - previsível e confiável.</p>
+        </div>
+      </div>
+
+      <h3>O que são Props?</h3>
+      <p>Props (abreviação de <strong>properties</strong>) são o mecanismo do React para passar dados de um componente
+        pai para um componente filho. São <strong>imutáveis</strong> - o componente filho não pode alterá-las.</p>
+
+      <h3>Características das Props</h3>
+      <ul>
+        <li>⬇️ <strong>Unidirecionais</strong>: Só fluem de pai para filho</li>
+        <li>🔒 <strong>Imutáveis</strong>: Componente filho não pode alterar</li>
+        <li>🎯 <strong>Tipáveis</strong>: Podemos definir tipos com TypeScript</li>
+        <li>⚙️ <strong>Configuráveis</strong>: Podem ter valores padrão</li>
+      </ul>
+
+      <h3>Exemplo Detalhado: Props no Jogo</h3>
+
+      <div class="code-container">
+        <pre>
+// Definindo as props com TypeScript
+interface JogadorProps {
+    nome: string;
+    pontos: number;
+    recursos: Recurso[];
+    turnoAtual: boolean;
+    onJogarCarta: (cartaId: string) => void;
+    className?: string; // Prop opcional
+}
+
+// Componente usando as props
+function Jogador({ 
+    nome, 
+    pontos, 
+    recursos, 
+    turnoAtual, 
+    onJogarCarta,
+    className = '' 
+}: JogadorProps) {
+    return (
+        &lt;div className={`jogador ${className} ${turnoAtual ? 'turno-ativo' : ''}`}&gt;
+            &lt;h2&gt;{nome} - {pontos} pontos&lt;/h2&gt;
+            &lt;div className="recursos"&gt;
+                {recursos.map(recurso => (
+                    &lt;RecursoIcon 
+                        key={recurso.tipo}
+                        tipo={recurso.tipo}
+                        quantidade={recurso.quantidade}
+                    /&gt;
+                ))}
+            &lt;/div&gt;
+            &lt;button 
+                onClick={() => onJogarCarta('carta-123')}
+                disabled={!turnoAtual}
+            &gt;
+                Jogar Carta
+            &lt;/button&gt;
+        &lt;/div&gt;
+    );
+}
+
+// Usando o componente
+&lt;Jogador
+    nome="João"
+    pontos={15}
+    recursos={[{ tipo: 'madeira', quantidade: 5 }, { tipo: 'pedra', quantidade: 2 }]}
+    turnoAtual={true}
+    onJogarCarta={(cartaId) => console.log('Jogando carta:', cartaId)}
+    className="jogador-principal"
+/&gt;</pre>
+        <button class="copy-btn no-print">Copiar</button>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 6: ESTADO -->
+    <section id="estado-conceito" class="main-section">
+      <h2>🔄 Estado: Dados que Mudam com o Tempo</h2>
+
+      <div class="analogy">
+        <h3>💡 Analogia: Memória vs Ação Instantânea</h3>
+        <div class="analogy-item">
+          <p><strong>Sem Estado (Ação Instantânea):</strong><br>
+            Como uma conversa onde todos esquecem o que foi dito - sem continuidade.</p>
+        </div>
+        <div class="analogy-item">
+          <p><strong>Com Estado (Memória):</strong><br>
+            Como um diário que guarda todas as experiências - contexto e histórico.</p>
+        </div>
+      </div>
+
+      <h3>O que é Estado?</h3>
+      <p>Estado representa os <strong>dados que podem mudar</strong> durante a vida de um componente. Quando o estado
+        muda, o React automaticamente <strong>re-renderiza</strong> o componente para refletir essas mudanças.</p>
+
+      <h3>Quando usar Estado?</h3>
+      <ul>
+        <li>📈 <strong>Dados dinâmicos</strong>: Contadores, formulários, recursos do jogo</li>
+        <li>🎮 <strong>Interações do usuário</strong>: Itens selecionados, opções ativas</li>
+        <li>🔄 <strong>Dados de API</strong>: Listas de usuários, informações do servidor</li>
+        <li>🎯 <strong>Estado da UI</strong>: Menus abertos/fechados, temas claro/escuro</li>
+      </ul>
+
+      <h3>useState: O Hook Básico de Estado</h3>
+
+      <div class="code-container">
+        <pre>
+import { useState } from 'react';
+
+function GerenciadorDeRecursos() {
+    // Estado para recursos do jogador
+    const [recursos, setRecursos] = useState({
+        madeira: 5,
+        pedra: 3,
+        ouro: 1
+    });
+    
+    // Estado para carta selecionada
+    const [cartaSelecionada, setCartaSelecionada] = useState(null);
+    
+    // Função para adicionar recursos
+    const adicionarRecurso = (tipo, quantidade) => {
+        setRecursos(recursosAnteriores => ({
+            ...recursosAnteriores,
+            [tipo]: recursosAnteriores[tipo] + quantidade
+        }));
+    };
+    
+    // Função para usar recursos (custo de carta)
+    const usarRecursos = (custos) => {
+        setRecursos(recursosAnteriores => {
+            const novosRecursos = { ...recursosAnteriores };
+            custos.forEach(custo => {
+                novosRecursos[custo.tipo] -= custo.quantidade;
+            });
+            return novosRecursos;
+        });
+    };
+
+    return (
+        &lt;div&gt;
+            &lt;h3&gt;Recursos: {recursos.madeira}🌲 {recursos.pedra}🪨 {recursos.ouro}💰&lt;/h3&gt;
+            &lt;button onClick={() => adicionarRecurso('madeira', 1)}&gt;
+                Coletar Madeira
+            &lt;/button&gt;
+            {cartaSelecionada && (
+                &lt;div&gt;Carta selecionada: {cartaSelecionada}&lt;/div&gt;
+            )}
+        &lt;/div&gt;
+    );
+}</pre>
+        <button class="copy-btn no-print">Copiar</button>
+      </div>
+
+      <h3>Estado Local vs Global</h3>
+
+      <div class="state-types">
+        <div class="state-type">
+          <h4>🏠 Estado Local</h4>
+          <p><strong>Uso:</strong> Dados usados apenas por um componente<br>
+            <strong>Exemplo:</strong> Input de formulário, menu aberto/fechado<br>
+            <strong>Hook:</strong> <code>useState</code>
+          </p>
+        </div>
+
+        <div class="state-type">
+          <h4>🌍 Estado Global</h4>
+          <p><strong>Uso:</strong> Dados compartilhados entre vários componentes<br>
+            <strong>Exemplo:</strong> Usuário logado, tema da aplicação, dados do jogo<br>
+            <strong>Soluções:</strong> Context API, Redux, Zustand
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 7: HOOKS -->
+    <section id="hooks-conceito" class="main-section">
+      <h2>🪝 Hooks: Funcionalidades do React</h2>
+
+      <div class="analogy">
+        <h3>💡 Analogia: Kit de Ferramentas vs Inventar Soluções</h3>
+        <div class="analogy-item">
+          <p><strong>Sem Hooks (Inventar Soluções):</strong><br>
+            Como tentar consertar algo sem as ferramentas certas - difícil e ineficiente.</p>
+        </div>
+        <div class="analogy-item">
+          <p><strong>Com Hooks (Kit de Ferramentas):</strong><br>
+            Como ter uma caixa de ferramentas organizada - cada problema tem a solução certa.</p>
+        </div>
+      </div>
+
+      <h3>O que são Hooks?</h3>
+      <p>Hooks são <strong>funções especiais</strong> que permitem "conectar" funcionalidades do React a componentes
+        funcionais. Eles sempre começam com <code>use</code> (useState, useEffect, etc.).</p>
+
+      <h3>Hooks Principais</h3>
+
+      <div class="hooks-grid">
+        <div class="hook-item">
+          <h4>🎯 useState</h4>
+          <p><strong>Função:</strong> Gerenciar estado local<br>
+            <strong>Uso no jogo:</strong> Recursos, carta selecionada, turno atual
+          </p>
+        </div>
+
+        <div class="hook-item">
+          <h4>🔄 useEffect</h4>
+          <p><strong>Função:</strong> Executar efeitos colaterais<br>
+            <strong>Uso no jogo:</strong> Carregar cartas, verificar vitória, salvar progresso
+          </p>
+        </div>
+
+        <div class="hook-item">
+          <h4>📦 useContext</h4>
+          <p><strong>Função:</strong> Acessar contexto global<br>
+            <strong>Uso no jogo:</strong> Estado global do jogo, configurações
+          </p>
+        </div>
+
+        <div class="hook-item">
+          <h4>🎰 useReducer</h4>
+          <p><strong>Função:</strong> Estado complexo com ações<br>
+            <strong>Uso no jogo:</strong> Lógica principal do jogo, sistema de turnos
+          </p>
+        </div>
+      </div>
+
+      <h3>Exemplo: useEffect para Efeitos Colaterais</h3>
+
+      <div class="code-container">
+        <pre>
+import { useState, useEffect } from 'react';
+
+function Jogo() {
+    const [cartas, setCartas] = useState([]);
+    const [carregando, setCarregando] = useState(true);
+    
+    // useEffect para carregar cartas quando o componente montar
+    useEffect(() => {
+        async function carregarCartas() {
+            try {
+                setCarregando(true);
+                // Simulando uma API call
+                const resposta = await fetch('/api/cartas');
+                const cartasData = await resposta.json();
+                setCartas(cartasData);
+            } catch (erro) {
+                console.error('Erro ao carregar cartas:', erro);
+            } finally {
+                setCarregando(false);
+            }
+        }
+        
+        carregarCartas();
+    }, []); // Array vazio = executa apenas uma vez
+    
+    // useEffect para verificar vitória quando recursos mudarem
+    const [recursos, setRecursos] = useState({ madeira: 0, pedra: 0, ouro: 0 });
+    
+    useEffect(() => {
+        const verificarVitoria = () => {
+            if (recursos.ouro >= 10) {
+                alert('🎉 Você venceu! Construiu 10 ouros!');
+            }
+        };
+        
+        verificarVitoria();
+    }, [recursos]); // Executa sempre que recursos mudar
+    
+    if (carregando) {
+        return &lt;div&gt;Carregando cartas...&lt;/div&gt;;
+    }
+    
+    return (
+        &lt;div&gt;
+            &lt;h1&gt;Meu Jogo de Cartas&lt;/h1&gt;
+            {/* Renderizar cartas */}
+        &lt;/div&gt;
+    );
+}</pre>
+        <button class="copy-btn no-print">Copiar</button>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 8: INSTALAÇÃO (mantida igual) -->
     <section id="instalacao" class="main-section">
-      <h2>Instalação</h2>
+      <h2>Instalação e Configuração Inicial</h2>
       <p>Para começar a desenvolver nosso jogo, você vai precisar:</p>
 
       <h3>Ferramentas básicas</h3>
       <ul>
-        <li><strong>Node.js</strong> (inclui npm)</li>
+        <li><strong>Node.js</strong> (versão 16 ou superior - inclui npm)</li>
         <li><strong>Editor de código</strong> (VS Code recomendado)</li>
         <li><strong>Git</strong> para controle de versão</li>
       </ul>
 
-      <h3>Criando o projeto</h3>
+      <h3>Criando o projeto com Vite</h3>
+      <p>
+        Vamos usar o Vite para criar nosso projeto, pois é mais rápido e
+        moderno que o create-react-app:
+      </p>
+
+      <p>Abra o terminal no diretório onde deseja criar o projeto e execute os comandos para criar o projeto com React + TypeScript</p>
+
       <div class="code-container">
         <pre>
-npx create-react-app card-game --template typescript
+npm create vite@latest card-game -- --template react-ts
+
 cd card-game
-npm start</pre>
+
+npm install
+
+npm run dev</pre>
         <button class="copy-btn no-print">Copiar</button>
       </div>
 
-      <h3>Bibliotecas adicionais</h3>
+      <p>
+        Após executar <code>npm run dev</code>, o terminal mostrará um
+        endereço local (geralmente <code>http://localhost:5173</code>). Acesse
+        este endereço para ver a página padrão do React.
+      </p>
+
+      <h3>Bibliotecas adicionais para nosso jogo</h3>
+      <p>Instale as bibliotecas adicionais que vamos usar no jogo e instale as tipagens TypeScript (se necessário)</p>
       <div class="code-container">
         <pre>
 npm install framer-motion react-icons
+
 npm install --save-dev @types/react @types/react-dom</pre>
         <button class="copy-btn no-print">Copiar</button>
       </div>
     </section>
 
-    <section id="typescript-react" class="main-section">
-      <h2>TypeScript e React</h2>
+    <section id="estrutura-inicial" class="main-section">
+      <h2>Entendendo a Estrutura Inicial do Projeto</h2>
       <p>
-        TypeScript é um superset de JavaScript que adiciona tipagem estática
-        ao código. Quando usado com React, ele nos ajuda a:
+        Após criar o projeto, você verá uma estrutura de pastas como esta:
       </p>
 
-      <ul>
-        <li>Definir tipos para nossas props e estados</li>
-        <li>Detecção de erros durante o desenvolvimento</li>
-        <li>Melhor autocomplete de código</li>
-        <li>Facilitar a manutenção do código</li>
-      </ul>
-
-      <h3>Componentes com TypeScript</h3>
-      <p>
-        Em React com TypeScript, podemos definir interfaces para as props dos
-        nossos componentes:
-      </p>
       <div class="code-container">
         <pre>
+card-game/
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── assets/
+│   │   └── react.svg
+│   ├── App.css
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── index.html
+├── package.json
+└── vite.config.ts</pre>
+        <button class="copy-btn no-print">Copiar</button>
+      </div>
+
+      <h3>Arquivos Principais e Suas Funções</h3>
+
+      <div class="file-structure">
+        <div class="file-item">
+          <h4>📄 index.html</h4>
+          <p>
+            <strong>Ponto de entrada HTML</strong> - O arquivo HTML principal
+            onde nossa aplicação React será "montada". Contém um elemento
+            <code>&lt;div id="root"&gt;</code> onde todo o React será
+            renderizado.
+          </p>
+        </div>
+
+        <div class="file-item">
+          <h4>⚙️ src/main.tsx</h4>
+          <p>
+            <strong>Ponto de entrada JavaScript/TypeScript</strong> - Este
+            arquivo é o primeiro código TypeScript executado. Sua função é
+            técnica: ele "planta" (monta) o componente <code>App</code> dentro
+            do elemento HTML com id <code>root</code>.
+          </p>
+          <div class="code-container">
+            <pre>
+// src/main.tsx - Exemplo simplificado
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
+import './index.css' // Importa os estilos globais
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;
+)</pre>
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <div class="file-item">
+          <h4>🚀 src/App.tsx</h4>
+          <p>
+            <strong>Componente Raiz</strong> - Este é o componente principal
+            que define a estrutura inicial da sua aplicação visível na tela.
+            Todo o desenvolvimento inicial de componentes, rotas e lógica
+            começa aqui.
+          </p>
+          <div class="code-container">
+            <pre>
+// src/App.tsx - Exemplo simplificado
+import { useState } from 'react'
+import './App.css' // Importa os estilos específicos do App
+
+function App() {
+  // A lógica do seu componente é escrita aqui
+  return (
+    // O JSX (o que é renderizado na tela) é definido aqui
+    &lt;div className="App"&gt;
+      &lt;h1&gt;Meu Jogo de Cartas&lt;/h1&gt;
+      {/* Seus outros componentes serão inseridos aqui */}
+    &lt;/div&gt;
+  )
+}
+
+export default App</pre>
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <div class="file-item">
+          <h4>🎨 src/App.css vs src/index.css</h4>
+          <p><strong>Diferença entre os arquivos de estilo:</strong></p>
+          <ul>
+            <li>
+              <strong>index.css</strong>: Estilos <strong>globais</strong> da
+              aplicação (fontes padrão, reset de margens, cores de tema)
+            </li>
+            <li>
+              <strong>App.css</strong>: Estilos específicos para o componente
+              <code>App.tsx</code>
+            </li>
+          </ul>
+        </div>
+
+        <div class="file-item">
+          <h4>🔧 vite.config.ts</h4>
+          <p>
+            <strong>Configuração do Vite</strong> - Arquivo de configuração
+            para personalizar o ambiente de desenvolvimento e construção.
+          </p>
+        </div>
+      </div>
+
+      <div class="note">
+        <p>
+          <strong>Resumo Prático:</strong> O <code>main.tsx</code> é o
+          "montador" técnico que coloca o React na página, enquanto o
+          <code>App.tsx</code> é o "conteúdo" principal que você verá e
+          modificará constantemente.
+        </p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 9: IMPLEMENTAÇÃO -->
+    <section id="implementacao-jogo" class="main-section">
+      <h2>🎮 Implementação do Jogo de Cartas</h2>
+      <p>Agora que entendemos todos os conceitos, vamos aplicar na prática criando nosso jogo de cartas!</p>
+
+      <div class="implementation-steps">
+        <h3>📋 Passos da Implementação</h3>
+        <ol>
+          <li><strong>Estrutura de Dados</strong>: Modelar cartas, recursos e estado do jogo</li>
+          <li><strong>Componentes Base</strong>: Criar Carta, Jogador, Tabuleiro</li>
+          <li><strong>Estado Global</strong>: Configurar Context API e useReducer</li>
+          <li><strong>Lógica do Jogo</strong>: Implementar turnos, ações e vitória</li>
+          <li><strong>Polimento</strong>: Animações, responsividade, UX</li>
+        </ol>
+      </div>
+
+      <!-- GUIA DE IMPLEMENTAÇÃO -->
+      <div class="implementation-guide">
+        <h3>🛠️ Como Implementar Passo a Passo</h3>
+
+        <div class="folder-structure">
+          <h4>📁 Estrutura de Pastas que Vamos Criar:</h4>
+          <pre>
+src/
+├── types/
+│   └── game.ts              # Tipos TypeScript
+├── components/
+│   ├── Carta.tsx            # Componente de carta
+│   └── Jogador.tsx          # Componente de jogador
+├── context/
+│   ├── GameContext.tsx      # Context do jogo
+│   ├── gameActions.ts       # Ações do reducer
+│   └── gameReducer.ts       # Reducer do jogo
+├── hooks/
+│   └── useGameLogic.ts      # Hook personalizado
+├── App.tsx                  # Componente principal
+└── App.css                  # Estilos</pre>
+        </div>
+      </div>
+
+      <!-- PASSO 1: ESTRUTURA DE DADOS -->
+      <div class="implementation-step">
+        <h3>1. 🎴 Estrutura de Dados do Jogo</h3>
+
+        <div class="step-instructions">
+          <h4>📝 Passo 1.1: Criar a Pasta e Arquivo de Tipos</h4>
+          <ol>
+            <li>Crie a pasta <code>src/types/</code></li>
+            <li>Dentro dela, crie o arquivo <code>game.ts</code></li>
+            <li>Copie e cole o código abaixo</li>
+          </ol>
+        </div>
+
+        <div class="code-container">
+          <pre>
+// types/game.ts
+export type TipoRecurso = 'madeira' | 'pedra' | 'ouro';
+
+export interface Recurso {
+    tipo: TipoRecurso;
+    quantidade: number;
+}
+
+export interface Carta {
+    id: string;
+    titulo: string;
+    descricao: string;
+    custo: Recurso[];
+    efeito: Recurso[]; // Recursos que produz
+    tipo: 'recurso' | 'construcao' | 'especial';
+    raridade: 'comum' | 'rara' | 'epica';
+}
+
+export interface Jogador {
+    id: string;
+    nome: string;
+    recursos: Recurso[];
+    mao: Carta[];
+    pontos: number;
+}
+
+export interface EstadoJogo {
+    jogadores: Jogador[];
+    jogadorAtual: number;
+    baralho: Carta[];
+    descarte: Carta[];
+    fase: 'preparacao' | 'compra' | 'acao' | 'fim';
+    vencedor: string | null;
+}
+
+// Cartas iniciais do jogo
+export const CARTAS_INICIAIS: Carta[] = [
+    {
+        id: 'floresta',
+        titulo: 'Floresta',
+        descricao: 'Produz 1 madeira por turno',
+        custo: [],
+        efeito: [{ tipo: 'madeira', quantidade: 1 }],
+        tipo: 'recurso',
+        raridade: 'comum'
+    },
+    {
+        id: 'minapedra',
+        titulo: 'Mina de Pedra',
+        descricao: 'Custa 2 madeiras. Produz 1 pedra por turno',
+        custo: [{ tipo: 'madeira', quantidade: 2 }],
+        efeito: [{ tipo: 'pedra', quantidade: 1 }],
+        tipo: 'construcao',
+        raridade: 'comum'
+    },
+    {
+        id: 'minouro',
+        titulo: 'Mina de Ouro',
+        descricao: 'Custa 3 pedras. Produz 1 ouro por turno',
+        custo: [{ tipo: 'pedra', quantidade: 3 }],
+        efeito: [{ tipo: 'ouro', quantidade: 1 }],
+        tipo: 'construcao',
+        raridade: 'rara'
+    }
+];</pre>
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <div class="explanation">
+          <h4>💡 O que acabamos de fazer?</h4>
+          <ul>
+            <li><strong>Definimos todos os tipos</strong> que nosso jogo vai usar</li>
+            <li><strong>Criamos interfaces</strong> para Carta, Jogador e EstadoJogo</li>
+            <li><strong>Preparamos cartas iniciais</strong> para testar o jogo</li>
+            <li><strong>Organizamos a estrutura de dados</strong> de forma clara</li>
+          </ul>
+          <p><strong>Próximo passo:</strong> Vamos criar os componentes visuais!</p>
+        </div>
+      </div>
+
+      <!-- PASSO 2: COMPONENTES BASE -->
+      <div class="implementation-step">
+        <h3>2. 🧩 Componentes Base do Jogo</h3>
+
+        <div class="step-instructions">
+          <h4>📝 Passo 2.1: Criar o Componente Carta</h4>
+          <ol>
+            <li>Crie a pasta <code>src/components/</code></li>
+            <li>Dentro dela, crie o arquivo <code>Carta.tsx</code></li>
+            <li>Instale as dependências necessárias: <code>npm install framer-motion</code></li>
+            <li>Copie e cole o código abaixo</li>
+          </ol>
+        </div>
+
+        <h4>Componente Carta</h4>
+        <div class="code-container">
+          <pre>
+// components/Carta.tsx
+import { motion } from 'framer-motion';
+import { Carta as CartaType } from '../types/game';
+
 interface CartaProps {
-  id: string;
-  titulo: string;
-  texto: string;
-  custo: RecursoType[];
-  ganho: RecursoType[];
+    carta: CartaType;
+    onClick?: () => void;
+    selecionada?: boolean;
+    jogavel?: boolean;
 }
 
-const Carta: React.FC&lt;CartaProps&gt; = ({ id, titulo, texto, custo, ganho }) => {
-  return (
-    &lt;div className="carta"&gt;
-      &lt;h3&gt;{titulo}&lt;/h3&gt;
-      &lt;p&gt;{texto}&lt;/p&gt;
-      {/* Renderizar custos e ganhos */}
-    &lt;/div&gt;
-  );
-};</pre>
-        <button class="copy-btn no-print">Copiar</button>
-      </div>
-
-      <h3>Estado com Typescript</h3>
-      <p>Podemos também definir tipos para nosso estado:</p>
-      <div class="code-container">
-        <pre>
-interface GameState {
-  players: Player[];
-  currentPlayer: number;
-  deck: Card[];
-  discardPile: Card[];
-  gamePhase: 'setup' | 'draw' | 'play' | 'end';
-}
-        
-const [gameState, setGameState] = useState&lt;GameState&gt;(initialState);</pre>
-        <button class="copy-btn no-print">Copiar</button>
-      </div>
-
-      <div class="note">
-        <p>
-          TypeScript nos ajuda a capturar muitos erros antes mesmo de executar
-          o código, tornando o desenvolvimento mais seguro e previsível.
-        </p>
-      </div>
-    </section>
-
-    <section id="componentes" class="main-section">
-      <h2>Componentes</h2>
-      <p>
-        Componentes são os blocos de construção fundamentais de qualquer
-        aplicação React. Eles permitem dividir a UI em partes independentes e
-        reutilizáveis, tornando o código mais organizado e manutenível.
-      </p>
-
-      <h3>O que são componentes?</h3>
-      <p>
-        Em React, um componente é uma função ou classe que retorna elementos
-        React (geralmente escrito em JSX) que descrevem o que deve aparecer na
-        tela. Componentes podem ser tão pequenos como um botão ou tão grandes
-        como uma página inteira.
-      </p>
-
-      <h3>Por que usar componentes?</h3>
-      <ul>
-        <li>
-          <strong>Reutilização</strong>: Escreva uma vez, use em vários
-          lugares
-        </li>
-        <li>
-          <strong>Organização</strong>: Divida a aplicação em partes lógicas
-        </li>
-        <li>
-          <strong>Manutenção</strong>: Facilita encontrar e corrigir problemas
-        </li>
-        <li>
-          <strong>Testabilidade</strong>: Componentes isolados são mais fáceis
-          de testar
-        </li>
-      </ul>
-
-      <h3>Componentes no nosso jogo</h3>
-      <p>
-        No nosso jogo de cartas, usamos componentes para cada parte visual e
-        lógica do jogo:
-      </p>
-      <ul>
-        <li>
-          <strong>App</strong> - O componente raiz que orquestra toda a
-          aplicação.
-          <ul>
-            <li>Gerencia o estado global do jogo</li>
-            <li>Renderiza os outros componentes principais</li>
-            <li>Coordena as interações entre partes do jogo</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Jogador</strong> - Representa a área de um jogador.
-          <ul>
-            <li>Mostra as cartas na mão do jogador</li>
-            <li>Exibe os recursos disponíveis</li>
-            <li>Lida com ações do jogador (jogar carta, passar turno)</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Carta</strong> - Componente visual para cada carta
-          individual.
-          <ul>
-            <li>Exibe o título, descrição e custos da carta</li>
-            <li>Implementa interações (hover, click)</li>
-            <li>Animações quando jogada ou comprada</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Oferta</strong> - Mostra cartas disponíveis para compra.
-          <ul>
-            <li>Gerencia a seleção de cartas</li>
-            <li>Atualiza dinamicamente conforme cartas são compradas</li>
-          </ul>
-        </li>
-        <li>
-          <strong>ListaDeRecursos</strong> - Exibe os recursos atuais do
-          jogador.
-          <ul>
-            <li>Mostra ícones e quantidades de cada recurso</li>
-            <li>Destaca recursos insuficientes quando necessário</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>Exemplo detalhado: Componente de Recurso</h3>
-      <p>
-        Vamos examinar com mais detalhes o componente
-        <code>RecursoIcon</code>:
-      </p>
-      <div class="code-container">
-        <pre>
-interface RecursoIconProps {
-  tipo: 'madeira' | 'pedra' | 'ouro';
-  quantidade?: number;
-}
-
-const RecursoIcon: React.FC&lt;RecursoIconProps&gt; = ({ tipo, quantidade }) => {
-  // Mapeia cada tipo de recurso para um ícone correspondente
-  const icones = {
-    madeira: &lt;FaTree /&gt;,      // Ícone de árvore para madeira
-    pedra: &lt;FaMountain /&gt;,    // Ícone de montanha para pedra
-    ouro: &lt;FaCoins /&gt;         // Ícone de moedas para ouro
-  };
-  
-  return (
-    &lt;div className="recurso-icon"&gt;
-      {/* Renderiza o ícone correspondente ao tipo */}
-      {icones[tipo]}
-      
-      {/* Mostra a quantidade se for fornecida */}
-      {quantidade !== undefined && &lt;span&gt;{quantidade}&lt;/span&gt;}
-    &lt;/div&gt;
-  );
-};</pre>
-        <button class="copy-btn no-print">Copiar</button>
-      </div>
-
-      <h4>Análise do componente:</h4>
-      <ol>
-        <li>
-          <strong>Props (Propriedades)</strong>:
-          <ul>
-            <li>
-              <code>tipo</code>: Define qual recurso mostrar (madeira, pedra
-              ou ouro)
-            </li>
-            <li>
-              <code>quantidade</code>: Opcional - mostra a quantidade do
-              recurso
-            </li>
-          </ul>
-        </li>
-        <li>
-          <strong>Lógica Interna</strong>:
-          <ul>
-            <li>
-              Usa um objeto <code>icones</code> para mapear tipos para ícones
-            </li>
-            <li>Renderiza condicionalmente a quantidade se for fornecida</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Reutilização</strong>:
-          <ul>
-            <li>
-              Pode ser usado em qualquer lugar que precise mostrar um recurso
-            </li>
-            <li>Consistência visual em toda a aplicação</li>
-            <li>Fácil de modificar (mudar ícones em um só lugar)</li>
-          </ul>
-        </li>
-      </ol>
-    </section>
-
-    <section id="app-component-teorico" class="main-section">
-      <h2>O Componente App</h2>
-
-      <p>
-        O <strong>App</strong> é o componente raiz de toda aplicação React.
-        Ele é responsável por:
-      </p>
-
-      <ul>
-        <li><strong>Organizar a estrutura geral</strong> da aplicação</li>
-        <li><strong>Gerenciar o estado global</strong> do jogo</li>
-        <li>
-          <strong>Renderizar todos os subcomponentes</strong> (como
-          jogadores, cartas, etc.)
-        </li>
-        <li>
-          <strong>Definir a lógica principal</strong> (turnos, regras,
-          vitória)
-        </li>
-      </ul>
-
-      <h3>Analogia: O App como um "Diretor"</h3>
-      <p>Pense no componente <code>App</code> como o diretor de um filme:</p>
-
-      <div class="analogy">
-        <div class="analogy-item">
-          <p>
-            <strong>App (Diretor)</strong>: Coordena todos os atores e cenas
-          </p>
-        </div>
-        <div class="analogy-item">
-          <p>
-            <strong>Subcomponentes (Atores)</strong>: Cada um tem seu papel
-            específico
-          </p>
-        </div>
-      </div>
-
-      <h3>Exemplo Simplificado:</h3>
-      <div class="code-container">
-        <pre>
-function App() {
-  return (
-    &lt;div className="jogo"&gt;
-      &lt;Header /&gt;       {/* Cabeçalho com título */}
-      &lt;Tabuleiro /&gt;   {/* Área de jogo principal */}
-      &lt;Jogador /&gt;     {/* Controles do jogador */}
-    &lt;/div&gt;
-  );
+export function Carta({ carta, onClick, selecionada = false, jogavel = true }: CartaProps) {
+    return (
+        &lt;motion.div
+            className={`carta ${selecionada ? 'carta-selecionada' : ''} ${!jogavel ? 'carta-inativa' : ''}`}
+            onClick={jogavel ? onClick : undefined}
+            whileHover={jogavel ? { scale: 1.05 } : {}}
+            whileTap={jogavel ? { scale: 0.95 } : {}}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+        &gt;
+            &lt;div className="carta-cabecalho"&gt;
+                &lt;h3&gt;{carta.titulo}&lt;/h3&gt;
+                &lt;span className={`raridade ${carta.raridade}`}&gt;{carta.raridade}&lt;/span&gt;
+            &lt;/div&gt;
+            
+            &lt;p className="carta-descricao"&gt;{carta.descricao}&lt;/p&gt;
+            
+            {carta.custo.length > 0 && (
+                &lt;div className="carta-custo"&gt;
+                    &lt;strong&gt;Custo:&lt;/strong&gt;
+                    {carta.custo.map((recurso, index) => (
+                        &lt;span key={index} className="recurso"&gt;
+                            {recurso.quantidade} {recurso.tipo}
+                        &lt;/span&gt;
+                    ))}
+                &lt;/div&gt;
+            )}
+            
+            &lt;div className="carta-efeito"&gt;
+                &lt;strong&gt;Produz:&lt;/strong&gt;
+                {carta.efeito.map((recurso, index) => (
+                    &lt;span key={index} className="recurso"&gt;
+                        {recurso.quantidade} {recurso.tipo}
+                    &lt;/span&gt;
+                ))}
+            &lt;/div&gt;
+        &lt;/motion.div&gt;
+    );
 }</pre>
-      </div>
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
 
-      <div class="note">
-        <p>
-          <strong>Importante</strong>: Nas próximas seções, vamos aprender
-          como o App usa <strong>props</strong> para passar dados aos
-          componentes, <strong>estado</strong> para gerenciar o progresso do
-          jogo, e <strong>contexto</strong> para compartilhar informações
-          globais.
-        </p>
-      </div>
-    </section>
+        <div class="step-instructions">
+          <h4>📝 Passo 2.2: Criar o Componente Jogador</h4>
+          <ol>
+            <li>Na pasta <code>src/components/</code>, crie o arquivo <code>Jogador.tsx</code></li>
+            <li>Copie e cole o código abaixo</li>
+            <li>Note que estamos importando o componente Carta que acabamos de criar</li>
+          </ol>
+        </div>
 
-    <section id="props" class="main-section">
-      <h2>Propriedades (Props)</h2>
-      <p>
-        Props (abreviação de properties) são o mecanismo principal para passar
-        dados de um componente pai para um componente filho em React. Elas são
-        imutáveis dentro do componente que as recebe.
-      </p>
+        <h4>Componente Jogador</h4>
+        <div class="code-container">
+          <pre>
+// components/Jogador.tsx
+import { Jogador as JogadorType, Carta } from '../types/game';
+import { Carta as ComponenteCarta } from './Carta';
 
-      <h3>O que são Props?</h3>
-      <p>
-        Props são como argumentos de função, mas para componentes React. Elas
-        permitem que componentes sejam dinâmicos e reutilizáveis, pois o mesmo
-        componente pode se comportar de maneira diferente dependendo das props
-        que recebe.
-      </p>
-
-      <h3>Características das Props</h3>
-      <ul>
-        <li>
-          <strong>Unidirecionais</strong>: Fluxo de dados apenas de pai para
-          filho
-        </li>
-        <li>
-          <strong>Imutáveis</strong>: O componente filho não pode alterar suas
-          props
-        </li>
-        <li>
-          <strong>Tipáveis</strong>: Podemos definir tipos específicos para
-          cada prop
-        </li>
-        <li>
-          <strong>Opcionais</strong>: Podem ter valores padrão quando não
-          fornecidas
-        </li>
-      </ul>
-
-      <h3>Props no nosso jogo</h3>
-      <p>Em nosso jogo de cartas, usamos props extensivamente para:</p>
-      <ul>
-        <li>
-          <strong>Passar dados das cartas</strong>:
-          <ul>
-            <li>
-              Título, descrição, custos e benefícios para o componente
-              <code>Carta</code>
-            </li>
-            <li>
-              Estado atual da carta (se pode ser jogada, se está selecionada)
-            </li>
-          </ul>
-        </li>
-        <li>
-          <strong>Configurar jogadores</strong>:
-          <ul>
-            <li>Nome e avatar do jogador</li>
-            <li>Cartas na mão e recursos disponíveis</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Controlar o fluxo do jogo</strong>:
-          <ul>
-            <li>Funções de callback para quando uma carta é jogada</li>
-            <li>Indicadores de turno e fase do jogo</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>Exemplo detalhado: Props do componente Jogador</h3>
-      <div class="code-container">
-        <pre>
 interface JogadorProps {
-  cartas: CartaType[];          // Lista de cartas na mão do jogador
-  recursos: RecursoType[];      // Recursos atuais do jogador
-  onJogarCarta: (carta: CartaType) => void;  // Callback quando jogar carta
-  isTurnoAtual?: boolean;       // Se é o turno deste jogador
-  nome?: string;                // Nome do jogador (opcional)
+    jogador: JogadorType;
+    turnoAtual: boolean;
+    onJogarCarta: (carta: Carta) => void;
 }
 
-const Jogador: React.FC&lt;JogadorProps&gt; = ({ 
-  cartas, 
-  recursos, 
-  onJogarCarta,
-  isTurnoAtual = false,
-  nome = 'Jogador'
-}) => {
-  return (
-    &lt;div className={`jogador ${isTurnoAtual ? 'turno-ativo' : ''}`}&gt;
-      &lt;h2&gt;{nome}&lt;/h2&gt;
-      &lt;ListaDeRecursos recursos={recursos} /&gt;
-      
-      &lt;div className="mao-de-cartas"&gt;
-        {cartas.map(carta => (
-          &lt;Carta 
-            key={carta.id} 
-            {...carta} 
-            onClick={() => isTurnoAtual && onJogarCarta(carta)}
-            desabilitada={!isTurnoAtual}
-          /&gt;
-        ))}
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-};</pre>
-        <button class="copy-btn no-print">Copiar</button>
-      </div>
-
-      <h4>Análise das Props:</h4>
-      <ol>
-        <li>
-          <strong>cartas</strong>:
-          <ul>
-            <li>Tipo: Array de <code>CartaType</code></li>
-            <li>Uso: Lista de cartas para mostrar na mão do jogador</li>
-            <li>Importância: Dados dinâmicos que mudam durante o jogo</li>
-          </ul>
-        </li>
-        <li>
-          <strong>recursos</strong>:
-          <ul>
-            <li>Tipo: Array de <code>RecursoType</code></li>
-            <li>Uso: Mostrar os recursos atuais do jogador</li>
-            <li>Importância: Atualizado visualmente quando recursos mudam</li>
-          </ul>
-        </li>
-        <li>
-          <strong>onJogarCarta</strong>:
-          <ul>
-            <li>Tipo: Função que recebe uma <code>CartaType</code></li>
-            <li>Uso: Callback para quando o jogador clica em uma carta</li>
-            <li>Importância: Comunicação do componente filho para o pai</li>
-          </ul>
-        </li>
-        <li>
-          <strong>isTurnoAtual</strong>:
-          <ul>
-            <li>Tipo: Booleano (opcional, padrão false)</li>
-            <li>Uso: Controla se o jogador pode interagir com as cartas</li>
-            <li>Importância: Feedback visual de quem está jogando</li>
-          </ul>
-        </li>
-        <li>
-          <strong>nome</strong>:
-          <ul>
-            <li>Tipo: String (opcional, padrão 'Jogador')</li>
-            <li>Uso: Identificação personalizada do jogador</li>
-            <li>Importância: Personalização e multiplayer</li>
-          </ul>
-        </li>
-      </ol>
-
-      <div class="note">
-        <p>
-          <strong>Dica importante</strong>: As props são a principal forma de
-          comunicação entre componentes pai e filho em React. No nosso jogo,
-          elas permitem que o estado centralizado no componente App flua para
-          os componentes visuais sem acoplamento direto.
-        </p>
-      </div>
-    </section>
-
-    <section id="estado" class="main-section">
-      <h2>Estado (State)</h2>
-      <p>
-        Estado em React representa os dados que podem mudar durante a vida de
-        um componente. Quando o estado muda, o React automaticamente
-        re-renderiza o componente para refletir essas mudanças.
-      </p>
-
-      <h3>O que é Estado?</h3>
-      <p>
-        Estado é qualquer dado que pode mudar durante a execução da aplicação
-        e que afeta o que é renderizado na tela. Diferente das props (que são
-        imutáveis), o estado é gerenciado internamente pelo componente.
-      </p>
-
-      <h3>Quando usar Estado?</h3>
-      <ul>
-        <li>Dados que mudam com o tempo (como recursos no jogo)</li>
-        <li>Interações do usuário (cartas selecionadas)</li>
-        <li>Dados recebidos de APIs (se aplicável)</li>
-        <li>
-          Qualquer informação que precise causar uma re-renderização quando
-          atualizada
-        </li>
-      </ul>
-
-      <h3>Estado no nosso jogo</h3>
-      <p>Em nosso jogo de cartas, o estado é crucial para gerenciar:</p>
-      <ul>
-        <li>
-          <strong>Progresso do Jogo</strong>:
-          <ul>
-            <li>Turno atual e jogador ativo</li>
-            <li>Fase do jogo (compra, ação, fim)</li>
-            <li>Placar e condições de vitória</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Dados dos Jogadores</strong>:
-          <ul>
-            <li>Cartas na mão de cada jogador</li>
-            <li>Recursos disponíveis (madeira, pedra, ouro)</li>
-            <li>Pontuação e construções completadas</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Estado do Tabuleiro</strong>:
-          <ul>
-            <li>Cartas disponíveis para compra</li>
-            <li>Cartas jogadas no campo</li>
-            <li>Efeitos ativos e durações</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>Tipos de Estado em React</h3>
-      <p>Existem duas principais formas de gerenciar estado em React:</p>
-      <ol>
-        <li>
-          <strong>Estado Local (useState)</strong>:
-          <ul>
-            <li>Para estado isolado em um único componente</li>
-            <li>Simples de implementar para casos básicos</li>
-            <li>Ideal para formulários, UI state (aberto/fechado)</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Estado Global (useReducer/Context)</strong>:
-          <ul>
-            <li>Para estado compartilhado entre muitos componentes</li>
-            <li>Mais complexo mas mais poderoso</li>
-            <li>Ideal para dados do jogo, autenticação, temas</li>
-          </ul>
-        </li>
-      </ol>
-
-      <h3>Exemplo detalhado: Estado de Recursos</h3>
-      <div class="code-container">
-        <pre>
-// Tipo para nossos recursos
-type RecursoType = {
-  nome: 'madeira' | 'pedra' | 'ouro';
-  quantidade: number;
-};
-
-// Estado inicial
-const recursosIniciais: RecursoType[] = [
-  { nome: 'madeira', quantidade: 3 },
-  { nome: 'pedra', quantidade: 0 },
-  { nome: 'ouro', quantidade: 0 }
-];
-
-// Componente usando estado
-const GerenciadorDeRecursos = () => {
-  const [recursos, setRecursos] = useState&lt;RecursoType[]&gt;(recursosIniciais);
-  
-  // Adiciona recursos de um tipo específico
-  const adicionarRecurso = (nome: string, quantidade: number) => {
-    setRecursos(prevRecursos => 
-      prevRecursos.map(recurso =>
-        recurso.nome === nome
-          ? { ...recurso, quantidade: recurso.quantidade + quantidade }
-          : recurso
-      )
-    );
-  };
-  
-  // Remove recursos (para custos de cartas)
-  const removerRecurso = (nome: string, quantidade: number) => {
-    setRecursos(prevRecursos =>
-      prevRecursos.map(recurso => {
-        if (recurso.nome === nome) {
-          const novaQuantidade = Math.max(0, recurso.quantidade - quantidade);
-          return { ...recurso, quantidade: novaQuantidade };
-        }
-        return recurso;
-      })
-    );
-  };
-  
-  // Verifica se tem recursos suficientes
-  const temRecursosSuficientes = (custos: RecursoType[]) => {
-    return custos.every(custo => {
-      const recurso = recursos.find(r => r.nome === custo.nome);
-      return recurso && recurso.quantidade >= custo.quantidade;
-    });
-  };
-
-  return (
-    &lt;div&gt;
-      &lt;h3&gt;Recursos Disponíveis&lt;/h3&gt;
-      {recursos.map(recurso => (
-        &lt;div key={recurso.nome}&gt;
-          {recurso.nome}: {recurso.quantidade}
+export function Jogador({ jogador, turnoAtual, onJogarCarta }: JogadorProps) {
+    return (
+        &lt;div className={`jogador ${turnoAtual ? 'turno-ativo' : ''}`}&gt;
+            &lt;div className="jogador-info"&gt;
+                &lt;h2&gt;{jogador.nome}&lt;/h2&gt;
+                &lt;span className="pontos"&gt;{jogador.pontos} pontos&lt;/span&gt;
+            &lt;/div&gt;
+            
+            &lt;div className="recursos"&gt;
+                &lt;h3&gt;Recursos&lt;/h3&gt;
+                {jogador.recursos.map(recurso => (
+                    &lt;div key={recurso.tipo} className="recurso-item"&gt;
+                        &lt;span className="recurso-icone"&gt;{getEmojiRecurso(recurso.tipo)}&lt;/span&gt;
+                        &lt;span&gt;{recurso.quantidade}&lt;/span&gt;
+                    &lt;/div&gt;
+                ))}
+            &lt;/div&gt;
+            
+            &lt;div className="mao-cartas"&gt;
+                &lt;h3&gt;Mão ({jogador.mao.length})&lt;/h3&gt;
+                &lt;div className="cartas-container"&gt;
+                    {jogador.mao.map(carta => (
+                        &lt;ComponenteCarta
+                            key={carta.id}
+                            carta={carta}
+                            jogavel={turnoAtual}
+                            onClick={() => onJogarCarta(carta)}
+                        /&gt;
+                    ))}
+                &lt;/div&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
-      ))}
-      
-      &lt;button onClick={() => adicionarRecurso('madeira', 1)}&gt;
-        Adicionar Madeira
-      &lt;/button&gt;
-    &lt;/div&gt;
-  );
-};</pre>
-        <button class="copy-btn no-print">Copiar</button>
-      </div>
-
-      <h4>Análise do Estado:</h4>
-      <ol>
-        <li>
-          <strong>Inicialização</strong>:
-          <ul>
-            <li>Definimos um tipo TypeScript para nossos recursos</li>
-            <li>Criamos um estado inicial com quantidades básicas</li>
-            <li>
-              Usamos <code>useState</code> para criar o estado no componente
-            </li>
-          </ul>
-        </li>
-        <li>
-          <strong>Atualização</strong>:
-          <ul>
-            <li>
-              Criamos funções para modificar o estado
-              (<code>adicionarRecurso</code>, <code>removerRecurso</code>)
-            </li>
-            <li>
-              Sempre usamos a forma funcional de <code>setRecursos</code> para
-              garantir que temos o estado mais recente
-            </li>
-            <li>
-              Não modificamos o estado diretamente - sempre criamos novos
-              objetos/arrays
-            </li>
-          </ul>
-        </li>
-        <li>
-          <strong>Uso</strong>:
-          <ul>
-            <li>Renderizamos o estado atual na UI</li>
-            <li>
-              Fornecemos maneiras de interagir com o estado (botão para
-              adicionar madeira)
-            </li>
-            <li>
-              Temos uma função auxiliar (<code>temRecursosSuficientes</code>)
-              para lógica de negócio
-            </li>
-          </ul>
-        </li>
-      </ol>
-
-      <div class="note">
-        <p>
-          <strong>Padrão importante</strong>: No nosso jogo, o estado dos
-          recursos é centralizado no componente principal (<code>App</code>) e
-          passado para os componentes filhos via props. Isso mantém uma única
-          fonte de verdade e facilita a sincronização entre diferentes partes
-          da UI.
-        </p>
-      </div>
-    </section>
-
-    <section id="modelagem-cartas" class="main-section">
-      <h2>Modelagem de Cartas</h2>
-      <p>
-        Para nosso jogo, precisamos definir como as cartas serão representadas
-        no código. Podemos criar interfaces TypeScript para isso:
-      </p>
-
-      <div class="code-container">
-        <pre>
-export type CartaType = {
-  id: string;
-  titulo: string;
-  texto: string;
-  custo: RecursoType[];
-  ganho: RecursoType[];
-};
-
-export const BARALHO_INICIAL: CartaType[] = [
-  {
-    id: "m1",
-    titulo: "Pegar madeira",
-    texto: "Coleta 1 madeira bruta",
-    custo: [],
-    ganho: [{ nome: "madeira bruta", quantidade: 1 }]
-  },
-  {
-    id: "s1",
-    titulo: "Serralheria básica",
-    texto: "Transforma 2 madeiras brutas em 1 tábua",
-    custo: [{ nome: "madeira bruta", quantidade: 2 }],
-    ganho: [{ nome: "tabua", quantidade: 1 }]
-  }
-];</pre>
-        <button class="copy-btn no-print">Copiar</button>
-      </div>
-
-      <h2>Modelar cartas</h2>
-      <p>
-        Para nosso jogo, precisamos definir como as cartas serão representadas
-        no código. Podemos criar interfaces TypeScript para isso:
-      </p>
-      <div class="code-container">
-        <pre>
-interface Resource {
-  type: 'wood' | 'stone' | 'gold';
-  amount: number;
+    );
 }
-        
-interface Card {
-  id: number;
-  name: string;
-  description: string;
-  cost: Resource[];
-  effect: () => void;
-  type: 'resource' | 'building' | 'special';
-  image?: string;
-}
-        
-// Exemplo de cartas no jogo
-const initialCards: Card[] = [
-  {
-    id: 1,
-    name: "Floresta",
-    description: "Produz 1 madeira por turno",
-    cost: [],
-    effect: () => addResource('wood', 1),
-    type: 'resource'
-  },
-  {
-    id: 2,
-    name: "Pedreira",
-    description: "Custa 2 madeiras. Produz 1 pedra por turno",
-    cost: [{ type: 'wood', amount: 2 }],
-    effect: () => addResource('stone', 1),
-    type: 'building'
-  }
-];</pre>
-        <button class="copy-btn no-print">Copiar</button>
+
+function getEmojiRecurso(tipo: string): string {
+    const emojis = {
+        madeira: '🌲',
+        pedra: '🪨',
+        ouro: '💰'
+    };
+    return emojis[tipo] || '❓';
+}</pre>
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <div class="explanation">
+          <h4>💡 O que acabamos de fazer?</h4>
+          <ul>
+            <li><strong>Criamos componentes reutilizáveis</strong> Carta e Jogador</li>
+            <li><strong>Implementamos animações</strong> com Framer Motion</li>
+            <li><strong>Configuramos props tipadas</strong> com TypeScript</li>
+            <li><strong>Criamos uma hierarquia de componentes</strong> (Jogador contém Cartas)</li>
+          </ul>
+          <p><strong>Próximo passo:</strong> Vamos configurar o estado global do jogo!</p>
+        </div>
       </div>
-      <p>Também precisamos de funções para manipular as cartas:</p>
-      <div class="code-container">
-        <pre>
-const drawCard = (deck: Card[], hand: Card[]): { newDeck: Card[], newHand: Card[] } => {
-  if (deck.length === 0) {
-    // Embaralhar o descarte se o deck acabar
-    return { newDeck: shuffle([...discardPile]), newHand: hand };
-  }
-  
-  const [drawnCard, ...remainingDeck] = deck;
-  return {
-    newDeck: remainingDeck,
-    newHand: [...hand, drawnCard]
-  };
-};
+
+      <!-- PASSO 3: ESTADO GLOBAL -->
+      <div class="implementation-step">
+        <h3>3. 🌍 Estado Global com Context API e useReducer</h3>
+
+        <div class="step-instructions">
+          <h4>📝 Passo 3.1: Criar as Ações do Reducer</h4>
+          <ol>
+            <li>Crie a pasta <code>src/context/</code></li>
+            <li>Dentro dela, crie o arquivo <code>gameActions.ts</code></li>
+            <li>Copie e cole o código abaixo</li>
+          </ol>
+        </div>
+
+        <h4>Definindo as Ações do Jogo</h4>
+        <div class="code-container">
+          <pre>
+// context/gameActions.ts
+import { Carta, Recurso } from '../types/game';
+
+export type AcaoJogo =
+    | { type: 'INICIAR_JOGO'; jogadores: string[] }
+    | { type: 'JOGAR_CARTA'; cartaId: string; jogadorId: string }
+    | { type: 'COMPRAR_CARTA'; jogadorId: string }
+    | { type: 'PASSAR_TURNO' }
+    | { type: 'ADICIONAR_RECURSOS'; jogadorId: string; recursos: Recurso[] }
+    | { type: 'REMOVER_RECURSOS'; jogadorId: string; recursos: Recurso[] }
+    | { type: 'ATUALIZAR_PONTUACAO'; jogadorId: string; pontos: number };</pre>
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <div class="step-instructions">
+          <h4>📝 Passo 3.2: Criar o Reducer do Jogo</h4>
+          <ol>
+            <li>Na pasta <code>src/context/</code>, crie o arquivo <code>gameReducer.ts</code></li>
+            <li>Copie e cole o código abaixo</li>
+            <li>Este é o arquivo mais complexo - contém toda a lógica do jogo!</li>
+          </ol>
+        </div>
+
+        <h4>Reducer do Jogo</h4>
+        <div class="code-container">
+          <pre>
+// context/gameReducer.ts
+import { EstadoJogo, CARTAS_INICIAIS } from '../types/game';
+import { AcaoJogo } from './gameActions';
+
+export function gameReducer(state: EstadoJogo, action: AcaoJogo): EstadoJogo {
+    switch (action.type) {
+        case 'INICIAR_JOGO':
+            return iniciarJogo(action.jogadores);
         
-const playCard = (cardId: number, hand: Card[], resources: Resources): boolean => {
-  const card = hand.find(c => c.id === cardId);
-  if (!card) return false;
-  
-  // Verificar se o jogador tem recursos suficientes
-  const canAfford = card.cost.every(res =>
-    resources[res.type] >= res.amount
-  );
-  
-  if (canAfford) {
-    // Deduzir recursos
-    card.cost.forEach(res => {
-      resources[res.type] -= res.amount;
+        case 'JOGAR_CARTA':
+            return jogarCarta(state, action.cartaId, action.jogadorId);
+        
+        case 'COMPRAR_CARTA':
+            return comprarCarta(state, action.jogadorId);
+        
+        case 'PASSAR_TURNO':
+            return passarTurno(state);
+        
+        case 'ADICIONAR_RECURSOS':
+            return adicionarRecursos(state, action.jogadorId, action.recursos);
+        
+        default:
+            return state;
+    }
+}
+
+function iniciarJogo(nomesJogadores: string[]): EstadoJogo {
+    const jogadores = nomesJogadores.map((nome, index) => ({
+        id: `jogador-${index}`,
+        nome,
+        recursos: [
+            { tipo: 'madeira', quantidade: 3 },
+            { tipo: 'pedra', quantidade: 0 },
+            { tipo: 'ouro', quantidade: 0 }
+        ],
+        mao: [CARTAS_INICIAIS[0]], // Cada jogador começa com uma floresta
+        pontos: 0
+    }));
+
+    return {
+        jogadores,
+        jogadorAtual: 0,
+        baralho: [...CARTAS_INICIAIS],
+        descarte: [],
+        fase: 'acao',
+        vencedor: null
+    };
+}
+
+function jogarCarta(state: EstadoJogo, cartaId: string, jogadorId: string): EstadoJogo {
+    const jogador = state.jogadores.find(j => j.id === jogadorId);
+    if (!jogador) return state;
+
+    const carta = jogador.mao.find(c => c.id === cartaId);
+    if (!carta) return state;
+
+    // Verificar se tem recursos suficientes
+    const temRecursosSuficientes = carta.custo.every(custo => {
+        const recursoJogador = jogador.recursos.find(r => r.tipo === custo.tipo);
+        return recursoJogador && recursoJogador.quantidade >= custo.quantidade;
     });
-  
-    // Aplicar efeito da carta
-    card.effect();
-    return true;
-  }
-  
-  return false;
-};</pre>
-        <button class="copy-btn no-print">Copiar</button>
-      </div>
-    </section>
 
-    <section id="use-reducer" class="main-section">
-      <h2>useReducer para Estado Complexo</h2>
-      <p>Para gerenciar o estado do jogo, usamos useReducer:</p>
+    if (!temRecursosSuficientes) return state;
 
-      <div class="code-container">
-        <pre>
-type GameAction =
-  | { type: 'JOGAR_CARTA'; carta: CartaType }
-  | { type: 'PASSAR_TURNO' }
-  | { type: 'COMPRAR_CARTA'; carta: CartaType };
+    // Remover custos
+    const novosRecursos = [...jogador.recursos];
+    carta.custo.forEach(custo => {
+        const recursoIndex = novosRecursos.findIndex(r => r.tipo === custo.tipo);
+        if (recursoIndex !== -1) {
+            novosRecursos[recursoIndex].quantidade -= custo.quantidade;
+        }
+    });
 
-function gameReducer(state: GameType, action: GameAction): GameType {
-  switch (action.type) {
-    case 'JOGAR_CARTA':
-      return jogarCarta(state, action.carta);
-    case 'PASSAR_TURNO':
-      return passarTurno(state);
-    case 'COMPRAR_CARTA':
-      return comprarCarta(state, action.carta);
-    default:
-      return state;
-  }
-}</pre>
-        <button class="copy-btn no-print">Copiar</button>
-      </div>
-    </section>
+    // Aplicar efeitos
+    carta.efeito.forEach(efeito => {
+        const recursoIndex = novosRecursos.findIndex(r => r.tipo === efeito.tipo);
+        if (recursoIndex !== -1) {
+            novosRecursos[recursoIndex].quantidade += efeito.quantidade;
+        } else {
+            novosRecursos.push({ ...efeito });
+        }
+    });
 
-    <section id="context-api" class="main-section">
-      <h2>Context API para Estado Global</h2>
-      <p>Criamos um contexto para compartilhar o estado do jogo:</p>
+    // Atualizar jogador
+    const jogadoresAtualizados = state.jogadores.map(j =>
+        j.id === jogadorId
+            ? {
+                  ...j,
+                  recursos: novosRecursos,
+                  mao: j.mao.filter(c => c.id !== cartaId),
+                  pontos: j.pontos + 1 // +1 ponto por carta jogada
+              }
+            : j
+    );
 
-      <div class="code-container">
-        <pre>
-export const GameContext = createContext&lt;{
-  state: GameType;
-  dispatch: React.Dispatch&lt;GameAction&gt;;
-} | null&gt;(null);
+    // Mover carta para o descarte
+    const novoDescarte = [...state.descarte, carta];
 
-export function GameProvider({ children }: { children: React.ReactNode }) {
-  const [state, dispatch] = useReducer(gameReducer, initialState);
-  
-  return (
-    &lt;GameContext.Provider value={{ state, dispatch }}&gt;
-      {children}
-    &lt;/GameContext.Provider&gt;
-  );
-}</pre>
-        <button class="copy-btn no-print">Copiar</button>
-      </div>
-    </section>
-
-    <section id="app-component" class="main-section">
-      <h2>Componente App Completo</h2>
-      <p>
-        Agora que já entendemos todos os conceitos, vamos ver como o App
-        realmente funciona:
-      </p>
-
-      <div class="code-container">
-        <pre>
-function App() {
-  const { state, dispatch } = useContext(GameContext)!;
-  
-  function passarTurno() {
-    dispatch({ type: 'PASSAR_TURNO' });
-  }
-
-  function jogarCarta(carta: CartaType) {
-    dispatch({ type: 'JOGAR_CARTA', carta });
-  }
-
-  return (
-    &lt;div className="app"&gt;
-      &lt;header&gt;
-        &lt;ListaDeRecursos recursos={state.recursos} /&gt;
-        &lt;button onClick={passarTurno}&gt;Passar Turno&lt;/button&gt;
-      &lt;/header&gt;
-      
-      &lt;main&gt;
-        &lt;Oferta cartas={state.oferta} /&gt;
-        &lt;Jogador 
-          cartas={state.mao} 
-          onJogarCarta={jogarCarta} 
-        /&gt;
-      &lt;/main&gt;
-    &lt;/div&gt;
-  );
-}</pre>
-        <button class="copy-btn no-print">Copiar</button>
-      </div>
-    </section>
-
-    <section class="main-section">
-      <h2>Modelar estado (usando dispatch e useRef)</h2>
-      <p>
-        Para gerenciar o estado complexo do nosso jogo, podemos usar o hook
-        <code>useReducer</code> que é mais adequado para estado com lógica
-        complexa.
-      </p>
-      <h3>Definindo o reducer</h3>
-      <div class="code-container">
-        <pre>
-type GameAction =
-  | { type: 'PLAY_CARD'; cardId: number; playerId: number }
-  | { type: 'END_TURN' }
-  | { type: 'DRAW_CARD'; playerId: number }
-  | { type: 'ADD_RESOURCE'; resource: Resource; playerId: number };
-        
-function gameReducer(state: GameState, action: GameAction): GameState {
-  switch (action.type) {
-    case 'PLAY_CARD':
-      // Lógica para jogar uma carta
-      return updatedState;
-    case 'END_TURN':
-      // Passar para o próximo jogador
-      return {
+    return {
         ...state,
-        currentPlayer: (state.currentPlayer + 1) % state.players.length
-      };
-    // Outros casos...
-    default:
-      return state;
-  }
+        jogadores: jogadoresAtualizados,
+        descarte: novoDescarte
+    };
 }
-        
-// Inicializando o estado
-const initialState: GameState = {
-  players: [
-    { id: 1, hand: [], resources: { wood: 3, stone: 0, gold: 0 } },
-    { id: 2, hand: [], resources: { wood: 3, stone: 0, gold: 0 } }
-  ],
-  currentPlayer: 0,
-  deck: initialCards,
-  discardPile: []
+
+// Funções auxiliares que precisam ser implementadas
+function comprarCarta(state: EstadoJogo, jogadorId: string): EstadoJogo {
+    // Implementação para comprar carta
+    return state;
+}
+
+function passarTurno(state: EstadoJogo): EstadoJogo {
+    const proximoJogador = (state.jogadorAtual + 1) % state.jogadores.length;
+    return {
+        ...state,
+        jogadorAtual: proximoJogador
+    };
+}
+
+function adicionarRecursos(state: EstadoJogo, jogadorId: string, recursos: Recurso[]): EstadoJogo {
+    // Implementação para adicionar recursos
+    return state;
+}</pre>
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <div class="step-instructions">
+          <h4>📝 Passo 3.3: Criar o Context do Jogo</h4>
+          <ol>
+            <li>Na pasta <code>src/context/</code>, crie o arquivo <code>GameContext.tsx</code></li>
+            <li>Copie e cole o código abaixo</li>
+            <li>Este arquivo vai prover o estado global para toda a aplicação</li>
+          </ol>
+        </div>
+
+        <h4>Context do Jogo</h4>
+        <div class="code-container">
+          <pre>
+// context/GameContext.tsx
+import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import { EstadoJogo } from '../types/game';
+import { AcaoJogo } from './gameActions';
+import { gameReducer } from './gameReducer';
+
+interface GameContextType {
+    state: EstadoJogo;
+    dispatch: React.Dispatch&lt;AcaoJogo&gt;;
+}
+
+const GameContext = createContext&lt;GameContextType | undefined&gt;(undefined);
+
+const estadoInicial: EstadoJogo = {
+    jogadores: [],
+    jogadorAtual: 0,
+    baralho: [],
+    descarte: [],
+    fase: 'preparacao',
+    vencedor: null
 };
-        
-// No componente principal
-const [state, dispatch] = useReducer(gameReducer, initialState);</pre>
-        <button class="copy-btn no-print">Copiar</button>
+
+interface GameProviderProps {
+    children: ReactNode;
+}
+
+export function GameProvider({ children }: GameProviderProps) {
+    const [state, dispatch] = useReducer(gameReducer, estadoInicial);
+
+    return (
+        &lt;GameContext.Provider value={{ state, dispatch }}&gt;
+            {children}
+        &lt;/GameContext.Provider&gt;
+    );
+}
+
+export function useGame() {
+    const context = useContext(GameContext);
+    if (context === undefined) {
+        throw new Error('useGame deve ser usado dentro de um GameProvider');
+    }
+    return context;
+}</pre>
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <div class="explanation">
+          <h4>💡 O que acabamos de fazer?</h4>
+          <ul>
+            <li><strong>Criamos um sistema de ações</strong> para modificar o estado</li>
+            <li><strong>Implementamos um reducer</strong> com lógica complexa do jogo</li>
+            <li><strong>Configuramos o Context API</strong> para estado global</li>
+            <li><strong>Criamos um hook personalizado</strong> <code>useGame</code> para acessar o contexto</li>
+          </ul>
+          <p><strong>Próximo passo:</strong> Vamos criar a lógica principal do jogo!</p>
+        </div>
       </div>
-      <h3>useRef para valores mutáveis</h3>
-      <p>
-        <code>useRef</code> é útil para manter valores que precisam persistir
-        entre renders mas não devem causar re-render quando mudam.
-      </p>
-      <div class="code-container">
-        <pre>
-const animationRef = useRef&lt;AnimationControls&gt;();
+
+      <!-- PASSO 4: LÓGICA DO JOGO -->
+      <div class="implementation-step">
+        <h3>4. 🎯 Lógica Principal do Jogo</h3>
+
+        <div class="step-instructions">
+          <h4>📝 Passo 4.1: Criar Hook Personalizado de Lógica</h4>
+          <ol>
+            <li>Crie a pasta <code>src/hooks/</code></li>
+            <li>Dentro dela, crie o arquivo <code>useGameLogic.ts</code></li>
+            <li>Copie e cole o código abaixo</li>
+            <li>Este hook vai facilitar o uso das ações do jogo</li>
+          </ol>
+        </div>
+
+        <h4>Hook Personalizado para Lógica do Jogo</h4>
+        <div class="code-container">
+          <pre>
+// hooks/useGameLogic.ts
+import { useGame } from '../context/GameContext';
+import { Carta } from '../types/game';
+
+export function useGameLogic() {
+    const { state, dispatch } = useGame();
+
+    const jogadorAtual = state.jogadores[state.jogadorAtual];
+
+    const jogarCarta = (carta: Carta) => {
+        if (!jogadorAtual) return;
         
-// Iniciar uma animação
-const startAnimation = () => {
-  animationRef.current?.start({
-    x: 100,
-    transition: { duration: 0.5 }
-  });
-};</pre>
-        <button class="copy-btn no-print">Copiar</button>
+        dispatch({
+            type: 'JOGAR_CARTA',
+            cartaId: carta.id,
+            jogadorId: jogadorAtual.id
+        });
+    };
+
+    const comprarCarta = () => {
+        if (!jogadorAtual) return;
+        
+        dispatch({
+            type: 'COMPRAR_CARTA',
+            jogadorId: jogadorAtual.id
+        });
+    };
+
+    const passarTurno = () => {
+        dispatch({ type: 'PASSAR_TURNO' });
+    };
+
+    const iniciarJogo = (nomesJogadores: string[]) => {
+        dispatch({
+            type: 'INICIAR_JOGO',
+            jogadores: nomesJogadores
+        });
+    };
+
+    const verificarVitoria = (): string | null => {
+        // Vitória por pontos (primeiro a chegar em 20 pontos)
+        const vencedorPontos = state.jogadores.find(j => j.pontos >= 20);
+        if (vencedorPontos) return vencedorPontos.id;
+
+        // Vitória por recursos (primeiro a ter 10 ouros)
+        const vencedorOuro = state.jogadores.find(j => {
+            const ouro = j.recursos.find(r => r.tipo === 'ouro');
+            return ouro && ouro.quantidade >= 10;
+        });
+        if (vencedorOuro) return vencedorOuro.id;
+
+        return null;
+    };
+
+    return {
+        state,
+        jogadorAtual,
+        jogarCarta,
+        comprarCarta,
+        passarTurno,
+        iniciarJogo,
+        verificarVitoria
+    };
+}</pre>
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <div class="explanation">
+          <h4>💡 O que acabamos de fazer?</h4>
+          <ul>
+            <li><strong>Criamos um hook personalizado</strong> que encapsula a lógica do jogo</li>
+            <li><strong>Simplificamos o uso das ações</strong> com funções amigáveis</li>
+            <li><strong>Implementamos verificações de vitória</strong></li>
+            <li><strong>Organizamos toda a lógica</strong> em um único lugar reutilizável</li>
+          </ul>
+          <p><strong>Próximo passo:</strong> Vamos juntar tudo no componente principal!</p>
+        </div>
+      </div>
+
+      <!-- PASSO 5: COMPONENTE APP PRINCIPAL -->
+      <div class="implementation-step">
+        <h3>5. 🚀 Componente App Principal</h3>
+
+        <div class="step-instructions">
+          <h4>📝 Passo 5.1: Atualizar o App.tsx Principal</h4>
+          <ol>
+            <li>Abra o arquivo <code>src/App.tsx</code> existente</li>
+            <li>Substitua TODO o conteúdo pelo código abaixo</li>
+            <li>Este é o componente que une todas as partes do jogo</li>
+          </ol>
+        </div>
+
+        <div class="code-container">
+          <pre>
+// App.tsx
+import { useEffect } from 'react';
+import { GameProvider } from './context/GameContext';
+import { useGameLogic } from './hooks/useGameLogic';
+import { Jogador } from './components/Jogador';
+import './App.css';
+
+function TelaInicio() {
+    const { iniciarJogo } = useGameLogic();
+
+    const handleIniciar = () => {
+        iniciarJogo(['Jogador 1', 'Jogador 2']);
+    };
+
+    return (
+        &lt;div className="tela-inicio"&gt;
+            &lt;h1&gt;🎴 Jogo de Cartas de Recursos&lt;/h1&gt;
+            &lt;button onClick={handleIniciar} className="btn-principal"&gt;
+                Iniciar Jogo
+            &lt;/button&gt;
+        &lt;/div&gt;
+    );
+}
+
+function Jogo() {
+    const { state, jogadorAtual, jogarCarta, passarTurno, verificarVitoria } = useGameLogic();
+
+    useEffect(() => {
+        const vencedor = verificarVitoria();
+        if (vencedor && !state.vencedor) {
+            // Aqui poderíamos disparar uma ação de vitória
+            console.log('Temos um vencedor:', vencedor);
+        }
+    }, [state.jogadores]);
+
+    if (state.fase === 'preparacao') {
+        return &lt;TelaInicio /&gt;;
+    }
+
+    if (state.vencedor) {
+        const jogadorVencedor = state.jogadores.find(j => j.id === state.vencedor);
+        return (
+            &lt;div className="tela-vitoria"&gt;
+                &lt;h1&gt;🎉 Vitória!&lt;/h1&gt;
+                &lt;h2&gt;{jogadorVencedor?.nome} venceu o jogo!&lt;/h2&gt;
+            &lt;/div&gt;
+        );
+    }
+
+    return (
+        &lt;div className="jogo"&gt;
+            &lt;header className="header-jogo"&gt;
+                &lt;h1&gt;Turno de {jogadorAtual?.nome}&lt;/h1&gt;
+                &lt;button onClick={passarTurno} className="btn-turno"&gt;
+                    Passar Turno
+                &lt;/button&gt;
+            &lt;/header&gt;
+
+            &lt;div className="area-jogadores"&gt;
+                {state.jogadores.map((jogador, index) => (
+                    &lt;Jogador
+                        key={jogador.id}
+                        jogador={jogador}
+                        turnoAtual={index === state.jogadorAtual}
+                        onJogarCarta={jogarCarta}
+                    /&gt;
+                ))}
+            &lt;/div&gt;
+
+            &lt;div className="baralho-info"&gt;
+                &lt;p&gt;Cartas no baralho: {state.baralho.length}&lt;/p&gt;
+                &lt;p&gt;Cartas no descarte: {state.descarte.length}&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    );
+}
+
+export default function App() {
+    return (
+        &lt;GameProvider&gt;
+            &lt;Jogo /&gt;
+        &lt;/GameProvider&gt;
+    );
+}</pre>
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <div class="explanation">
+          <h4>💡 O que acabamos de fazer?</h4>
+          <ul>
+            <li><strong>Criamos o componente principal</strong> que orquestra todo o jogo</li>
+            <li><strong>Implementamos diferentes telas</strong> (início, jogo, vitória)</li>
+            <li><strong>Conectamos todos os componentes</strong> que criamos anteriormente</li>
+            <li><strong>Adicionamos verificações de estado</strong> e transições</li>
+          </ul>
+          <p><strong>Próximo passo:</strong> Vamos estilizar nosso jogo!</p>
+        </div>
+      </div>
+
+      <!-- PASSO 6: ANIMAÇÕES E ESTILOS -->
+      <div class="implementation-step">
+        <h3>6. ✨ Polimento Final - Animações e Estilos</h3>
+
+        <div class="step-instructions">
+          <h4>📝 Passo 6.1: Adicionar os Estilos CSS</h4>
+          <ol>
+            <li>Abra o arquivo <code>src/App.css</code> existente</li>
+            <li>Substitua TODO o conteúdo pelo código abaixo</li>
+            <li>Salve e veja o jogo ganhar vida com os estilos!</li>
+          </ol>
+        </div>
+
+        <h4>CSS Principal</h4>
+        <div class="code-container">
+          <pre>
+/* App.css */
+.jogo {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Cartas */
+.carta {
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.carta:hover {
+    border-color: #4CAF50;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.carta-selecionada {
+    border-color: #2196F3;
+    background: #f0f8ff;
+}
+
+.carta-inativa {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.carta-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.raridade {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.raridade.comum { background: #e0e0e0; }
+.raridade.rara { background: #bb86fc; color: white; }
+.raridade.epica { background: #ff4081; color: white; }
+
+.carta-descricao {
+    margin: 12px 0;
+    color: #666;
+}
+
+.carta-custo, .carta-efeito {
+    margin: 8px 0;
+    padding: 8px;
+    background: #f5f5f5;
+    border-radius: 6px;
+}
+
+.recurso {
+    display: inline-block;
+    margin: 0 4px;
+    padding: 2px 6px;
+    background: #e3f2fd;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Jogadores */
+.jogador {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background: #f9f9f9;
+}
+
+.turno-ativo {
+    border-color: #4CAF50;
+    background: #f1f8e9;
+}
+
+.jogador-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.recursos {
+    display: flex;
+    gap: 16px;
+    margin: 12px 0;
+}
+
+.recurso-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+}
+
+.recurso-icone {
+    font-size: 1.2em;
+}
+
+.mao-cartas .cartas-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+/* Botões */
+.btn-principal {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-principal:hover {
+    background: #45a049;
+}
+
+.btn-turno {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 16px;
+}
+
+.btn-turno:hover {
+    background: #1976D2;
+}
+
+/* Telas especiais */
+.tela-inicio {
+    text-align: center;
+    padding: 40px;
+}
+
+.tela-vitoria {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-jogo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.baralho-info {
+    text-align: center;
+    margin-top: 24px;
+    padding: 16px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}</pre>
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <div class="step-instructions">
+          <h4>📝 Passo 6.2: Testar o Jogo!</h4>
+          <ol>
+            <li>Execute <code>npm run dev</code> no terminal</li>
+            <li>Abra <code>http://localhost:5173</code> no navegador</li>
+            <li>Clique em "Iniciar Jogo"</li>
+            <li>Teste jogar cartas e passar turnos!</li>
+          </ol>
+        </div>
+
+        <div class="explanation">
+          <h4>💡 O que acabamos de fazer?</h4>
+          <ul>
+            <li><strong>Adicionamos estilos completos</strong> para todos os componentes</li>
+            <li><strong>Criamos uma interface atraente</strong> e responsiva</li>
+            <li><strong>Implementamos feedback visual</strong> para o usuário</li>
+            <li><strong>Preparamos o jogo para uso</strong> com uma experiência polida</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="implementation-complete">
+        <h3>🎯 Implementação Concluída!</h3>
+
+        <div class="success-checklist">
+          <h4>✅ O Que Você Deveria Ver Agora:</h4>
+          <ul>
+            <li>🏠 <strong>Tela de Início</strong> com botão para iniciar o jogo</li>
+            <li>👥 <strong>Dois Jogadores</strong> com áreas separadas</li>
+            <li>🎴 <strong>Cartas Cliquáveis</strong> com animações ao passar o mouse</li>
+            <li>🌲 <strong>Sistema de Recursos</strong> que atualiza quando joga cartas</li>
+            <li>🔄 <strong>Sistema de Turnos</strong> funcionando</li>
+            <li>🎨 <strong>Design Atraente</strong> com cores e espaçamento adequados</li>
+          </ul>
+        </div>
+
+        <div class="troubleshooting">
+          <h4>🔧 Se Algo Não Estiver Funcionando:</h4>
+          <ul>
+            <li><strong>Verifique os imports</strong> - todos os arquivos devem estar nas pastas corretas</li>
+            <li><strong>Confira os nomes dos arquivos</strong> - eles devem ser exatamente como mostrado</li>
+            <li><strong>Instale o Framer Motion</strong> - <code>npm install framer-motion</code></li>
+            <li><strong>Verifique o console do navegador</strong> - pode mostrar erros específicos</li>
+            <li><strong>Reinicie o servidor de desenvolvimento</strong> - <code>npm run dev</code></li>
+          </ul>
+        </div>
+
+        <div class="next-steps">
+          <h4>🚀 Próximos Passos para Melhorar o Jogo:</h4>
+          <ul>
+            <li><strong>Adicionar mais cartas</strong> com diferentes efeitos</li>
+            <li><strong>Implementar sistema de compra de cartas</strong> do baralho</li>
+            <li><strong>Criar animações mais elaboradas</strong> para quando cartas são jogadas</li>
+            <li><strong>Adicionar sons</strong> para ações do jogo</li>
+            <li><strong>Implementar modo multiplayer online</strong></li>
+            <li><strong>Criar um sistema de salvamento</strong> do progresso do jogo</li>
+          </ul>
+        </div>
       </div>
 
       <div class="note">
-        <p>
-          <code>useRef</code> é perfeito para armazenar referências a
-          elementos DOM ou valores que não precisam causar re-renderização.
-        </p>
+        <p><strong>🎉 Parabéns!</strong> Você implementou um jogo de cartas completo com React e TypeScript! Este
+          projeto inclui:</p>
+        <ul>
+          <li>✅ Sistema de tipos robusto com TypeScript</li>
+          <li>✅ Componentes reutilizáveis e modulares</li>
+          <li>✅ Gerenciamento de estado global com Context API</li>
+          <li>✅ Lógica complexa de jogo com useReducer</li>
+          <li>✅ Animações suaves com Framer Motion</li>
+          <li>✅ Interface responsiva e atraente</li>
+        </ul>
+        <p>Continue expandindo adicionando mais cartas, mecânicas especiais, multiplayer online, ou o que sua
+          criatividade mandar! 🚀</p>
       </div>
     </section>
 
-    <section id="animacoes" class="main-section">
-      <h2>Animações com Framer Motion</h2>
-      <p>
-        Framer Motion é uma biblioteca popular para animações em React. Vamos
-        usá-la para animar nossas cartas.
-      </p>
-
-      <div class="code-container">
-        <pre>
-const CartaAnimada = ({ carta }: { carta: CartaType }) => {
-  return (
-    &lt;motion.div
-      className="carta"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    &gt;
-      &lt;h3&gt;{carta.titulo}&lt;/h3&gt;
-      &lt;p&gt;{carta.texto}&lt;/p&gt;
-    &lt;/motion.div&gt;
-  );
-};</pre>
-        <button class="copy-btn no-print">Copiar</button>
-      </div>
-    </section>
-
+    <!-- CONCLUSÃO -->
     <section id="conclusao" class="main-section">
-      <h2>Conclusão</h2>
-      <p>
-        Neste minicurso, aprendemos como construir um jogo de cartas com React
-        e TypeScript, cobrindo todos os conceitos fundamentais:
-      </p>
-      <ul>
-        <li>Criação de componentes reutilizáveis</li>
-        <li>Gerenciamento de estado com useState e useReducer</li>
-        <li>Tipagem estática com TypeScript</li>
-        <li>Modelagem de dados do jogo</li>
-        <li>Animações com Framer Motion</li>
-      </ul>
-      <p>Este projeto pode ser expandido com muitos recursos adicionais:</p>
-      <ul>
-        <li>Multiplayer online</li>
-        <li>Mais tipos de cartas e mecânicas</li>
-        <li>Sistema de progressão e níveis</li>
-        <li>Efeitos sonoros e mais animações</li>
-      </ul>
-      <p>
-        Continue praticando e experimentando com React para solidificar seu
-        conhecimento!
-      </p>
+      <h2>🎓 Conclusão do Minicurso</h2>
+
+      <div class="achievement-summary">
+        <h3>📊 O Que Aprendemos</h3>
+        <div class="learned-grid">
+          <div class="learned-item">
+            <h4>🧠 Conceitos Fundamentais</h4>
+            <ul>
+              <li>TypeScript e tipagem estática</li>
+              <li>Arquitetura baseada em componentes</li>
+              <li>Props e comunicação entre componentes</li>
+              <li>Estado local e global</li>
+              <li>Hooks do React (useState, useEffect, useContext, useReducer)</li>
+            </ul>
+          </div>
+
+          <div class="learned-item">
+            <h4>🛠️ Ferramentas e Técnicas</h4>
+            <ul>
+              <li>Context API para estado global</li>
+              <li>useReducer para lógica complexa</li>
+              <li>Framer Motion para animações</li>
+              <li>Estruturação de projetos React + TypeScript</li>
+              <li>Desenvolvimento incremental e modular</li>
+            </ul>
+          </div>
+
+          <div class="learned-item">
+            <h4>🎮 Implementação Prática</h4>
+            <ul>
+              <li>Modelagem de dados do jogo</li>
+              <li>Sistema de cartas e recursos</li>
+              <li>Lógica de turnos e ações</li>
+              <li>Condições de vitória</li>
+              <li>Interface de usuário intuitiva</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-steps">
+        <h3>🚀 Próximos Passos</h3>
+        <p>Agora que você tem uma base sólida, aqui estão algumas ideias para continuar evoluindo:</p>
+
+        <div class="project-ideas">
+          <div class="project-idea">
+            <h4>🔄 Expanda Este Jogo</h4>
+            <ul>
+              <li>Adicione mais tipos de cartas e recursos</li>
+              <li>Crie um sistema de combate entre jogadores</li>
+              <li>Implemente cartas com efeitos especiais</li>
+              <li>Adicione sons e mais animações</li>
+              <li>Crie um modo campanha com história</li>
+            </ul>
+          </div>
+
+          <div class="project-idea">
+            <h4>🎯 Novos Projetos</h4>
+            <ul>
+              <li><strong>Todo App Avançado</strong> - Com drag & drop e categorias</li>
+              <li><strong>App de Clima</strong> - Integração com APIs externas</li>
+              <li><strong>Rede Social Simples</strong> - Posts, comentários e likes</li>
+              <li><strong>E-commerce Básico</strong> - Carrinho e checkout</li>
+              <li><strong>Dashboard</strong> - Gráficos e dados em tempo real</li>
+            </ul>
+          </div>
+
+          <div class="project-idea">
+            <h4>📚 Tópicos Avançados</h4>
+            <ul>
+              <li>Testes com Jest e React Testing Library</li>
+              <li>Otimização de performance (React.memo, useMemo, useCallback)</li>
+              <li>Roteamento com React Router</li>
+              <li>Gerenciamento de estado com Redux Toolkit</li>
+              <li>Server-side rendering com Next.js</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="final-message">
+        <h3>🎉 Parabéns pela Conclusão!</h3>
+        <p>Você deu um grande passo no mundo do desenvolvimento React! Lembre-se:</p>
+        <ul>
+          <li>💪 <strong>A prática leva à perfeição</strong> - Continue codando regularmente</li>
+          <li>🔍 <strong>Não tenha medo de errar</strong> - Erros são oportunidades de aprendizado</li>
+          <li>🤝 <strong>Participe da comunidade</strong> - Compartilhe conhecimento e faça networking</li>
+          <li>🚀 <strong>Mantenha a curiosidade</strong> - Novas tecnologias surgem constantemente</li>
+        </ul>
+
+        <div class="inspiration">
+          <p><em>"O único modo de fazer um excelente trabalho é amar o que você faz." - Steve Jobs</em></p>
+        </div>
+
+        <p><strong>Continue criando, continue aprendendo, e acima de tudo, divirta-se programando! 🎯</strong></p>
+      </div>
     </section>
 
     <button class="print-btn no-print" onclick="window.print()">
