@@ -607,7 +607,8 @@ function App() {
         <h3>useState: O Hook Básico de Estado</h3>
 
         <div class="code-container">
-          <pre>// ANTES (variável normal - NÃO FUNCIONA)
+          <pre>
+// ANTES (variável normal - NÃO FUNCIONA)
 let contador = 0;
 contador = 1; // A tela NÃO atualiza
 
@@ -1186,12 +1187,12 @@ export default App</pre
         </div>
       </section>
 
-      <!-- SEÇÃO 9: IMPLEMENTAÇÃO DO JOGO -->
+      <!-- SEÇÃO 9: IMPLEMENTAÇÃO DO JOGO - PASSO A PASSO -->
       <section id="implementacao-jogo" class="main-section">
-        <h2>Implementação do UNO Simplificado</h2>
+        <h2>Implementação do UNO Simplificado - Passo a Passo</h2>
         <p>
           Vamos criar uma versão super simplificada do UNO para aprender React
-          de forma prática e divertida!
+          de forma prática e divertida! Vamos construir passo a passo.
         </p>
 
         <div class="implementation-steps">
@@ -1209,12 +1210,32 @@ export default App</pre
           </ul>
         </div>
 
+        <!-- PASSO 1: ESTRUTURA DO PROJETO -->
         <div class="implementation-step">
-          <h3>1. Estrutura de Dados - UNO Simplificado</h3>
+          <h3>Passo 1: Estrutura do Projeto</h3>
+          <p>Primeiro, vamos criar a estrutura de pastas do nosso projeto:</p>
+
+          <div class="file-structure">
+            <pre>
+src/
+├── components/
+│   ├── CartaUno.tsx
+│   └── MesaUno.tsx
+├── types/
+│   └── gametypes.ts
+├── context/
+│   └── unoReducer.ts
+├── App.tsx
+└── App.css</pre
+            >
+          </div>
+        </div>
+
+        <!-- PASSO 2: TIPOS BÁSICOS -->
+        <div class="implementation-step">
+          <h3>Passo 2: Definindo os Tipos TypeScript</h3>
           <p>
-            Primeiro, definimos os tipos TypeScript para nosso jogo. Esta
-            estrutura de dados é fundamental para garantir que nosso código seja
-            type-safe e previsível.
+            Crie o arquivo <code>types/gametypes.ts</code> com os tipos básicos:
           </p>
 
           <div class="code-container">
@@ -1241,11 +1262,205 @@ export type EstadoJogo = {
   jogadores: Jogador[];
   monteCompra: Carta[];
   monteDescarte: Carta[];
-  vez: number; // índice do jogador atual
+  vez: number;
   corAtual: Cor;
   vencedor: Jogador | null;
   estado: 'preparacao' | 'jogando' | 'finalizado';
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <!-- PASSO 3: COMPONENTE CARTA -->
+        <div class="implementation-step">
+          <h3>Passo 3: Componente Carta Básico</h3>
+          <p>
+            Crie <code>components/CartaUno.tsx</code> - versão inicial simples:
+          </p>
+
+          <div class="code-container">
+            <pre>
+// components/CartaUno.tsx - VERSÃO INICIAL
+import type { Carta } from '../types/gametypes';
+
+interface CartaUnoProps {
+  carta: Carta;
 }
+
+export function CartaUno({ carta }: CartaUnoProps) {
+  return (
+    &lt;div className={`carta carta-${carta.cor}`}&gt;
+      &lt;div className="carta-topo"&gt;
+        &lt;span className="carta-valor-pequeno"&gt;{carta.valor}&lt;/span&gt;
+      &lt;/div&gt;
+      
+      &lt;div className="carta-centro"&gt;
+        &lt;span className="carta-valor-grande"&gt;{carta.valor}&lt;/span&gt;
+      &lt;/div&gt;
+      
+      &lt;div className="carta-base"&gt;
+        &lt;span className="carta-valor-pequeno"&gt;{carta.valor}&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <!-- PASSO 4: APP INICIAL -->
+        <div class="implementation-step">
+          <h3>Passo 4: App Inicial - Testando o Componente Carta</h3>
+          <p>Vamos criar um App básico para testar nosso componente:</p>
+
+          <div class="code-container">
+            <pre>
+// App.tsx - VERSÃO INICIAL
+import { CartaUno } from './components/CartaUno';
+import './App.css';
+
+function App() {
+  // Carta de teste
+  const cartaTeste = {
+    id: 'teste-1',
+    cor: 'vermelho',
+    valor: '5'
+  };
+
+  return (
+    &lt;div className="app-uno"&gt;
+      &lt;h1&gt;🎮 UNO Simplificado - Teste&lt;/h1&gt;
+      &lt;div className="area-teste"&gt;
+        &lt;CartaUno carta={cartaTeste} /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <!-- PASSO 5: ESTILOS BÁSICOS -->
+        <div class="implementation-step">
+          <h3>Passo 5: Estilos Básicos</h3>
+          <p>Adicione estilos básicos em <code>App.css</code>:</p>
+
+          <div class="code-container">
+            <pre>
+/* App.css - ESTILOS BÁSICOS */
+:root {
+  --vermelho: #e74c3c;
+  --azul: #3498db;
+  --verde: #2ecc71;
+  --amarelo: #f1c40f;
+  --preto: #2c3e50;
+  --branco: #ecf0f1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+.app-uno {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.app-uno h1 {
+  margin-bottom: 30px;
+  font-size: 2.5em;
+}
+
+/* Cartas Básicas */
+.carta {
+  width: 80px;
+  height: 120px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.carta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+}
+
+/* Cores das cartas */
+.carta-vermelho { background: var(--vermelho); color: white; }
+.carta-azul { background: var(--azul); color: white; }
+.carta-verde { background: var(--verde); color: white; }
+.carta-amarelo { background: var(--amarelo); color: #2c3e50; }
+
+.carta-topo, .carta-base {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.carta-base {
+  justify-content: flex-end;
+}
+
+.carta-centro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.area-teste {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <!-- PASSO 6: BARALHO COMPLETO -->
+        <div class="implementation-step">
+          <h3>Passo 6: Criando o Baralho Completo</h3>
+          <p>
+            Vamos atualizar <code>types/gametypes.ts</code> para incluir o
+            baralho:
+          </p>
+
+          <div class="code-container">
+            <pre>
+// types/gametypes.ts - ATUALIZADO
+// ... tipos anteriores ...
 
 // Baralho simplificado - apenas números
 export const BARALHO_COMPLETO: Carta[] = [];
@@ -1283,19 +1498,275 @@ cores.forEach(cor => {
           </div>
         </div>
 
+        <!-- PASSO 7: REDUCER INICIAL -->
         <div class="implementation-step">
-          <h3>2. Componentes - UNO Simplificado</h3>
-          <p>
-            Agora criamos os componentes React que formarão nossa interface. O
-            componente <code>CartaUno</code> é um exemplo perfeito de componente
-            de apresentação - ele apenas exibe dados e notifica quando é
-            clicado.
-          </p>
+          <h3>Passo 7: Reducer Básico - Iniciar Jogo</h3>
+          <p>Crie <code>context/unoReducer.ts</code> com a ação básica:</p>
 
-          <h4>Componente Carta UNO</h4>
           <div class="code-container">
             <pre>
-// components/CartaUno.tsx
+// context/unoReducer.ts
+import type { EstadoJogo, Carta, Jogador } from '../types/gametypes';
+import { BARALHO_COMPLETO } from '../types/gametypes';
+
+type AcaoUno =
+  | { type: 'INICIAR_JOGO' };
+
+export function unoReducer(state: EstadoJogo, action: AcaoUno): EstadoJogo {
+  switch (action.type) {
+    case 'INICIAR_JOGO':
+      return iniciarJogo();
+    
+    default:
+      return state;
+  }
+}
+
+function iniciarJogo(): EstadoJogo {
+  // Embaralhar baralho
+  const baralhoEmbaralhado = [...BARALHO_COMPLETO].sort(() => Math.random() - 0.5);
+  
+  // Distribuir 7 cartas para cada jogador (2 jogadores humanos)
+  const jogadores: Jogador[] = [
+    {
+      id: 'jogador-1',
+      nome: 'Jogador 1',
+      mao: baralhoEmbaralhado.splice(0, 7),
+      isHumano: true
+    },
+    {
+      id: 'jogador-2',
+      nome: 'Jogador 2',
+      mao: baralhoEmbaralhado.splice(0, 7),
+      isHumano: true
+    }
+  ];
+
+  // Primeira carta do descarte
+  const cartaInicial = baralhoEmbaralhado.pop()!;
+
+  return {
+    jogadores,
+    monteCompra: baralhoEmbaralhado,
+    monteDescarte: [cartaInicial],
+    vez: 0, // Jogador 1 começa
+    corAtual: cartaInicial.cor,
+    vencedor: null,
+    estado: 'jogando'
+  };
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <!-- PASSO 8: APP COM REDUCER -->
+        <div class="implementation-step">
+          <h3>Passo 8: App com useReducer</h3>
+          <p>Atualize <code>App.tsx</code> para usar o reducer:</p>
+
+          <div class="code-container">
+            <pre>
+// App.tsx - COM REDUCER
+import { useReducer } from 'react';
+import { unoReducer } from './context/unoReducer';
+import { CartaUno } from './components/CartaUno';
+import './App.css';
+
+function App() {
+  const [state, dispatch] = useReducer(unoReducer, {
+    jogadores: [],
+    monteCompra: [],
+    monteDescarte: [],
+    vez: 0,
+    corAtual: 'vermelho',
+    vencedor: null,
+    estado: 'preparacao'
+  });
+
+  // Iniciar jogo automaticamente
+  if (state.estado === 'preparacao') {
+    dispatch({ type: 'INICIAR_JOGO' });
+  }
+
+  return (
+    &lt;div className="app-uno"&gt;
+      &lt;h1&gt;🎮 UNO Simplificado&lt;/h1&gt;
+      
+      &lt;div className="info-jogo"&gt;
+        &lt;p&gt;Vez: {state.jogadores[state.vez]?.nome}&lt;/p&gt;
+        &lt;p&gt;Cor atual: {state.corAtual}&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div className="area-jogo"&gt;
+        {/* Jogador 1 */}
+        &lt;div className="jogador-area"&gt;
+          &lt;h2&gt;{state.jogadores[0]?.nome}&lt;/h2&gt;
+          &lt;div className="mao-jogador"&gt;
+            {state.jogadores[0]?.mao.map((carta) => (
+              &lt;CartaUno key={carta.id} carta={carta} /&gt;
+            ))}
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        {/* Mesa Central */}
+        &lt;div className="mesa-central"&gt;
+          &lt;h3&gt;Mesa&lt;/h3&gt;
+          {state.monteDescarte[0] && (
+            &lt;CartaUno carta={state.monteDescarte[0]} /&gt;
+          )}
+          &lt;p&gt;Monte de compra: {state.monteCompra.length} cartas&lt;/p&gt;
+        &lt;/div&gt;
+
+        {/* Jogador 2 */}
+        &lt;div className="jogador-area"&gt;
+          &lt;h2&gt;{state.jogadores[1]?.nome}&lt;/h2&gt;
+          &lt;div className="mao-jogador"&gt;
+            {state.jogadores[1]?.mao.map((carta) => (
+              &lt;CartaUno key={carta.id} carta={carta} /&gt;
+            ))}
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <!-- PASSO 9: ESTILOS DO JOGO -->
+        <div class="implementation-step">
+          <h3>Passo 9: Estilos do Layout do Jogo</h3>
+          <p>Atualize <code>App.css</code> para o layout do jogo:</p>
+
+          <div class="code-container">
+            <pre>
+/* App.css - LAYOUT DO JOGO */
+/* ... estilos anteriores ... */
+
+.app-uno {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.header-uno {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 15px;
+}
+
+.info-jogo {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+/* Área do Jogo */
+.area-jogo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Jogadores */
+.jogador-area {
+  text-align: center;
+  padding: 15px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 15px;
+}
+
+.jogador-area h2 {
+  margin-bottom: 15px;
+}
+
+.mao-jogador {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+/* Mesa Central */
+.mesa-central {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 15px;
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <!-- PASSO 10: COMPONENTE MESA -->
+        <div class="implementation-step">
+          <h3>Passo 10: Componente Mesa UNO</h3>
+          <p>Crie <code>components/MesaUno.tsx</code>:</p>
+
+          <div class="code-container">
+            <pre>
+// components/MesaUno.tsx
+import type { Carta } from '../types/gametypes';
+import { CartaUno } from './CartaUno';
+
+interface MesaUnoProps {
+  cartaTopo: Carta;
+  corAtual: string;
+  monteCompra: Carta[];
+  onComprarCarta: () => void;
+}
+
+export function MesaUno({ cartaTopo, corAtual, monteCompra, onComprarCarta }: MesaUnoProps) {
+  return (
+    &lt;div className="mesa-uno"&gt;
+      &lt;div className="area-monte"&gt;
+        &lt;div className="monte-descarte"&gt;
+          &lt;CartaUno carta={cartaTopo} /&gt;
+          &lt;div className="cor-atual"&gt;
+            Cor atual: &lt;span className={`cor-${corAtual}`}&gt;{corAtual}&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div className="monte-compra" onClick={onComprarCarta}&gt;
+          &lt;div className="carta-virada"&gt;
+            &lt;div className="carta-verso"&gt;
+              &lt;div className="logo-uno"&gt;UNO&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div className="texto-comprar"&gt;Comprar ({monteCompra.length})&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <!-- PASSO 11: CARTA INTERATIVA -->
+        <div class="implementation-step">
+          <h3>Passo 11: Carta Interativa</h3>
+          <p>Atualize <code>CartaUno.tsx</code> para ser interativa:</p>
+
+          <div class="code-container">
+            <pre>
+// components/CartaUno.tsx - INTERATIVA
 import type { Carta } from '../types/gametypes';
 
 interface CartaUnoProps {
@@ -1339,65 +1810,21 @@ export function CartaUno({ carta, onClick, selecionada = false, jogavel = true, 
             >
             <button class="copy-btn no-print">Copiar</button>
           </div>
-
-          <h4>Componente Mesa UNO</h4>
-          <div class="code-container">
-            <pre>
-// components/MesaUno.tsx
-import type { Carta } from '../types/gametypes';
-import { CartaUno } from './CartaUno';
-
-interface MesaUnoProps {
-  cartaTopo: Carta;
-  corAtual: string;
-  monteCompra: Carta[];
-  onComprarCarta: () => void;
-}
-
-export function MesaUno({ cartaTopo, corAtual, monteCompra, onComprarCarta }: MesaUnoProps) {
-  return (
-    &lt;div className="mesa-uno"&gt;
-      &lt;div className="area-monte"&gt;
-        &lt;div className="monte-descarte"&gt;
-          &lt;CartaUno carta={cartaTopo} jogavel={false} /&gt;
-          &lt;div className="cor-atual"&gt;
-            Cor atual: &lt;span className={`cor-${corAtual}`}&gt;{corAtual}&lt;/span&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        
-        &lt;div className="monte-compra" onClick={onComprarCarta}&gt;
-          &lt;CartaUno carta={monteCompra[0]} virada={true} jogavel={true} /&gt;
-          &lt;div className="texto-comprar"&gt;Comprar ({monteCompra.length})&lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-}</pre
-            >
-            <button class="copy-btn no-print">Copiar</button>
-          </div>
         </div>
 
+        <!-- PASSO 12: LÓGICA DE JOGAR CARTA -->
         <div class="implementation-step">
-          <h3>3. Lógica do Jogo UNO Simplificado</h3>
-          <p>
-            Aqui usamos o <strong>useReducer</strong> para gerenciar o estado
-            complexo do nosso jogo. O reducer é uma função pura que recebe o
-            estado atual e uma ação, e retorna um novo estado. Isso torna as
-            transições de estado previsíveis e testáveis.
-          </p>
+          <h3>Passo 12: Lógica de Jogar Carta</h3>
+          <p>Atualize o reducer para incluir jogar carta:</p>
 
-          <h4>Reducer do UNO</h4>
           <div class="code-container">
             <pre>
-// context/unoReducer.ts
-import type { EstadoJogo, Carta, Jogador } from '../types/gametypes';
-import { BARALHO_COMPLETO } from '../types/gametypes';
+// context/unoReducer.ts - ATUALIZADO
+// ... imports e tipos anteriores ...
 
 type AcaoUno =
   | { type: 'INICIAR_JOGO' }
-  | { type: 'JOGAR_CARTA'; carta: Carta; jogadorIndex: number }
-  | { type: 'COMPRAR_CARTA'; jogadorIndex: number };
+  | { type: 'JOGAR_CARTA'; carta: Carta; jogadorIndex: number };
 
 export function unoReducer(state: EstadoJogo, action: AcaoUno): EstadoJogo {
   switch (action.type) {
@@ -1407,47 +1834,12 @@ export function unoReducer(state: EstadoJogo, action: AcaoUno): EstadoJogo {
     case 'JOGAR_CARTA':
       return jogarCarta(state, action.carta, action.jogadorIndex);
     
-    case 'COMPRAR_CARTA':
-      return comprarCarta(state, action.jogadorIndex);
-    
     default:
       return state;
   }
 }
 
-function iniciarJogo(): EstadoJogo {
-  // Embaralhar baralho
-  const baralhoEmbaralhado = [...BARALHO_COMPLETO].sort(() => Math.random() - 0.5);
-  
-  // Distribuir 7 cartas para cada jogador (2 jogadores humanos)
-  const jogadores: Jogador[] = [
-    {
-      id: 'jogador-1',
-      nome: 'Jogador 1',
-      mao: baralhoEmbaralhado.splice(0, 7),
-      isHumano: true
-    },
-    {
-      id: 'jogador-2',
-      nome: 'Jogador 2',
-      mao: baralhoEmbaralhado.splice(0, 7),
-      isHumano: true
-    }
-  ];
-
-  // Primeira carta do descarte
-  const cartaInicial = baralhoEmbaralhado.pop()!;
-
-  return {
-    jogadores,
-    monteCompra: baralhoEmbaralhado,
-    monteDescarte: [cartaInicial],
-    vez: 0, // Jogador 1 começa
-    corAtual: cartaInicial.cor,
-    vencedor: null,
-    estado: 'jogando'
-  };
-}
+// ... função iniciarJogo anterior ...
 
 function jogarCarta(state: EstadoJogo, carta: Carta, jogadorIndex: number): EstadoJogo {
   if (jogadorIndex !== state.vez) return state;
@@ -1490,6 +1882,151 @@ function jogarCarta(state: EstadoJogo, carta: Carta, jogadorIndex: number): Esta
   };
 }
 
+function podeJogarCarta(carta: Carta, cartaTopo: Carta, corAtual: string): boolean {
+  // Mesma cor ou mesmo valor
+  return carta.cor === corAtual || carta.valor === cartaTopo.valor;
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <!-- PASSO 13: APP INTERATIVO -->
+        <div class="implementation-step">
+          <h3>Passo 13: App Interativo</h3>
+          <p>Atualize <code>App.tsx</code> para ser interativo:</p>
+
+          <div class="code-container">
+            <pre>
+// App.tsx - INTERATIVO
+import { useReducer } from 'react';
+import { unoReducer } from './context/unoReducer';
+import { CartaUno } from './components/CartaUno';
+import { MesaUno } from './components/MesaUno';
+import './App.css';
+
+function App() {
+  const [state, dispatch] = useReducer(unoReducer, {
+    jogadores: [],
+    monteCompra: [],
+    monteDescarte: [],
+    vez: 0,
+    corAtual: 'vermelho',
+    vencedor: null,
+    estado: 'preparacao'
+  });
+
+  // Iniciar jogo automaticamente
+  if (state.estado === 'preparacao') {
+    dispatch({ type: 'INICIAR_JOGO' });
+  }
+
+  const jogadorAtual = state.jogadores[state.vez];
+  const cartaTopo = state.monteDescarte[0];
+
+  const handleJogarCarta = (carta: any, jogadorIndex: number) => {
+    if (jogadorIndex === state.vez) {
+      dispatch({ type: 'JOGAR_CARTA', carta, jogadorIndex });
+    }
+  };
+
+  const podeJogarCarta = (carta: any) => {
+    return carta.cor === state.corAtual || carta.valor === cartaTopo.valor;
+  };
+
+  return (
+    &lt;div className="app-uno"&gt;
+      &lt;header className="header-uno"&gt;
+        &lt;h1&gt;🎮 UNO Simplificado&lt;/h1&gt;
+        &lt;div className="info-jogo"&gt;
+          &lt;span&gt;Vez: &lt;strong&gt;{jogadorAtual?.nome}&lt;/strong&gt;&lt;/span&gt;
+          &lt;span&gt;Cor atual: &lt;span className={`cor-${state.corAtual}`}&gt;{state.corAtual}&lt;/span&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+
+      &lt;div className="area-jogo"&gt;
+        {/* Jogador 2 */}
+        &lt;div className={`jogador-area ${state.vez === 1 ? 'jogador-ativo' : ''}`}&gt;
+          &lt;h2&gt;{state.jogadores[1]?.nome}&lt;/h2&gt;
+          &lt;div className="mao-jogador"&gt;
+            {state.jogadores[1]?.mao.map((carta) => (
+              &lt;CartaUno
+                key={carta.id}
+                carta={carta}
+                jogavel={podeJogarCarta(carta) && state.vez === 1}
+              /&gt;
+            ))}
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        {/* Mesa Central */}
+        &lt;div className="mesa-central"&gt;
+          &lt;MesaUno
+            cartaTopo={cartaTopo}
+            corAtual={state.corAtual}
+            monteCompra={state.monteCompra}
+            onComprarCarta={() => {}} // Por enquanto vazio
+          /&gt;
+        &lt;/div&gt;
+
+        {/* Jogador 1 */}
+        &lt;div className={`jogador-area ${state.vez === 0 ? 'jogador-ativo' : ''}`}&gt;
+          &lt;h2&gt;{state.jogadores[0]?.nome}&lt;/h2&gt;
+          &lt;div className="mao-jogador"&gt;
+            {state.jogadores[0]?.mao.map((carta) => (
+              &lt;CartaUno
+                key={carta.id}
+                carta={carta}
+                onClick={() => handleJogarCarta(carta, 0)}
+                jogavel={podeJogarCarta(carta) && state.vez === 0}
+              /&gt;
+            ))}
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <!-- PASSO 14: COMPRAR CARTAS -->
+        <div class="implementation-step">
+          <h3>Passo 14: Lógica de Comprar Cartas</h3>
+          <p>Complete o reducer com a ação de comprar carta:</p>
+
+          <div class="code-container">
+            <pre>
+// context/unoReducer.ts - COMPLETO
+// ... imports e tipos anteriores ...
+
+type AcaoUno =
+  | { type: 'INICIAR_JOGO' }
+  | { type: 'JOGAR_CARTA'; carta: Carta; jogadorIndex: number }
+  | { type: 'COMPRAR_CARTA'; jogadorIndex: number };
+
+export function unoReducer(state: EstadoJogo, action: AcaoUno): EstadoJogo {
+  switch (action.type) {
+    case 'INICIAR_JOGO':
+      return iniciarJogo();
+    
+    case 'JOGAR_CARTA':
+      return jogarCarta(state, action.carta, action.jogadorIndex);
+    
+    case 'COMPRAR_CARTA':
+      return comprarCarta(state, action.jogadorIndex);
+    
+    default:
+      return state;
+  }
+}
+
+// ... funções anteriores ...
+
 function comprarCarta(state: EstadoJogo, jogadorIndex: number): EstadoJogo {
   if (jogadorIndex !== state.vez) return state;
   
@@ -1524,29 +2061,20 @@ function comprarCarta(state: EstadoJogo, jogadorIndex: number): EstadoJogo {
     monteCompra: [...state.monteCompra],
     vez: proximaVez
   };
-}
-
-function podeJogarCarta(carta: Carta, cartaTopo: Carta, corAtual: string): boolean {
-  // Mesma cor ou mesmo valor
-  return carta.cor === corAtual || carta.valor === cartaTopo.valor;
 }</pre
             >
             <button class="copy-btn no-print">Copiar</button>
           </div>
         </div>
 
+        <!-- PASSO 15: APP COMPLETO -->
         <div class="implementation-step">
-          <h3>4. App Principal - UNO Simplificado</h3>
-          <p>
-            Finalmente, integramos todos os componentes no App principal. Aqui
-            usamos o hook <code>useReducer</code> para gerenciar o estado do
-            jogo e o <code>dispatch</code> para enviar ações que modificam esse
-            estado.
-          </p>
+          <h3>Passo 15: App Completo</h3>
+          <p>Finalize <code>App.tsx</code> com todas as funcionalidades:</p>
 
           <div class="code-container">
             <pre>
-// App.tsx - UNO Simplificado para 2 jogadores
+// App.tsx - COMPLETO
 import { useReducer } from 'react';
 import { unoReducer } from './context/unoReducer';
 import { CartaUno } from './components/CartaUno';
@@ -1615,7 +2143,7 @@ function App() {
         &lt;/div&gt;
       &lt;/header&gt;
 
-      &lt;div className="area-jogo-uno"&gt;
+      &lt;div className="area-jogo"&gt;
         {/* Jogador 2 */}
         &lt;div className={`jogador-area ${state.vez === 1 ? 'jogador-ativo' : ''}`}&gt;
           &lt;h2&gt;{state.jogadores[1]?.nome}&lt;/h2&gt;
@@ -1682,544 +2210,52 @@ export default App;</pre
           </div>
         </div>
 
+        <!-- PASSO 16: ESTILOS COMPLETOS -->
         <div class="implementation-step">
-          <h3>5. Estilos - Design UNO Simplificado</h3>
-          <p>
-            Os estilos CSS são importantes para criar uma experiência visual
-            agradável. Usamos CSS Grid e Flexbox para criar um layout responsivo
-            que funciona bem em diferentes tamanhos de tela.
-          </p>
+          <h3>Passo 16: Estilos Completos</h3>
+          <p>Adicione os estilos finais em <code>App.css</code>:</p>
 
           <div class="code-container">
             <pre>
-/* App.css - UNO Simplificado */
-:root {
-  --vermelho: #e74c3c;
-  --azul: #3498db;
-  --verde: #2ecc71;
-  --amarelo: #f1c40f;
-  --preto: #2c3e50;
-  --branco: #ecf0f1;
-}
-
-* {
-  margin: 0 auto;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
-}
-
-.app-uno {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-  min-height: 100vh;
-}
-
-/* Header */
-.header-uno {
-  text-align: center;
-  margin-bottom: 20px;
-  padding: 15px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 15px;
-}
-
-.header-uno h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-.info-jogo {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  font-size: 1.2em;
-}
-
-/* Área do Jogo */
-.area-jogo-uno {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  flex: 1;
-}
-
-/* Jogadores */
-.jogador-area {
-  text-align: center;
-  padding: 15px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.jogador-ativo {
-  background: rgba(255,255,255,0.2);
-  border: 2px solid rgba(255,255,255,0.3);
-}
-
-.jogador-area h2 {
-  margin-bottom: 15px;
-  font-size: 1.5em;
-}
-
-.mao-jogador {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-}
-
-.contador-cartas {
-  font-weight: bold;
-  font-size: 1.1em;
-  margin-bottom: 10px;
-}
-
-/* Mesa Central */
-.mesa-central {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 150px;
-}
-
-.mesa-uno {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-
-.area-monte {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.monte-descarte, .monte-compra {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.cor-atual {
-  font-weight: bold;
-  font-size: 1.1em;
-}
-
-.cor-vermelho { color: var(--vermelho); }
-.cor-azul { color: var(--azul); }
-.cor-verde { color: var(--verde); }
-.cor-amarelo { color: var(--amarelo); }
-
-.texto-comprar {
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Cartas */
-.carta {
-  width: 70px;
-  height: 100px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.carta::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255,255,255,0.1);
-  border-radius: 6px;
-}
-
-.carta-virada {
-  background: linear-gradient(45deg, #e74c3c, #3498db);
-}
-
-.carta-verso {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #e74c3c, #3498db, #2ecc71, #f1c40f);
-  border-radius: 6px;
-}
-
-.logo-uno {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-}
-
-/* Cores das cartas */
-.carta-vermelho { background: var(--vermelho); color: white; }
-.carta-azul { background: var(--azul); color: white; }
-.carta-verde { background: var(--verde); color: white; }
-.carta-amarelo { background: var(--amarelo); color: #2c3e50; }
-
-.carta-topo, .carta-base {
-  display: flex;
-  justify-content: flex-start;
-  font-weight: bold;
-  font-size: 0.9em;
-}
-
-.carta-base {
-  justify-content: flex-end;
-}
-
-.carta-centro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  font-size: 1.8em;
-  font-weight: bold;
-}
-
-.carta-selecionada {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-}
-
-.carta-inativa {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Botões */
-.btn-comprar, .btn-principal {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 25px;
-  font-size: 1em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.btn-comprar:hover, .btn-principal:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-}
-
-/* Tela de Vitória */
-.tela-vitoria {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.vitoria-container {
-  text-align: center;
-  max-width: 500px;
-  padding: 40px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-}
-
-.tela-vitoria h1 {
-  font-size: 3em;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-</pre
+/* App.css - ESTILOS COMPLETOS */
+/* ... todos os estilos anteriores da versão completa ... */</pre
             >
             <button class="copy-btn no-print">Copiar</button>
-          </div>
-        </div>
-
-        <div class="implementation-step">
-          <h3>6. Animações com Framer Motion</h3>
-          <p>
-            Vamos adicionar animações suaves e interativas às cartas do UNO
-            usando Framer Motion. Estas animações vão tornar o jogo mais
-            dinâmico e divertido, com transições fluidas quando as cartas se
-            movem, são compradas ou jogadas.
-          </p>
-
-          <h4>Instalação do Framer Motion</h4>
-          <div class="code-container">
-            <pre>
-# Instale o Framer Motion no seu projeto
-npm install framer-motion</pre
-            >
-            <button class="copy-btn no-print">Copiar</button>
-          </div>
-
-          <h4>Componente CartaUno com Animações</h4>
-          <div class="code-container">
-            <pre>
-// components/CartaUno.tsx - ATUALIZADO COM FRAMER MOTION
-import type { Carta } from '../types/gametypes';
-import { motion } from 'framer-motion'; // Nova importação
-
-interface CartaUnoProps {
-  carta: Carta;
-  onClick?: () => void;
-  selecionada?: boolean;
-  jogavel?: boolean;
-  virada?: boolean;
-}
-
-export function CartaUno({ carta, onClick, selecionada = false, jogavel = true, virada = false }: CartaUnoProps) {
-  if (virada) {
-    return (
-      &lt;motion.div 
-        className="carta carta-virada"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.3 }}
-      &gt;
-        &lt;div className="carta-verso"&gt;
-          &lt;div className="logo-uno"&gt;UNO&lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/motion.div&gt;
-    );
-  }
-
-  return (
-    &lt;motion.div
-      className={`carta carta-${carta.cor} ${selecionada ? 'carta-selecionada' : ''} ${!jogavel ? 'carta-inativa' : ''}`}
-      onClick={jogavel ? onClick : undefined}
-      // Animações básicas do Framer Motion
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ 
-        scale: 1.05, 
-        y: -5,
-        transition: { duration: 0.2 }
-      }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ 
-        type: "spring", 
-        stiffness: 300, 
-        damping: 20 
-      }}
-    &gt;
-      &lt;div className="carta-topo"&gt;
-        &lt;span className="carta-valor-pequeno"&gt;{carta.valor}&lt;/span&gt;
-      &lt;/div&gt;
-      
-      &lt;div className="carta-centro"&gt;
-        &lt;span className="carta-valor-grande"&gt;{carta.valor}&lt;/span&gt;
-      &lt;/div&gt;
-      
-      &lt;div className="carta-base"&gt;
-        &lt;span className="carta-valor-pequeno"&gt;{carta.valor}&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/motion.div&gt;
-  );
-}</pre
-            >
-            <button class="copy-btn no-print">Copiar</button>
-          </div>
-
-          <h4>MesaUno com Animações</h4>
-          <div class="code-container">
-            <pre>
-// components/MesaUno.tsx - ATUALIZADO COM FRAMER MOTION
-import type { Carta } from '../types/gametypes';
-import { CartaUno } from './CartaUno';
-import { motion } from 'framer-motion'; // Nova importação
-
-interface MesaUnoProps {
-  cartaTopo: Carta;
-  corAtual: string;
-  monteCompra: Carta[];
-  onComprarCarta: () => void;
-}
-
-export function MesaUno({ cartaTopo, corAtual, monteCompra, onComprarCarta }: MesaUnoProps) {
-  return (
-    &lt;div className="mesa-uno"&gt;
-      &lt;div className="area-monte"&gt;
-        &lt;div className="monte-descarte"&gt;
-          &lt;motion.div
-            key={cartaTopo.id} // Importante: key única para animação
-            initial={{ scale: 0.8, rotate: -10 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: "spring", stiffness: 200 }}
-          &gt;
-            &lt;CartaUno carta={cartaTopo} jogavel={false} /&gt;
-          &lt;/motion.div&gt;
-          &lt;div className="cor-atual"&gt;
-            Cor atual: &lt;span className={`cor-${corAtual}`}&gt;{corAtual}&lt;/span&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        
-        &lt;motion.div 
-          className="monte-compra" 
-          onClick={onComprarCarta}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        &gt;
-          &lt;CartaUno carta={monteCompra[0]} virada={true} jogavel={true} /&gt;
-          &lt;div className="texto-comprar"&gt;Comprar ({monteCompra.length})&lt;/div&gt;
-        &lt;/motion.div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-}</pre
-            >
-            <button class="copy-btn no-print">Copiar</button>
-          </div>
-
-          <h4>App Principal com Animações de Vitória</h4>
-          <div class="code-container">
-            <pre>
-// App.tsx - ATUALIZADO COM ANIMAÇÕES DE VITÓRIA
-import { useReducer } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // Novas importações
-import { unoReducer } from './context/unoReducer';
-import { CartaUno } from './components/CartaUno';
-import { MesaUno } from './components/MesaUno';
-import './App.css';
-
-function App() {
-  const [state, dispatch] = useReducer(unoReducer, {
-    jogadores: [],
-    monteCompra: [],
-    monteDescarte: [],
-    vez: 0,
-    corAtual: 'vermelho',
-    vencedor: null,
-    estado: 'preparacao'
-  });
-
-  // ... resto do código anterior ...
-
-  if (state.vencedor) {
-    return (
-      &lt;motion.div 
-        className="tela-vitoria"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      &gt;
-        &lt;motion.div 
-          className="vitoria-container"
-          initial={{ scale: 0.8, y: 50 }}
-          animate={{ scale: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 200 }}
-        &gt;
-          &lt;motion.h1
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
-          &gt;
-            🎉 {state.vencedor.nome} Venceu!
-          &lt;/motion.h1&gt;
-          &lt;motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          &gt;
-            Parabéns! 🃏
-          &lt;/motion.p&gt;
-          &lt;motion.button 
-            onClick={() => dispatch({ type: 'INICIAR_JOGO' })}
-            className="btn-principal"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          &gt;
-            🔄 Jogar Novamente
-          &lt;/motion.button&gt;
-        &lt;/motion.div&gt;
-      &lt;/motion.div&gt;
-    );
-  }
-
-  // ... resto do return anterior ...
-}</pre
-            >
-            <button class="copy-btn no-print">Copiar</button>
-          </div>
-
-          <div class="animation-tips">
-            <h4>💡 Dicas Importantes:</h4>
-            <ul>
-              <li>
-                As animações são <strong>leves e não interferem</strong> na
-                lógica do jogo
-              </li>
-              <li>
-                O <code>motion.div</code> funciona exatamente como uma
-                <code>div</code> normal, mas com funcões de animação
-              </li>
-              <li>
-                Use <code>key</code> única nas cartas para garantir que as
-                animações funcionem corretamente
-              </li>
-              <li>
-                As transições <code>spring</code> criam movimentos mais naturais
-                e orgânicos
-              </li>
-            </ul>
           </div>
         </div>
 
         <div class="implementation-complete">
-          <h3>UNO Simplificado Concluído!</h3>
+          <h3>🎉 UNO Simplificado Concluído!</h3>
 
           <div class="success-checklist">
-            <h4>O Que Criamos:</h4>
+            <h4>O Que Aprendemos Passo a Passo:</h4>
             <ul>
               <li>
-                <strong>Jogo UNO Super Simplificado</strong> - Apenas cartas
-                numéricas (0-9)
+                <strong>Passo 1-2</strong>: Estrutura do projeto e tipos
+                TypeScript
               </li>
               <li>
-                <strong>2 Jogadores Humanos</strong> - Interface simples e
-                intuitiva
+                <strong>Passo 3-5</strong>: Componente Carta básico e estilos
+                iniciais
               </li>
               <li>
-                <strong>4 Cores Básicas</strong> - Vermelho, Azul, Verde,
-                Amarelo
+                <strong>Passo 6-7</strong>: Baralho completo e reducer inicial
               </li>
               <li>
-                <strong>Regras Simples</strong> - Jogue cartas da mesma cor ou
-                mesmo número
+                <strong>Passo 8-9</strong>: App com useReducer e layout básico
               </li>
               <li>
-                <strong>Sistema de Turnos</strong> - Alternância automática
-                entre jogadores
+                <strong>Passo 10-11</strong>: Componente Mesa e cartas
+                interativas
               </li>
               <li>
-                <strong>Sistema de Vitória</strong> - Primeiro sem cartas vence
+                <strong>Passo 12-13</strong>: Lógica de jogar carta e app
+                interativo
               </li>
+              <li>
+                <strong>Passo 14-15</strong>: Comprar cartas e app completo
+              </li>
+              <li><strong>Passo 16</strong>: Estilos finais e polimento</li>
             </ul>
           </div>
         </div>
@@ -2239,9 +2275,7 @@ function App() {
                 <li>Arquitetura baseada em componentes</li>
                 <li>Props e comunicação entre componentes</li>
                 <li>Estado local e global</li>
-                <li>
-                  Hooks do React (useState, useEffect, useReducer)
-                </li>
+                <li>Hooks do React (useState, useEffect, useReducer)</li>
               </ul>
             </div>
 
