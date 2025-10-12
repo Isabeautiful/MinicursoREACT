@@ -510,104 +510,45 @@ function ContadorInterativo() {
 
         <div class="code-container">
           <pre>
-// Definindo props com TypeScript
-interface ProdutoProps {
-    nome: string;
-    preco: number;
-    desconto?: number; // Prop opcional
-    emEstoque: boolean;
-    categoria: 'eletronicos' | 'roupas' | 'livros';
-    onComprar: (produtoId: string) => void;
-    children?: React.ReactNode; // Conteúdo children
+// Definindo as props do componente
+interface BotaoProps {
+  texto: string;
+  cor?: string; // opcional
+  onClick: () => void;
 }
 
 // Componente usando as props
-function Produto({ 
-    nome, 
-    preco, 
-    desconto = 0, // Valor padrão
-    emEstoque, 
-    categoria,
-    onComprar,
-    children 
-}: ProdutoProps) {
-    const precoFinal = preco - desconto;
-    const esgotado = !emEstoque;
-    
-    return (
-        &lt;div className={`produto produto-${categoria} ${esgotado ? 'esgotado' : ''}`}&gt;
-            &lt;h3&gt;{nome}&lt;/h3&gt;
-            &lt;div className="preco"&gt;
-                {desconto > 0 && (
-                    &lt;span className="preco-original"&gt;R$ {preco}&lt;/span&gt;
-                )}
-                &lt;span className="preco-final"&gt;R$ {precoFinal}&lt;/span&gt;
-                {desconto > 0 && (
-                    &lt;span className="desconto"&gt;-{desconto}%&lt;/span&gt;
-                )}
-            &lt;/div&gt;
-            
-            &lt;div className="status"&gt;
-                {emEstoque ? 'Em estoque' : 'Esgotado'}
-            &lt;/div&gt;
-            
-            {children}
-            
-            &lt;button 
-                onClick={() => onComprar(nome)}
-                disabled={!emEstoque}
-                className="btn-comprar"
-            &gt;
-                {emEstoque ? 'Comprar' : 'Esgotado'}
-            &lt;/button&gt;
-        &lt;/div&gt;
-    );
+function Botao({ texto, cor = "azul", onClick }: BotaoProps) {
+  return (
+    &lt;button 
+      style={{ backgroundColor: cor }}
+      onClick={onClick}
+    &gt;
+      {texto}
+    &lt;/button&gt;
+  );
 }
 
-// Componente pai usando o componente Produto
-function Loja() {
-    const handleCompra = (produtoId: string) => {
-        console.log(`Comprando: ${produtoId}`);
-        // Lógica de compra...
-    };
-    
-    return (
-        &lt;div className="loja"&gt;
-            &lt;h1&gt;Nossa Loja&lt;/h1&gt;
-            
-            &lt;Produto
-                nome="Smartphone"
-                preco={1500}
-                desconto={10}
-                emEstoque={true}
-                categoria="eletronicos"
-                onComprar={handleCompra}
-            &gt;
-                &lt;p&gt;Últimas unidades!&lt;/p&gt;
-            &lt;/Produto&gt;
-            
-            &lt;Produto
-                nome="Camiseta"
-                preco={50}
-                emEstoque={false}
-                categoria="roupas"
-                onComprar={handleCompra}
-            /&gt;
-            
-            &lt;Produto
-                nome="Livro de React"
-                preco={80}
-                desconto={20}
-                emEstoque={true}
-                categoria="livros"
-                onComprar={handleCompra}
-            &gt;
-                &lt;div className="destaque"&gt;
-                    Promoção especial!
-                &lt;/div&gt;
-            &lt;/Produto&gt;
-        &lt;/div&gt;
-    );
+// Como usar o componente
+function App() {
+  const handleClick = () => {
+    console.log("Botão clicado!");
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;Botao 
+        texto="Clique aqui" 
+        onClick={handleClick} 
+      /&gt;
+      
+      &lt;Botao 
+        texto="Delete" 
+        cor="vermelho" 
+        onClick={handleClick} 
+      /&gt;
+    &lt;/div&gt;
+  );
 }</pre
           >
           <button class="copy-btn no-print">Copiar</button>
@@ -666,148 +607,13 @@ function Loja() {
         <h3>useState: O Hook Básico de Estado</h3>
 
         <div class="code-container">
-          <pre>
-import { useState } from 'react';
+          <pre>// ANTES (variável normal - NÃO FUNCIONA)
+let contador = 0;
+contador = 1; // A tela NÃO atualiza
 
-// Exemplo 1: Contador simples
-function Contador() {
-    const [contador, setContador] = useState(0);
-    
-    const incrementar = () => setContador(contador + 1);
-    const decrementar = () => setContador(contador - 1);
-    const resetar = () => setContador(0);
-    
-    return (
-        &lt;div&gt;
-            &lt;h2&gt;Contador: {contador}&lt;/h2&gt;
-            &lt;button onClick={incrementar}&gt;+&lt;/button&gt;
-            &lt;button onClick={decrementar}&gt;-&lt;/button&gt;
-            &lt;button onClick={resetar}&gt;Reset&lt;/button&gt;
-        &lt;/div&gt;
-    );
-}
-
-// Exemplo 2: Formulário com estado
-function FormularioContato() {
-    const [formulario, setFormulario] = useState({
-        nome: '',
-        email: '',
-        mensagem: ''
-    });
-    
-    const [enviado, setEnviado] = useState(false);
-    
-    // Atualizar um campo específico
-    const handleChange = (campo: string, valor: string) => {
-        setFormulario(prevState => ({
-            ...prevState,
-            [campo]: valor
-        }));
-    };
-    
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log('Dados do formulário:', formulario);
-        setEnviado(true);
-    };
-    
-    if (enviado) {
-        return &lt;div&gt;Mensagem enviada com sucesso!&lt;/div&gt;;
-    }
-    
-    return (
-        &lt;form onSubmit={handleSubmit}&gt;
-            &lt;div&gt;
-                &lt;label&gt;Nome:&lt;/label&gt;
-                &lt;input
-                    type="text"
-                    value={formulario.nome}
-                    onChange={(e) => handleChange('nome', e.target.value)}
-                /&gt;
-            &lt;/div&gt;
-            
-            &lt;div&gt;
-                &lt;label&gt;Email:&lt;/label&gt;
-                &lt;input
-                    type="email"
-                    value={formulario.email}
-                    onChange={(e) => handleChange('email', e.target.value)}
-                /&gt;
-            &lt;/div&gt;
-            
-            &lt;div&gt;
-                &lt;label&gt;Mensagem:&lt;/label&gt;
-                &lt;textarea
-                    value={formulario.mensagem}
-                    onChange={(e) => handleChange('mensagem', e.target.value)}
-                /&gt;
-            &lt;/div&gt;
-            
-            &lt;button type="submit"&gt;Enviar&lt;/button&gt;
-        &lt;/form&gt;
-    );
-}
-
-// Exemplo 3: Estado com array
-function ListaTarefas() {
-    const [tarefas, setTarefas] = useState([]);
-    const [novaTarefa, setNovaTarefa] = useState('');
-    
-    const adicionarTarefa = () => {
-        if (novaTarefa.trim()) {
-            setTarefas([...tarefas, {
-                id: Date.now(),
-                texto: novaTarefa,
-                concluida: false
-            }]);
-            setNovaTarefa('');
-        }
-    };
-    
-    const toggleConcluida = (id) => {
-        setTarefas(tarefas.map(tarefa =>
-            tarefa.id === id 
-                ? { ...tarefa, concluida: !tarefa.concluida }
-                : tarefa
-        ));
-    };
-    
-    const removerTarefa = (id) => {
-        setTarefas(tarefas.filter(tarefa => tarefa.id !== id));
-    };
-    
-    return (
-        &lt;div&gt;
-            &lt;h2&gt;Lista de Tarefas&lt;/h2&gt;
-            &lt;div&gt;
-                &lt;input
-                    value={novaTarefa}
-                    onChange={(e) => setNovaTarefa(e.target.value)}
-                    placeholder="Nova tarefa..."
-                /&gt;
-                &lt;button onClick={adicionarTarefa}&gt;Adicionar&lt;/button&gt;
-            &lt;/div&gt;
-            
-            &lt;ul&gt;
-                {tarefas.map(tarefa => (
-                    &lt;li key={tarefa.id}&gt;
-                        &lt;span
-                            style={{
-                                textDecoration: tarefa.concluida ? 'line-through' : 'none'
-                            }}
-                            onClick={() => toggleConcluida(tarefa.id)}
-                        &gt;
-                            {tarefa.texto}
-                        &lt;/span&gt;
-                        &lt;button onClick={() => removerTarefa(tarefa.id)}&gt;
-                            Remover
-                        &lt;/button&gt;
-                    &lt;/li&gt;
-                ))}
-            &lt;/ul&gt;
-        &lt;/div&gt;
-    );
-}</pre
+// DEPOIS (estado - FUNCIONA)
+const [contador, setContador] = useState(0);
+setContador(1); // A tela atualiza AUTOMATICAMENTE</pre
           >
           <button class="copy-btn no-print">Copiar</button>
         </div>
@@ -832,7 +638,7 @@ function ListaTarefas() {
               componentes<br />
               <strong>Exemplo:</strong> Usuário logado, tema da aplicação,
               carrinho de compras<br />
-              <strong>Soluções:</strong> Context API, Redux, Zustand
+              <strong>Soluções:</strong> Context API
             </p>
           </div>
         </div>
@@ -847,15 +653,17 @@ function ListaTarefas() {
           <div class="analogy-item">
             <p>
               <strong>Sem Hooks (Inventar Soluções):</strong><br />
-              Como tentar consertar algo sem as ferramentas certas - difícil e
-              ineficiente.
+              Como tentar consertar algo sem as ferramentas certas - você acaba
+              usando soluções improvisadas, o código fica complexo e difícil de
+              manter.
             </p>
           </div>
           <div class="analogy-item">
             <p>
               <strong>Com Hooks (Kit de Ferramentas):</strong><br />
               Como ter uma caixa de ferramentas organizada - cada problema tem a
-              solução certa.
+              ferramenta específica para resolvê-lo de forma eficiente e
+              padronizada.
             </p>
           </div>
         </div>
@@ -864,7 +672,8 @@ function ListaTarefas() {
         <p>
           Hooks são <strong>funções especiais</strong> que permitem "conectar"
           funcionalidades do React a componentes funcionais. Eles sempre começam
-          com <code>use</code> (useState, useEffect, etc.).
+          com <code>use</code> (useState, useEffect, etc.) e permitem usar
+          estado e outras características do React sem escrever uma classe.
         </p>
 
         <h3>Hooks Principais</h3>
@@ -873,17 +682,36 @@ function ListaTarefas() {
           <div class="hook-item">
             <h4>useState</h4>
             <p>
-              <strong>Função:</strong> Gerenciar estado local<br />
-              <strong>Uso:</strong> Contadores, formulários, toggle states
+              <strong>Função:</strong> Gerenciar estado local em componentes
+              funcionais<br />
+              <strong>Uso:</strong> Contadores, formulários, toggle states<br />
+              <strong>Retorna:</strong> [valor, funçãoParaAtualizar]<br />
+              <strong>Exemplo:</strong> const [count, setCount] = useState(0)
             </p>
+            <div class="hook-details">
+              <p>
+                <strong>Quando usar:</strong> Para qualquer estado simples que
+                precise ser atualizado e cause re-renderização do componente.
+              </p>
+            </div>
           </div>
 
           <div class="hook-item">
             <h4>useEffect</h4>
             <p>
               <strong>Função:</strong> Executar efeitos colaterais<br />
-              <strong>Uso:</strong> API calls, subscriptions, timers
+              <strong>Uso:</strong> API calls, subscriptions, timers<br />
+              <strong>Substitui:</strong> componentDidMount, componentDidUpdate,
+              componentWillUnmount<br />
+              <strong>Exemplo:</strong> useEffect(() => { ... }, [dependencias])
             </p>
+            <div class="hook-details">
+              <p>
+                <strong>Quando usar:</strong> Para operações que interagem com o
+                mundo externo ou precisam sincronizar com mudanças de
+                estado/props.
+              </p>
+            </div>
           </div>
 
           <div class="hook-item">
@@ -891,16 +719,36 @@ function ListaTarefas() {
             <p>
               <strong>Função:</strong> Estado complexo com ações<br />
               <strong>Uso:</strong> Formulários complexos, estado com lógica
-              elaborada
+              elaborada<br />
+              <strong>Padrão:</strong> (state, action) => newState<br />
+              <strong>Exemplo:</strong> const [state, dispatch] =
+              useReducer(reducer, initialState)
             </p>
+            <div class="hook-details">
+              <p>
+                <strong>Quando usar:</strong> Quando o estado tem lógica
+                complexa ou quando o próximo estado depende do anterior.
+              </p>
+            </div>
           </div>
 
           <div class="hook-item">
             <h4>useRef</h4>
             <p>
-              <strong>Função:</strong> Acessar elementos DOM diretamente<br />
-              <strong>Uso:</strong> Foco em inputs, medições, valores mutáveis
+              <strong>Função:</strong> Acessar elementos DOM e persistir
+              valores<br />
+              <strong>Uso:</strong> Foco em inputs, medições, valores
+              mutáveis<br />
+              <strong>Característica:</strong> Não causa re-renderização<br />
+              <strong>Exemplo:</strong> const inputRef = useRef(null)
             </p>
+            <div class="hook-details">
+              <p>
+                <strong>Quando usar:</strong> Para acessar elementos DOM
+                diretamente ou manter valores que não devem disparar
+                re-renderizações.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -912,6 +760,28 @@ function ListaTarefas() {
           <code>componentWillUnmount</code>
           dos componentes de classe.
         </p>
+
+        <div class="useEffect-examples">
+          <h4>Padrões Comuns do useEffect:</h4>
+          <ul>
+            <li>
+              <strong>[] (array vazio):</strong> Executa apenas uma vez após a
+              montagem do componente
+            </li>
+            <li>
+              <strong>[var1, var2]:</strong> Executa sempre que alguma das
+              dependências mudar
+            </li>
+            <li>
+              <strong>Sem array:</strong> Executa após cada renderização (não
+              recomendado)
+            </li>
+            <li>
+              <strong>Função de cleanup:</strong> Retorna uma função para limpar
+              recursos
+            </li>
+          </ul>
+        </div>
 
         <h3>Exemplo: useEffect para Diferentes Cenários</h3>
 
@@ -963,6 +833,7 @@ function ContadorComHistorico() {
     // Executa sempre que 'contador' mudar
     useEffect(() => {
         setHistorico(prev => [...prev, contador]);
+        console.log(`Contador atualizado para: ${contador}`);
     }, [contador]); // Dependência: executa quando 'contador' muda
     
     return (
@@ -992,6 +863,7 @@ function RelogioComCleanup() {
         
         // Função de cleanup - executa quando o componente desmonta
         return () => {
+            console.log('Limpando timer...');
             clearInterval(timerID);
         };
     }, []); // Array vazio = setup e cleanup uma vez
@@ -1005,7 +877,9 @@ function InputComFoco() {
     const [valor, setValor] = useState('');
     
     const focarInput = () => {
+        // Acessa o elemento DOM diretamente
         inputRef.current.focus();
+        inputRef.current.select();
     };
     
     return (
@@ -1033,7 +907,7 @@ function reducer(state, action) {
         case 'resetar':
             return { contador: 0 };
         default:
-            throw new Error();
+            throw new Error(`Ação desconhecida: ${action.type}`);
     }
 }
 
@@ -1059,19 +933,36 @@ function ContadorReducer() {
           <button class="copy-btn no-print">Copiar</button>
         </div>
 
-        <h3>Exercício Prático: Pratique os Hooks</h3>
-        <p>Crie estes componentes para praticar diferentes hooks:</p>
-        <ol>
-          <li>
-            Um cronômetro com <code>useEffect</code> e <code>useState</code>
-          </li>
-          <li>Um formulário com validação usando <code>useReducer</code></li>
-          <li>
-            Um componente que usa <code>useRef</code> para medir o tamanho de um
-            elemento
-          </li>
-          <li>Um custom hook para fazer requisições HTTP</li>
-        </ol>
+        <div class="best-practices">
+          <h3>Boas Práticas com Hooks</h3>
+          <div class="practice-item">
+            <h4>useState</h4>
+            <ul>
+              <li>Use múltiplos useState para estados independentes</li>
+              <li>Agrupe estados relacionados em um objeto</li>
+              <li>
+                Use função de atualização quando o novo estado depende do
+                anterior
+              </li>
+            </ul>
+          </div>
+          <div class="practice-item">
+            <h4>useEffect</h4>
+            <ul>
+              <li>Sempre inclua todas as dependências no array</li>
+              <li>Use funções de cleanup para evitar memory leaks</li>
+              <li>Separe efeitos não relacionados em diferentes useEffects</li>
+            </ul>
+          </div>
+          <div class="practice-item">
+            <h4>useReducer</h4>
+            <ul>
+              <li>Use para lógica de estado complexa</li>
+              <li>Mantenha as ações bem definidas</li>
+              <li>O reducer deve ser uma função pura</li>
+            </ul>
+          </div>
+        </div>
 
         <h3>Regras dos Hooks</h3>
         <ul>
@@ -1087,7 +978,42 @@ function ContadorReducer() {
             <strong>Siga a ordem dos Hooks</strong> - Sempre na mesma ordem a
             cada renderização
           </li>
+          <li>
+            <strong>Prefira Hooks personalizados</strong> - Para reutilizar
+            lógica de estado entre componentes
+          </li>
         </ul>
+
+        <div class="hook-comparison">
+          <h3>Quando usar cada Hook?</h3>
+          <table>
+            <tr>
+              <th>Situação</th>
+              <th>Hook Recomendado</th>
+              <th>Motivo</th>
+            </tr>
+            <tr>
+              <td>Estado simples (contador, toggle)</td>
+              <td>useState</td>
+              <td>Simplicidade e legibilidade</td>
+            </tr>
+            <tr>
+              <td>Estado complexo (formulários múltiplos)</td>
+              <td>useReducer</td>
+              <td>Centraliza a lógica de atualização</td>
+            </tr>
+            <tr>
+              <td>Efeitos colaterais (API, timers)</td>
+              <td>useEffect</td>
+              <td>Gerencia ciclo de vida</td>
+            </tr>
+            <tr>
+              <td>Acesso direto ao DOM</td>
+              <td>useRef</td>
+              <td>Referência direta sem re-renderizar</td>
+            </tr>
+          </table>
+        </div>
       </section>
 
       <!-- SEÇÃO 8: INSTALAÇÃO -->
@@ -2029,37 +1955,239 @@ body {
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
+</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .carta {
-    width: 60px;
-    height: 90px;
+        <div class="implementation-step">
+          <h3>6. Animações com Framer Motion</h3>
+          <p>
+            Vamos adicionar animações suaves e interativas às cartas do UNO
+            usando Framer Motion. Estas animações vão tornar o jogo mais
+            dinâmico e divertido, com transições fluidas quando as cartas se
+            movem, são compradas ou jogadas.
+          </p>
+
+          <h4>Instalação do Framer Motion</h4>
+          <div class="code-container">
+            <pre>
+# Instale o Framer Motion no seu projeto
+npm install framer-motion</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+
+          <h4>Componente CartaUno com Animações</h4>
+          <div class="code-container">
+            <pre>
+// components/CartaUno.tsx - ATUALIZADO COM FRAMER MOTION
+import type { Carta } from '../types/gametypes';
+import { motion } from 'framer-motion'; // Nova importação
+
+interface CartaUnoProps {
+  carta: Carta;
+  onClick?: () => void;
+  selecionada?: boolean;
+  jogavel?: boolean;
+  virada?: boolean;
+}
+
+export function CartaUno({ carta, onClick, selecionada = false, jogavel = true, virada = false }: CartaUnoProps) {
+  if (virada) {
+    return (
+      &lt;motion.div 
+        className="carta carta-virada"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3 }}
+      &gt;
+        &lt;div className="carta-verso"&gt;
+          &lt;div className="logo-uno"&gt;UNO&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/motion.div&gt;
+    );
   }
-  
-  .carta-centro {
-    font-size: 1.4em;
-  }
-  
-  .mao-jogador {
-    gap: 5px;
-  }
-  
-  .area-monte {
-    gap: 15px;
-  }
-  
-  .header-uno h1 {
-    font-size: 2em;
-  }
-  
-  .info-jogo {
-    flex-direction: column;
-    gap: 10px;
-  }
+
+  return (
+    &lt;motion.div
+      className={`carta carta-${carta.cor} ${selecionada ? 'carta-selecionada' : ''} ${!jogavel ? 'carta-inativa' : ''}`}
+      onClick={jogavel ? onClick : undefined}
+      // Animações básicas do Framer Motion
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ 
+        scale: 1.05, 
+        y: -5,
+        transition: { duration: 0.2 }
+      }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 300, 
+        damping: 20 
+      }}
+    &gt;
+      &lt;div className="carta-topo"&gt;
+        &lt;span className="carta-valor-pequeno"&gt;{carta.valor}&lt;/span&gt;
+      &lt;/div&gt;
+      
+      &lt;div className="carta-centro"&gt;
+        &lt;span className="carta-valor-grande"&gt;{carta.valor}&lt;/span&gt;
+      &lt;/div&gt;
+      
+      &lt;div className="carta-base"&gt;
+        &lt;span className="carta-valor-pequeno"&gt;{carta.valor}&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/motion.div&gt;
+  );
 }</pre
             >
             <button class="copy-btn no-print">Copiar</button>
+          </div>
+
+          <h4>MesaUno com Animações</h4>
+          <div class="code-container">
+            <pre>
+// components/MesaUno.tsx - ATUALIZADO COM FRAMER MOTION
+import type { Carta } from '../types/gametypes';
+import { CartaUno } from './CartaUno';
+import { motion } from 'framer-motion'; // Nova importação
+
+interface MesaUnoProps {
+  cartaTopo: Carta;
+  corAtual: string;
+  monteCompra: Carta[];
+  onComprarCarta: () => void;
+}
+
+export function MesaUno({ cartaTopo, corAtual, monteCompra, onComprarCarta }: MesaUnoProps) {
+  return (
+    &lt;div className="mesa-uno"&gt;
+      &lt;div className="area-monte"&gt;
+        &lt;div className="monte-descarte"&gt;
+          &lt;motion.div
+            key={cartaTopo.id} // Importante: key única para animação
+            initial={{ scale: 0.8, rotate: -10 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 200 }}
+          &gt;
+            &lt;CartaUno carta={cartaTopo} jogavel={false} /&gt;
+          &lt;/motion.div&gt;
+          &lt;div className="cor-atual"&gt;
+            Cor atual: &lt;span className={`cor-${corAtual}`}&gt;{corAtual}&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;motion.div 
+          className="monte-compra" 
+          onClick={onComprarCarta}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        &gt;
+          &lt;CartaUno carta={monteCompra[0]} virada={true} jogavel={true} /&gt;
+          &lt;div className="texto-comprar"&gt;Comprar ({monteCompra.length})&lt;/div&gt;
+        &lt;/motion.div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+
+          <h4>App Principal com Animações de Vitória</h4>
+          <div class="code-container">
+            <pre>
+// App.tsx - ATUALIZADO COM ANIMAÇÕES DE VITÓRIA
+import { useReducer } from 'react';
+import { motion, AnimatePresence } from 'framer-motion'; // Novas importações
+import { unoReducer } from './context/unoReducer';
+import { CartaUno } from './components/CartaUno';
+import { MesaUno } from './components/MesaUno';
+import './App.css';
+
+function App() {
+  const [state, dispatch] = useReducer(unoReducer, {
+    jogadores: [],
+    monteCompra: [],
+    monteDescarte: [],
+    vez: 0,
+    corAtual: 'vermelho',
+    vencedor: null,
+    estado: 'preparacao'
+  });
+
+  // ... resto do código anterior ...
+
+  if (state.vencedor) {
+    return (
+      &lt;motion.div 
+        className="tela-vitoria"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      &gt;
+        &lt;motion.div 
+          className="vitoria-container"
+          initial={{ scale: 0.8, y: 50 }}
+          animate={{ scale: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 200 }}
+        &gt;
+          &lt;motion.h1
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
+          &gt;
+            🎉 {state.vencedor.nome} Venceu!
+          &lt;/motion.h1&gt;
+          &lt;motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+          &gt;
+            Parabéns! 🃏
+          &lt;/motion.p&gt;
+          &lt;motion.button 
+            onClick={() => dispatch({ type: 'INICIAR_JOGO' })}
+            className="btn-principal"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          &gt;
+            🔄 Jogar Novamente
+          &lt;/motion.button&gt;
+        &lt;/motion.div&gt;
+      &lt;/motion.div&gt;
+    );
+  }
+
+  // ... resto do return anterior ...
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+
+          <div class="animation-tips">
+            <h4>💡 Dicas Importantes:</h4>
+            <ul>
+              <li>
+                As animações são <strong>leves e não interferem</strong> na
+                lógica do jogo
+              </li>
+              <li>
+                O <code>motion.div</code> funciona exatamente como uma
+                <code>div</code> normal, mas com funcões de animação
+              </li>
+              <li>
+                Use <code>key</code> única nas cartas para garantir que as
+                animações funcionem corretamente
+              </li>
+              <li>
+                As transições <code>spring</code> criam movimentos mais naturais
+                e orgânicos
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -2120,13 +2248,13 @@ body {
           <div class="achievement">
             <h4>Conquistas de Aprendizado:</h4>
             <ul>
-              <li>✅ useReducer para estado complexo de jogo</li>
-              <li>✅ Componentes reutilizáveis (CartaUno, MesaUno)</li>
-              <li>✅ TypeScript para type safety</li>
-              <li>✅ CSS Grid e Flexbox para layout responsivo</li>
-              <li>✅ Lógica de jogo super simples e clara</li>
-              <li>✅ Sistema de turnos e vitória</li>
-              <li>✅ Projeto completo e funcional!</li>
+              <li>useReducer para estado complexo de jogo</li>
+              <li>Componentes reutilizáveis (CartaUno, MesaUno)</li>
+              <li>TypeScript para type safety</li>
+              <li>CSS Grid e Flexbox para layout responsivo</li>
+              <li>Lógica de jogo super simples e clara</li>
+              <li>Sistema de turnos e vitória</li>
+              <li>Projeto completo e funcional!</li>
             </ul>
           </div>
         </div>
