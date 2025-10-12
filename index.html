@@ -91,8 +91,8 @@
         <h3>Benefícios do TypeScript</h3>
         <ul>
           <li>
-            <strong>Detecção de Erros Antecipada</strong>: Encontra bugs
-            durante a escrita do código
+            <strong>Detecção de Erros Antecipada</strong>: Encontra bugs durante
+            a escrita do código
           </li>
           <li>
             <strong>Autocomplete Inteligente</strong>: Editores sugerem
@@ -199,18 +199,18 @@ function cumprimentar(usuario: Usuario): string {
         <h3>Princípios Fundamentais do React</h3>
         <ul>
           <li>
-            <strong>Componentes</strong>: Divide o sistema em partes independentes
-            e reutilizáveis
+            <strong>Componentes</strong>: Divide o sistema em partes
+            independentes e reutilizáveis
           </li>
           <li>
-            <strong>Props</strong>: Passe dados para os componentes
-            (entradas)
+            <strong>Props</strong>: Passe dados para os componentes (entradas)
           </li>
           <li>
             <strong>Estado</strong>: Gerencia de dados que mudam com o tempo
           </li>
           <li>
-            <strong>Renderização Declarativa</strong>: Descreve O QUE o sistema deve fazer e não COMO fazer
+            <strong>Renderização Declarativa</strong>: Descreve O QUE o sistema
+            deve fazer e não COMO fazer
           </li>
         </ul>
 
@@ -413,7 +413,8 @@ function App() {
         <ul>
           <li><strong>className</strong> em vez de <code>class</code></li>
           <li>
-            <strong>Tags devem ser fechadas</strong> (<code>&lt;img /&gt;</code>, <code>&lt;br /&gt;</code>)
+            <strong>Tags devem ser fechadas</strong> (<code>&lt;img /&gt;</code
+            >, <code>&lt;br /&gt;</code>)
           </li>
           <li>
             <strong>Um elemento pai</strong> por componente (ou usar
@@ -497,12 +498,8 @@ function ContadorInterativo() {
 
         <h3>Características das Props</h3>
         <ul>
-          <li>
-            <strong>Unidirecionais</strong>: Só fluem de pai para filho
-          </li>
-          <li>
-            <strong>Imutáveis</strong>: Componente filho não pode alterar
-          </li>
+          <li><strong>Unidirecionais</strong>: Só fluem de pai para filho</li>
+          <li><strong>Imutáveis</strong>: Componente filho não pode alterar</li>
           <li>
             <strong>Tipáveis</strong>: Podemos definir tipos com TypeScript
           </li>
@@ -650,20 +647,19 @@ function Loja() {
         <h3>Quando usar Estado?</h3>
         <ul>
           <li>
-            <strong>Dados dinâmicos</strong>: Contadores, formulários,
-            filtros ativos
+            <strong>Dados dinâmicos</strong>: Contadores, formulários, filtros
+            ativos
           </li>
           <li>
-            <strong>Interações do usuário</strong>: Itens selecionados,
-            opções ativas, menus abertos
+            <strong>Interações do usuário</strong>: Itens selecionados, opções
+            ativas, menus abertos
           </li>
           <li>
             <strong>Dados de API</strong>: Listas de usuários, informações do
             servidor
           </li>
           <li>
-            <strong>Estado da UI</strong>: Loading, erros, temas
-            claro/escuro
+            <strong>Estado da UI</strong>: Loading, erros, temas claro/escuro
           </li>
         </ul>
 
@@ -834,7 +830,8 @@ function ListaTarefas() {
             <p>
               <strong>Uso:</strong> Dados compartilhados entre vários
               componentes<br />
-              <strong>Exemplo:</strong> Usuário logado, tema da aplicação, carrinho de compras<br />
+              <strong>Exemplo:</strong> Usuário logado, tema da aplicação,
+              carrinho de compras<br />
               <strong>Soluções:</strong> Context API, Redux, Zustand
             </p>
           </div>
@@ -893,7 +890,8 @@ function ListaTarefas() {
             <h4>useReducer</h4>
             <p>
               <strong>Função:</strong> Estado complexo com ações<br />
-              <strong>Uso:</strong> Formulários complexos, estado com lógica elaborada
+              <strong>Uso:</strong> Formulários complexos, estado com lógica
+              elaborada
             </p>
           </div>
 
@@ -908,8 +906,10 @@ function ListaTarefas() {
 
         <h3>Explicação Detalhada: useEffect</h3>
         <p>
-          O <code>useEffect</code> é usado para executar efeitos colaterais em componentes funcionais. 
-          Ele substitui <code>componentDidMount</code>, <code>componentDidUpdate</code> e <code>componentWillUnmount</code> 
+          O <code>useEffect</code> é usado para executar efeitos colaterais em
+          componentes funcionais. Ele substitui <code>componentDidMount</code>,
+          <code>componentDidUpdate</code> e
+          <code>componentWillUnmount</code>
           dos componentes de classe.
         </p>
 
@@ -1062,17 +1062,31 @@ function ContadorReducer() {
         <h3>Exercício Prático: Pratique os Hooks</h3>
         <p>Crie estes componentes para praticar diferentes hooks:</p>
         <ol>
-          <li>Um cronômetro com <code>useEffect</code> e <code>useState</code></li>
+          <li>
+            Um cronômetro com <code>useEffect</code> e <code>useState</code>
+          </li>
           <li>Um formulário com validação usando <code>useReducer</code></li>
-          <li>Um componente que usa <code>useRef</code> para medir o tamanho de um elemento</li>
+          <li>
+            Um componente que usa <code>useRef</code> para medir o tamanho de um
+            elemento
+          </li>
           <li>Um custom hook para fazer requisições HTTP</li>
         </ol>
 
         <h3>Regras dos Hooks</h3>
         <ul>
-          <li><strong>Só chame Hooks no nível mais alto</strong> - Não em loops, condições ou funções aninhadas</li>
-          <li><strong>Só chame Hooks de componentes React</strong> - Ou de custom hooks</li>
-          <li><strong>Siga a ordem dos Hooks</strong> - Sempre na mesma ordem a cada renderização</li>
+          <li>
+            <strong>Só chame Hooks no nível mais alto</strong> - Não em loops,
+            condições ou funções aninhadas
+          </li>
+          <li>
+            <strong>Só chame Hooks de componentes React</strong> - Ou de custom
+            hooks
+          </li>
+          <li>
+            <strong>Siga a ordem dos Hooks</strong> - Sempre na mesma ordem a
+            cada renderização
+          </li>
         </ul>
       </section>
 
@@ -1100,15 +1114,22 @@ function ContadorReducer() {
         </p>
 
         <div class="code-container">
-          <pre>
-npm create vite@latest card-game -- --template react-ts
+          <pre>npm create vite@latest card-game -- --template react-ts</pre>
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
 
-cd card-game
+        <div class="code-container">
+          <pre>cd card-game</pre>
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
 
-npm install framer-motion
+        <div class="code-container">
+          <pre>npm install framer-motion</pre>
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
 
-npm run dev</pre
-          >
+        <div class="code-container">
+          <pre>npm run dev</pre>
           <button class="copy-btn no-print">Copiar</button>
         </div>
 
@@ -1243,8 +1264,8 @@ export default App</pre
       <section id="implementacao-jogo" class="main-section">
         <h2>Implementação do UNO Simplificado</h2>
         <p>
-          Vamos criar uma versão super simplificada do UNO para aprender React de
-          forma prática e divertida!
+          Vamos criar uma versão super simplificada do UNO para aprender React
+          de forma prática e divertida!
         </p>
 
         <div class="implementation-steps">
@@ -1265,9 +1286,9 @@ export default App</pre
         <div class="implementation-step">
           <h3>1. Estrutura de Dados - UNO Simplificado</h3>
           <p>
-            Primeiro, definimos os tipos TypeScript para nosso jogo. Esta estrutura
-            de dados é fundamental para garantir que nosso código seja type-safe
-            e previsível.
+            Primeiro, definimos os tipos TypeScript para nosso jogo. Esta
+            estrutura de dados é fundamental para garantir que nosso código seja
+            type-safe e previsível.
           </p>
 
           <div class="code-container">
@@ -1341,7 +1362,8 @@ cores.forEach(cor => {
           <p>
             Agora criamos os componentes React que formarão nossa interface. O
             componente <code>CartaUno</code> é um exemplo perfeito de componente
-            de apresentação - ele apenas exibe dados e notifica quando é clicado.
+            de apresentação - ele apenas exibe dados e notifica quando é
+            clicado.
           </p>
 
           <h4>Componente Carta UNO</h4>
@@ -1433,10 +1455,10 @@ export function MesaUno({ cartaTopo, corAtual, monteCompra, onComprarCarta }: Me
         <div class="implementation-step">
           <h3>3. Lógica do Jogo UNO Simplificado</h3>
           <p>
-            Aqui usamos o <strong>useReducer</strong> para gerenciar o estado complexo
-            do nosso jogo. O reducer é uma função pura que recebe o estado atual
-            e uma ação, e retorna um novo estado. Isso torna as transições de
-            estado previsíveis e testáveis.
+            Aqui usamos o <strong>useReducer</strong> para gerenciar o estado
+            complexo do nosso jogo. O reducer é uma função pura que recebe o
+            estado atual e uma ação, e retorna um novo estado. Isso torna as
+            transições de estado previsíveis e testáveis.
           </p>
 
           <h4>Reducer do UNO</h4>
@@ -1591,8 +1613,9 @@ function podeJogarCarta(carta: Carta, cartaTopo: Carta, corAtual: string): boole
           <h3>4. App Principal - UNO Simplificado</h3>
           <p>
             Finalmente, integramos todos os componentes no App principal. Aqui
-            usamos o hook <code>useReducer</code> para gerenciar o estado do jogo
-            e o <code>dispatch</code> para enviar ações que modificam esse estado.
+            usamos o hook <code>useReducer</code> para gerenciar o estado do
+            jogo e o <code>dispatch</code> para enviar ações que modificam esse
+            estado.
           </p>
 
           <div class="code-container">
@@ -2047,19 +2070,24 @@ body {
             <h4>O Que Criamos:</h4>
             <ul>
               <li>
-                <strong>Jogo UNO Super Simplificado</strong> - Apenas cartas numéricas (0-9)
+                <strong>Jogo UNO Super Simplificado</strong> - Apenas cartas
+                numéricas (0-9)
               </li>
               <li>
-                <strong>2 Jogadores Humanos</strong> - Interface simples e intuitiva
+                <strong>2 Jogadores Humanos</strong> - Interface simples e
+                intuitiva
               </li>
               <li>
-                <strong>4 Cores Básicas</strong> - Vermelho, Azul, Verde, Amarelo
+                <strong>4 Cores Básicas</strong> - Vermelho, Azul, Verde,
+                Amarelo
               </li>
               <li>
-                <strong>Regras Simples</strong> - Jogue cartas da mesma cor ou mesmo número
+                <strong>Regras Simples</strong> - Jogue cartas da mesma cor ou
+                mesmo número
               </li>
               <li>
-                <strong>Sistema de Turnos</strong> - Alternância automática entre jogadores
+                <strong>Sistema de Turnos</strong> - Alternância automática
+                entre jogadores
               </li>
               <li>
                 <strong>Sistema de Vitória</strong> - Primeiro sem cartas vence
@@ -2074,17 +2102,18 @@ body {
                 <strong>Objetivo</strong>: Ser o primeiro a ficar sem cartas
               </li>
               <li>
-                <strong>Jogar Cartas</strong>: Mesma cor <strong>OU</strong> mesmo número da carta do topo
+                <strong>Jogar Cartas</strong>: Mesma cor
+                <strong>OU</strong> mesmo número da carta do topo
               </li>
               <li>
-                <strong>Comprar Cartas</strong>: Se não puder jogar, compre uma carta do monte
+                <strong>Comprar Cartas</strong>: Se não puder jogar, compre uma
+                carta do monte
               </li>
               <li>
-                <strong>Passar a Vez</strong>: Automaticamente após jogar ou comprar
+                <strong>Passar a Vez</strong>: Automaticamente após jogar ou
+                comprar
               </li>
-              <li>
-                <strong>Vitória</strong>: Quando ficar sem cartas na mão
-              </li>
+              <li><strong>Vitória</strong>: Quando ficar sem cartas na mão</li>
             </ul>
           </div>
 
@@ -2149,9 +2178,7 @@ body {
 
         <div class="final-message">
           <h3>Parabéns pela Conclusão!</h3>
-          <p>
-            Você deu um grande passo no mundo do desenvolvimento React!
-          </p>
+          <p>Você deu um grande passo no mundo do desenvolvimento React!</p>
           <p>Colocar aqui formulario de avaliacao</p>
         </div>
       </section>
