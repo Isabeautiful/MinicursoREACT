@@ -130,27 +130,37 @@ function calcularArea(raio: number): number {
 
         <div class="code-container">
           <pre>
-// Interface para nosso jogo de cartas
-interface Carta {
-    id: string;
-    titulo: string;
-    custo: Recurso[];
-    tipo: 'recurso' | 'construcao' | 'especial';
+// Tipos básicos
+let nome: string = "João";
+let idade: number = 25;
+let ativo: boolean = true;
+let numeros: number[] = [1, 2, 3];
+let qualquer: any = "pode ser qualquer coisa";
+
+// Interface para definir a forma de um objeto
+interface Usuario {
+    id: number;
+    nome: string;
+    email: string;
+    ativo?: boolean; // Propriedade opcional
 }
 
-interface Recurso {
-    tipo: 'madeira' | 'pedra' | 'ouro';
-    quantidade: number;
+// Usando a interface
+const usuario: Usuario = {
+    id: 1,
+    nome: "Maria",
+    email: "maria@email.com"
+    // ativo é opcional, então não precisa ser definido
+};
+
+// Função com tipos
+function cumprimentar(usuario: Usuario): string {
+    return `Olá, ${usuario.nome}!`;
 }
 
-// Agora temos autocomplete e verificação de tipos!
-const minhaCarta: Carta = {
-    id: "carta-1",
-    titulo: "Floresta",
-    custo: [{ tipo: "madeira", quantidade: 2 }],
-    tipo: "recurso"
-    // Se esquecermos uma propriedade, o TypeScript avisa!
-};</pre
+// TypeScript previne erros:
+// usuario.idade = 30; // ERRO: Propriedade 'idade' não existe no tipo 'Usuario'
+// cumprimentar("texto"); // ERRO: Argumento do tipo string não é atribuível</pre
           >
           <button class="copy-btn no-print">Copiar</button>
         </div>
@@ -189,7 +199,7 @@ const minhaCarta: Carta = {
         <h3>Princípios Fundamentais do React</h3>
         <ul>
           <li>
-            <strong>Componentes</strong>: Divida a UI em partes independentes
+            <strong>Componentes</strong>: Divide o sistema em partes independentes
             e reutilizáveis
           </li>
           <li>
@@ -197,11 +207,10 @@ const minhaCarta: Carta = {
             (entradas)
           </li>
           <li>
-            <strong>Estado</strong>: Gerencie dados que mudam com o tempo
+            <strong>Estado</strong>: Gerencia de dados que mudam com o tempo
           </li>
           <li>
-            <strong>Renderização Declarativa</strong>: Descreva COMO a UI
-            deve ser, não COMO mudá-la
+            <strong>Renderização Declarativa</strong>: Descreve O QUE o sistema deve fazer e não COMO fazer
           </li>
         </ul>
 
@@ -209,25 +218,65 @@ const minhaCarta: Carta = {
 
         <div class="code-container">
           <pre>
-// ABORDAGEM IMPERATIVA (jQuery style)
+// ABORDAGEM IMPERATIVA (Vanilla JavaScript)
 // "COMO fazer" - passo a passo manual
-function atualizarContador() {
-    const valor = parseInt($('#contador').text());
-    const novoValor = valor + 1;
-    $('#contador').text(novoValor);
+function atualizarContadorImperativo() {
+    const elemento = document.getElementById('contador');
+    const valorAtual = parseInt(elemento.textContent);
+    const novoValor = valorAtual + 1;
+    elemento.textContent = novoValor.toString();
+    
     if (novoValor > 5) {
-        $('#contador').addClass('destaque');
+        elemento.classList.add('destaque');
+    } else {
+        elemento.classList.remove('destaque');
     }
 }
 
 // ABORDAGEM DECLARATIVA (React)
 // "O QUE queremos" - resultado desejado
-function Contador() {
+function ContadorDeclarativo() {
     const [valor, setValor] = useState(0);
+    
+    const incrementar = () => {
+        setValor(valor + 1);
+    };
     
     return (
         &lt;div className={valor > 5 ? 'destaque' : ''}&gt;
-            {valor}
+            &lt;span&gt;{valor}&lt;/span&gt;
+            &lt;button onClick={incrementar}&gt;Incrementar&lt;/button&gt;
+        &lt;/div&gt;
+    );
+}</pre
+          >
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <h3>Exemplo: Componente Básico</h3>
+        <div class="code-container">
+          <pre>
+// Componente React mais simples possível
+function Saudacao() {
+    return &lt;h1&gt;Olá, Mundo!&lt;/h1&gt;;
+}
+
+// Componente com lógica simples
+function Relogio() {
+    const [hora, setHora] = useState(new Date());
+    
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setHora(new Date());
+        }, 1000);
+        
+        return () => clearInterval(timer);
+    }, []);
+    
+    return (
+        &lt;div&gt;
+            &lt;h2&gt;Hora atual:&lt;/h2&gt;
+            &lt;p&gt;{hora.toLocaleTimeString()}&lt;/p&gt;
         &lt;/div&gt;
     );
 }</pre
@@ -265,59 +314,68 @@ function Contador() {
           independentes, reutilizáveis e de responsabilidade única.
         </p>
 
-        <h3>Tipos de Componentes</h3>
-
-        <div class="component-types">
-          <div class="component-type">
-            <h4>Componentes de UI (Presentacionais)</h4>
-            <p>
-              <strong>Função:</strong> Aparência visual<br />
-              <strong>Características:</strong> Recebem dados via props, não têm
-              estado próprio<br />
-              <strong>Exemplo:</strong> Botão, Card, Input
-            </p>
-          </div>
-
-          <div class="component-type">
-            <h4>Componentes de Lógica (Containers)</h4>
-            <p>
-              <strong>Função:</strong> Gerenciar estado e lógica<br />
-              <strong>Características:</strong> Têm estado, fazem chamadas de
-              API<br />
-              <strong>Exemplo:</strong> Lista de usuários, Formulário complexo
-            </p>
-          </div>
-        </div>
-
-        <h3>Exemplo: Componente Carta</h3>
+        <h3>Exemplo: Componente Botão Reutilizável</h3>
         <div class="code-container">
           <pre>
 // Componente de UI (Presentacional)
-interface CartaProps {
-    titulo: string;
-    descricao: string;
-    custo: number;
-    imagem?: string;
+interface BotaoProps {
+    children: React.ReactNode;
+    onClick?: () => void;
+    tipo?: 'primario' | 'secundario' | 'perigo';
+    desabilitado?: boolean;
+    className?: string;
 }
 
-function Carta({ titulo, descricao, custo, imagem }: CartaProps) {
+function Botao({ 
+    children, 
+    onClick, 
+    tipo = 'primario',
+    desabilitado = false,
+    className = ''
+}: BotaoProps) {
+    const classes = `botao botao-${tipo} ${desabilitado ? 'botao-desabilitado' : ''} ${className}`;
+    
     return (
-        &lt;div className="carta"&gt;
-            {imagem && &lt;img src={imagem} alt={titulo} /&gt;}
-            &lt;h3&gt;{titulo}&lt;/h3&gt;
-            &lt;p&gt;{descricao}&lt;/p&gt;
-            &lt;div className="custo"&gt;{custo} recursos&lt;/div&gt;
-        &lt;/div&gt;
+        &lt;button 
+            className={classes.trim()}
+            onClick={onClick}
+            disabled={desabilitado}
+        &gt;
+            {children}
+        &lt;/button&gt;
     );
 }
 
 // Uso do componente
-&lt;Carta 
-    titulo="Floresta"
-    descricao="Produz 2 madeiras por turno"
-    custo={3}
-    imagem="/floresta.png"
-/&gt;</pre
+function App() {
+    const [contador, setContador] = useState(0);
+    
+    return (
+        &lt;div&gt;
+            &lt;Botao 
+                tipo="primario"
+                onClick={() => setContador(contador + 1)}
+            &gt;
+                Incrementar: {contador}
+            &lt;/Botao&gt;
+            
+            &lt;Botao 
+                tipo="secundario"
+                onClick={() => setContador(0)}
+            &gt;
+                Resetar
+            &lt;/Botao&gt;
+            
+            &lt;Botao 
+                tipo="perigo"
+                desabilitado={contador === 0}
+                onClick={() => setContador(contador - 1)}
+            &gt;
+                Decrementar
+            &lt;/Botao&gt;
+        &lt;/div&gt;
+    );
+}</pre
           >
           <button class="copy-btn no-print">Copiar</button>
         </div>
@@ -355,15 +413,14 @@ function Carta({ titulo, descricao, custo, imagem }: CartaProps) {
         <ul>
           <li><strong>className</strong> em vez de <code>class</code></li>
           <li>
-            <strong>Tags devem ser fechadas</strong> (<code
-              >&lt;img /&gt;</code
-            >, <code>&lt;br /&gt;</code>)
+            <strong>Tags devem ser fechadas</strong> (<code>&lt;img /&gt;</code>, <code>&lt;br /&gt;</code>)
           </li>
           <li>
             <strong>Um elemento pai</strong> por componente (ou usar
-            <code>&lt;&gt;&lt;/&gt;</code>)
+            <code>&lt;&gt;&lt;/&gt;</code> - Fragment)
           </li>
           <li><strong>JavaScript entre {}</strong> para expressões</li>
+          <li><strong>style</strong> recebe um objeto em vez de string</li>
         </ul>
 
         <h3>Exemplos de JSX</h3>
@@ -371,31 +428,35 @@ function Carta({ titulo, descricao, custo, imagem }: CartaProps) {
         <div class="code-container">
           <pre>
 // JSX Básico
-function Saudacao({ nome }) {
+function Saudacao({ nome, idade }) {
     return (
         &lt;div className="saudacao"&gt;
             &lt;h1&gt;Olá, {nome}!&lt;/h1&gt;
-            &lt;p&gt;Hoje é {new Date().toLocaleDateString()}&lt;/p&gt;
+            &lt;p&gt;Você tem {idade} anos&lt;/p&gt;
         &lt;/div&gt;
     );
 }
 
-// JSX com Condicional
-function StatusJogador({ recursos, turnoAtivo }) {
+// JSX com Eventos
+function ContadorInterativo() {
+    const [valor, setValor] = useState(0);
+    
+    const handleClick = (incremento: number) => {
+        setValor(valor + incremento);
+    };
+    
     return (
-        &lt;div className={`jogador ${turnoAtivo ? 'ativo' : 'inativo'}`}&gt;
-            &lt;h2&gt;Seus Recursos&lt;/h2&gt;
-            {recursos.length > 0 ? (
-                &lt;ul&gt;
-                    {recursos.map(recurso => (
-                        &lt;li key={recurso.tipo}&gt;
-                            {recurso.tipo}: {recurso.quantidade}
-                        &lt;/li&gt;
-                    ))}
-                &lt;/ul&gt;
-            ) : (
-                &lt;p&gt;Você não tem recursos!&lt;/p&gt;
-            )}
+        &lt;div&gt;
+            &lt;h3&gt;Contador: {valor}&lt;/h3&gt;
+            &lt;button onClick={() => handleClick(1)}&gt;
+                +1
+            &lt;/button&gt;
+            &lt;button onClick={() => handleClick(-1)}&gt;
+                -1
+            &lt;/button&gt;
+            &lt;button onClick={() => setValor(0)}&gt;
+                Reset
+            &lt;/button&gt;
         &lt;/div&gt;
     );
 }</pre
@@ -409,7 +470,7 @@ function StatusJogador({ recursos, turnoAtivo }) {
         <h2>Props: Comunicação entre Componentes</h2>
 
         <div class="analogy">
-          <h3>Analogia: Caixa de Entrada vs Telepatia</h3>
+          <h3>Analogia: Mensagem vs Telepatia</h3>
           <div class="analogy-item">
             <p>
               <strong>Sem Props (Telepatia):</strong><br />
@@ -419,8 +480,8 @@ function StatusJogador({ recursos, turnoAtivo }) {
           </div>
           <div class="analogy-item">
             <p>
-              <strong>Com Props (Caixa de Entrada):</strong><br />
-              Como enviar uma encomenda com instruções claras - previsível e
+              <strong>Com Props (Mensagem):</strong><br />
+              Como enviar uma mensagem com instruções claras - previsível e
               confiável.
             </p>
           </div>
@@ -448,60 +509,109 @@ function StatusJogador({ recursos, turnoAtivo }) {
           <li><strong>Configuráveis</strong>: Podem ter valores padrão</li>
         </ul>
 
-        <h3>Exemplo Detalhado: Props no Jogo</h3>
+        <h3>Exemplo Detalhado: Props em Ação</h3>
 
         <div class="code-container">
           <pre>
-// Definindo as props com TypeScript
-interface JogadorProps {
+// Definindo props com TypeScript
+interface ProdutoProps {
     nome: string;
-    pontos: number;
-    recursos: Recurso[];
-    turnoAtual: boolean;
-    onJogarCarta: (cartaId: string) => void;
-    className?: string; // Prop opcional
+    preco: number;
+    desconto?: number; // Prop opcional
+    emEstoque: boolean;
+    categoria: 'eletronicos' | 'roupas' | 'livros';
+    onComprar: (produtoId: string) => void;
+    children?: React.ReactNode; // Conteúdo children
 }
 
 // Componente usando as props
-function Jogador({ 
+function Produto({ 
     nome, 
-    pontos, 
-    recursos, 
-    turnoAtual, 
-    onJogarCarta,
-    className = '' 
-}: JogadorProps) {
+    preco, 
+    desconto = 0, // Valor padrão
+    emEstoque, 
+    categoria,
+    onComprar,
+    children 
+}: ProdutoProps) {
+    const precoFinal = preco - desconto;
+    const esgotado = !emEstoque;
+    
     return (
-        &lt;div className={`jogador ${className} ${turnoAtual ? 'turno-ativo' : ''}`}&gt;
-            &lt;h2&gt;{nome} - {pontos} pontos&lt;/h2&gt;
-            &lt;div className="recursos"&gt;
-                {recursos.map(recurso => (
-                    &lt;RecursoIcon 
-                        key={recurso.tipo}
-                        tipo={recurso.tipo}
-                        quantidade={recurso.quantidade}
-                    /&gt;
-                ))}
+        &lt;div className={`produto produto-${categoria} ${esgotado ? 'esgotado' : ''}`}&gt;
+            &lt;h3&gt;{nome}&lt;/h3&gt;
+            &lt;div className="preco"&gt;
+                {desconto > 0 && (
+                    &lt;span className="preco-original"&gt;R$ {preco}&lt;/span&gt;
+                )}
+                &lt;span className="preco-final"&gt;R$ {precoFinal}&lt;/span&gt;
+                {desconto > 0 && (
+                    &lt;span className="desconto"&gt;-{desconto}%&lt;/span&gt;
+                )}
             &lt;/div&gt;
+            
+            &lt;div className="status"&gt;
+                {emEstoque ? 'Em estoque' : 'Esgotado'}
+            &lt;/div&gt;
+            
+            {children}
+            
             &lt;button 
-                onClick={() => onJogarCarta('carta-123')}
-                disabled={!turnoAtual}
+                onClick={() => onComprar(nome)}
+                disabled={!emEstoque}
+                className="btn-comprar"
             &gt;
-                Jogar Carta
+                {emEstoque ? 'Comprar' : 'Esgotado'}
             &lt;/button&gt;
         &lt;/div&gt;
     );
 }
 
-// Usando o componente
-&lt;Jogador
-    nome="João"
-    pontos={15}
-    recursos={[{ tipo: 'madeira', quantidade: 5 }, { tipo: 'pedra', quantidade: 2 }]}
-    turnoAtual={true}
-    onJogarCarta={(cartaId) => console.log('Jogando carta:', cartaId)}
-    className="jogador-principal"
-/&gt;</pre
+// Componente pai usando o componente Produto
+function Loja() {
+    const handleCompra = (produtoId: string) => {
+        console.log(`Comprando: ${produtoId}`);
+        // Lógica de compra...
+    };
+    
+    return (
+        &lt;div className="loja"&gt;
+            &lt;h1&gt;Nossa Loja&lt;/h1&gt;
+            
+            &lt;Produto
+                nome="Smartphone"
+                preco={1500}
+                desconto={10}
+                emEstoque={true}
+                categoria="eletronicos"
+                onComprar={handleCompra}
+            &gt;
+                &lt;p&gt;Últimas unidades!&lt;/p&gt;
+            &lt;/Produto&gt;
+            
+            &lt;Produto
+                nome="Camiseta"
+                preco={50}
+                emEstoque={false}
+                categoria="roupas"
+                onComprar={handleCompra}
+            /&gt;
+            
+            &lt;Produto
+                nome="Livro de React"
+                preco={80}
+                desconto={20}
+                emEstoque={true}
+                categoria="livros"
+                onComprar={handleCompra}
+            &gt;
+                &lt;div className="destaque"&gt;
+                    Promoção especial!
+                &lt;/div&gt;
+            &lt;/Produto&gt;
+        &lt;/div&gt;
+    );
+}</pre
           >
           <button class="copy-btn no-print">Copiar</button>
         </div>
@@ -541,18 +651,18 @@ function Jogador({
         <ul>
           <li>
             <strong>Dados dinâmicos</strong>: Contadores, formulários,
-            recursos do jogo
+            filtros ativos
           </li>
           <li>
             <strong>Interações do usuário</strong>: Itens selecionados,
-            opções ativas
+            opções ativas, menus abertos
           </li>
           <li>
             <strong>Dados de API</strong>: Listas de usuários, informações do
             servidor
           </li>
           <li>
-            <strong>Estado da UI</strong>: Menus abertos/fechados, temas
+            <strong>Estado da UI</strong>: Loading, erros, temas
             claro/escuro
           </li>
         </ul>
@@ -563,45 +673,142 @@ function Jogador({
           <pre>
 import { useState } from 'react';
 
-function GerenciadorDeRecursos() {
-    // Estado para recursos do jogador
-    const [recursos, setRecursos] = useState({
-        madeira: 5,
-        pedra: 3,
-        ouro: 1
+// Exemplo 1: Contador simples
+function Contador() {
+    const [contador, setContador] = useState(0);
+    
+    const incrementar = () => setContador(contador + 1);
+    const decrementar = () => setContador(contador - 1);
+    const resetar = () => setContador(0);
+    
+    return (
+        &lt;div&gt;
+            &lt;h2&gt;Contador: {contador}&lt;/h2&gt;
+            &lt;button onClick={incrementar}&gt;+&lt;/button&gt;
+            &lt;button onClick={decrementar}&gt;-&lt;/button&gt;
+            &lt;button onClick={resetar}&gt;Reset&lt;/button&gt;
+        &lt;/div&gt;
+    );
+}
+
+// Exemplo 2: Formulário com estado
+function FormularioContato() {
+    const [formulario, setFormulario] = useState({
+        nome: '',
+        email: '',
+        mensagem: ''
     });
     
-    // Estado para carta selecionada
-    const [cartaSelecionada, setCartaSelecionada] = useState(null);
+    const [enviado, setEnviado] = useState(false);
     
-    // Função para adicionar recursos
-    const adicionarRecurso = (tipo, quantidade) => {
-        setRecursos(recursosAnteriores => ({
-            ...recursosAnteriores,
-            [tipo]: recursosAnteriores[tipo] + quantidade
+    // Atualizar um campo específico
+    const handleChange = (campo: string, valor: string) => {
+        setFormulario(prevState => ({
+            ...prevState,
+            [campo]: valor
         }));
     };
     
-    // Função para usar recursos (custo de carta)
-    const usarRecursos = (custos) => {
-        setRecursos(recursosAnteriores => {
-            const novosRecursos = { ...recursosAnteriores };
-            custos.forEach(custo => {
-                novosRecursos[custo.tipo] -= custo.quantidade;
-            });
-            return novosRecursos;
-        });
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log('Dados do formulário:', formulario);
+        setEnviado(true);
     };
+    
+    if (enviado) {
+        return &lt;div&gt;Mensagem enviada com sucesso!&lt;/div&gt;;
+    }
+    
+    return (
+        &lt;form onSubmit={handleSubmit}&gt;
+            &lt;div&gt;
+                &lt;label&gt;Nome:&lt;/label&gt;
+                &lt;input
+                    type="text"
+                    value={formulario.nome}
+                    onChange={(e) => handleChange('nome', e.target.value)}
+                /&gt;
+            &lt;/div&gt;
+            
+            &lt;div&gt;
+                &lt;label&gt;Email:&lt;/label&gt;
+                &lt;input
+                    type="email"
+                    value={formulario.email}
+                    onChange={(e) => handleChange('email', e.target.value)}
+                /&gt;
+            &lt;/div&gt;
+            
+            &lt;div&gt;
+                &lt;label&gt;Mensagem:&lt;/label&gt;
+                &lt;textarea
+                    value={formulario.mensagem}
+                    onChange={(e) => handleChange('mensagem', e.target.value)}
+                /&gt;
+            &lt;/div&gt;
+            
+            &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+        &lt;/form&gt;
+    );
+}
 
+// Exemplo 3: Estado com array
+function ListaTarefas() {
+    const [tarefas, setTarefas] = useState([]);
+    const [novaTarefa, setNovaTarefa] = useState('');
+    
+    const adicionarTarefa = () => {
+        if (novaTarefa.trim()) {
+            setTarefas([...tarefas, {
+                id: Date.now(),
+                texto: novaTarefa,
+                concluida: false
+            }]);
+            setNovaTarefa('');
+        }
+    };
+    
+    const toggleConcluida = (id) => {
+        setTarefas(tarefas.map(tarefa =>
+            tarefa.id === id 
+                ? { ...tarefa, concluida: !tarefa.concluida }
+                : tarefa
+        ));
+    };
+    
+    const removerTarefa = (id) => {
+        setTarefas(tarefas.filter(tarefa => tarefa.id !== id));
+    };
+    
     return (
         &lt;div&gt;
-            &lt;h3&gt;Recursos: {recursos.madeira}🌲 {recursos.pedra}🪨 {recursos.ouro}💰&lt;/h3&gt;
-            &lt;button onClick={() => adicionarRecurso('madeira', 1)}&gt;
-                Coletar Madeira
-            &lt;/button&gt;
-            {cartaSelecionada && (
-                &lt;div&gt;Carta selecionada: {cartaSelecionada}&lt;/div&gt;
-            )}
+            &lt;h2&gt;Lista de Tarefas&lt;/h2&gt;
+            &lt;div&gt;
+                &lt;input
+                    value={novaTarefa}
+                    onChange={(e) => setNovaTarefa(e.target.value)}
+                    placeholder="Nova tarefa..."
+                /&gt;
+                &lt;button onClick={adicionarTarefa}&gt;Adicionar&lt;/button&gt;
+            &lt;/div&gt;
+            
+            &lt;ul&gt;
+                {tarefas.map(tarefa => (
+                    &lt;li key={tarefa.id}&gt;
+                        &lt;span
+                            style={{
+                                textDecoration: tarefa.concluida ? 'line-through' : 'none'
+                            }}
+                            onClick={() => toggleConcluida(tarefa.id)}
+                        &gt;
+                            {tarefa.texto}
+                        &lt;/span&gt;
+                        &lt;button onClick={() => removerTarefa(tarefa.id)}&gt;
+                            Remover
+                        &lt;/button&gt;
+                    &lt;/li&gt;
+                ))}
+            &lt;/ul&gt;
         &lt;/div&gt;
     );
 }</pre
@@ -617,7 +824,7 @@ function GerenciadorDeRecursos() {
             <p>
               <strong>Uso:</strong> Dados usados apenas por um componente<br />
               <strong>Exemplo:</strong> Input de formulário, menu
-              aberto/fechado<br />
+              aberto/fechado, loading local<br />
               <strong>Hook:</strong> <code>useState</code>
             </p>
           </div>
@@ -627,8 +834,7 @@ function GerenciadorDeRecursos() {
             <p>
               <strong>Uso:</strong> Dados compartilhados entre vários
               componentes<br />
-              <strong>Exemplo:</strong> Usuário logado, tema da aplicação, dados
-              do jogo<br />
+              <strong>Exemplo:</strong> Usuário logado, tema da aplicação, carrinho de compras<br />
               <strong>Soluções:</strong> Context API, Redux, Zustand
             </p>
           </div>
@@ -671,8 +877,7 @@ function GerenciadorDeRecursos() {
             <h4>useState</h4>
             <p>
               <strong>Função:</strong> Gerenciar estado local<br />
-              <strong>Uso no jogo:</strong> Recursos, carta selecionada, turno
-              atual
+              <strong>Uso:</strong> Contadores, formulários, toggle states
             </p>
           </div>
 
@@ -680,16 +885,7 @@ function GerenciadorDeRecursos() {
             <h4>useEffect</h4>
             <p>
               <strong>Função:</strong> Executar efeitos colaterais<br />
-              <strong>Uso no jogo:</strong> Carregar cartas, verificar vitória,
-              salvar progresso
-            </p>
-          </div>
-
-          <div class="hook-item">
-            <h4>useContext</h4>
-            <p>
-              <strong>Função:</strong> Acessar contexto global<br />
-              <strong>Uso no jogo:</strong> Estado global do jogo, configurações
+              <strong>Uso:</strong> API calls, subscriptions, timers
             </p>
           </div>
 
@@ -697,91 +893,187 @@ function GerenciadorDeRecursos() {
             <h4>useReducer</h4>
             <p>
               <strong>Função:</strong> Estado complexo com ações<br />
-              <strong>Uso no jogo:</strong> Lógica principal do jogo, sistema de
-              turnos
+              <strong>Uso:</strong> Formulários complexos, estado com lógica elaborada
+            </p>
+          </div>
+
+          <div class="hook-item">
+            <h4>useRef</h4>
+            <p>
+              <strong>Função:</strong> Acessar elementos DOM diretamente<br />
+              <strong>Uso:</strong> Foco em inputs, medições, valores mutáveis
             </p>
           </div>
         </div>
 
-        <h3>Explicando useReducer</h3>
+        <h3>Explicação Detalhada: useEffect</h3>
         <p>
-          O <strong>useReducer</strong> é um hook mais avançado para gerenciar estado
-          complexo. Ele é baseado no padrão Redux e é ideal quando você tem
-          estado que envolve múltiplas sub-valores ou quando o próximo estado
-          depende do anterior.
-        </p>
-        
-        <p>
-          Ao contrário do useState, que é mais adequado para estado simples, o
-          useReducer permite uma lógica de atualização de estado mais previsível,
-          especialmente quando você tem várias ações que podem modificar o estado
-          de maneiras complexas.
+          O <code>useEffect</code> é usado para executar efeitos colaterais em componentes funcionais. 
+          Ele substitui <code>componentDidMount</code>, <code>componentDidUpdate</code> e <code>componentWillUnmount</code> 
+          dos componentes de classe.
         </p>
 
-        <h4>Estrutura do useReducer:</h4>
-        <ul>
-          <li><strong>Estado (state)</strong>: O estado atual do componente</li>
-          <li><strong>Ação (action)</strong>: Um objeto que descreve o que aconteceu</li>
-          <li><strong>Reducer</strong>: Uma função que recebe estado e ação, retornando novo estado</li>
-          <li><strong>Dispatch</strong>: Função para enviar ações ao reducer</li>
-        </ul>
-
-        <h3>Exemplo: useEffect para Efeitos Colaterais</h3>
+        <h3>Exemplo: useEffect para Diferentes Cenários</h3>
 
         <div class="code-container">
           <pre>
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-function Jogo() {
-    const [cartas, setCartas] = useState([]);
+// Exemplo 1: useEffect para API call (componentDidMount)
+function ListaUsuarios() {
+    const [usuarios, setUsuarios] = useState([]);
     const [carregando, setCarregando] = useState(true);
+    const [erro, setErro] = useState(null);
     
-    // useEffect para carregar cartas quando o componente montar
+    // Executa apenas uma vez quando o componente monta
     useEffect(() => {
-        async function carregarCartas() {
+        async function carregarUsuarios() {
             try {
                 setCarregando(true);
-                // Simulando uma API call
-                const resposta = await fetch('/api/cartas');
-                const cartasData = await resposta.json();
-                setCartas(cartasData);
-            } catch (erro) {
-                console.error('Erro ao carregar cartas:', erro);
+                const resposta = await fetch('https://jsonplaceholder.typicode.com/users');
+                const dados = await resposta.json();
+                setUsuarios(dados);
+            } catch (err) {
+                setErro('Erro ao carregar usuários');
             } finally {
                 setCarregando(false);
             }
         }
         
-        carregarCartas();
-    }, []); // Array vazio = executa apenas uma vez
+        carregarUsuarios();
+    }, []); // Array de dependências vazio = executa apenas uma vez
     
-    // useEffect para verificar vitória quando recursos mudarem
-    const [recursos, setRecursos] = useState({ madeira: 0, pedra: 0, ouro: 0 });
+    if (carregando) return &lt;div&gt;Carregando...&lt;/div&gt;;
+    if (erro) return &lt;div&gt;{erro}&lt;/div&gt;;
     
+    return (
+        &lt;ul&gt;
+            {usuarios.map(usuario => (
+                &lt;li key={usuario.id}&gt;{usuario.name}&lt;/li&gt;
+            ))}
+        &lt;/ul&gt;
+    );
+}
+
+// Exemplo 2: useEffect com dependências (componentDidUpdate)
+function ContadorComHistorico() {
+    const [contador, setContador] = useState(0);
+    const [historico, setHistorico] = useState([]);
+    
+    // Executa sempre que 'contador' mudar
     useEffect(() => {
-        const verificarVitoria = () => {
-            if (recursos.ouro >= 10) {
-                alert('🎉 Você venceu! Construiu 10 ouros!');
-            }
-        };
-        
-        verificarVitoria();
-    }, [recursos]); // Executa sempre que recursos mudar
-    
-    if (carregando) {
-        return &lt;div&gt;Carregando cartas...&lt;/div&gt;;
-    }
+        setHistorico(prev => [...prev, contador]);
+    }, [contador]); // Dependência: executa quando 'contador' muda
     
     return (
         &lt;div&gt;
-            &lt;h1&gt;Meu Jogo de Cartas&lt;/h1&gt;
-            {/* Renderizar cartas */}
+            &lt;h2&gt;Contador: {contador}&lt;/h2&gt;
+            &lt;button onClick={() => setContador(c => c + 1)}&gt;
+                Incrementar
+            &lt;/button&gt;
+            &lt;h3&gt;Histórico:&lt;/h3&gt;
+            &lt;ul&gt;
+                {historico.map((valor, index) => (
+                    &lt;li key={index}&gt;{valor}&lt;/li&gt;
+                ))}
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    );
+}
+
+// Exemplo 3: useEffect com cleanup (componentWillUnmount)
+function RelogioComCleanup() {
+    const [hora, setHora] = useState(new Date());
+    
+    useEffect(() => {
+        const timerID = setInterval(() => {
+            setHora(new Date());
+        }, 1000);
+        
+        // Função de cleanup - executa quando o componente desmonta
+        return () => {
+            clearInterval(timerID);
+        };
+    }, []); // Array vazio = setup e cleanup uma vez
+    
+    return &lt;div&gt;Hora atual: {hora.toLocaleTimeString()}&lt;/div&gt;;
+}
+
+// Exemplo 4: useRef para acessar elementos DOM
+function InputComFoco() {
+    const inputRef = useRef(null);
+    const [valor, setValor] = useState('');
+    
+    const focarInput = () => {
+        inputRef.current.focus();
+    };
+    
+    return (
+        &lt;div&gt;
+            &lt;input
+                ref={inputRef}
+                value={valor}
+                onChange={(e) => setValor(e.target.value)}
+                placeholder="Digite algo..."
+            /&gt;
+            &lt;button onClick={focarInput}&gt;
+                Focar no Input
+            &lt;/button&gt;
+        &lt;/div&gt;
+    );
+}
+
+// Exemplo 5: useReducer para estado complexo
+function reducer(state, action) {
+    switch (action.type) {
+        case 'incrementar':
+            return { contador: state.contador + 1 };
+        case 'decrementar':
+            return { contador: state.contador - 1 };
+        case 'resetar':
+            return { contador: 0 };
+        default:
+            throw new Error();
+    }
+}
+
+function ContadorReducer() {
+    const [state, dispatch] = useReducer(reducer, { contador: 0 });
+    
+    return (
+        &lt;div&gt;
+            &lt;h2&gt;Contador: {state.contador}&lt;/h2&gt;
+            &lt;button onClick={() => dispatch({ type: 'incrementar' })}&gt;
+                +
+            &lt;/button&gt;
+            &lt;button onClick={() => dispatch({ type: 'decrementar' })}&gt;
+                -
+            &lt;/button&gt;
+            &lt;button onClick={() => dispatch({ type: 'resetar' })}&gt;
+                Reset
+            &lt;/button&gt;
         &lt;/div&gt;
     );
 }</pre
           >
           <button class="copy-btn no-print">Copiar</button>
         </div>
+
+        <h3>Exercício Prático: Pratique os Hooks</h3>
+        <p>Crie estes componentes para praticar diferentes hooks:</p>
+        <ol>
+          <li>Um cronômetro com <code>useEffect</code> e <code>useState</code></li>
+          <li>Um formulário com validação usando <code>useReducer</code></li>
+          <li>Um componente que usa <code>useRef</code> para medir o tamanho de um elemento</li>
+          <li>Um custom hook para fazer requisições HTTP</li>
+        </ol>
+
+        <h3>Regras dos Hooks</h3>
+        <ul>
+          <li><strong>Só chame Hooks no nível mais alto</strong> - Não em loops, condições ou funções aninhadas</li>
+          <li><strong>Só chame Hooks de componentes React</strong> - Ou de custom hooks</li>
+          <li><strong>Siga a ordem dos Hooks</strong> - Sempre na mesma ordem a cada renderização</li>
+        </ul>
       </section>
 
       <!-- SEÇÃO 8: INSTALAÇÃO -->
@@ -1855,103 +2147,12 @@ body {
           </div>
         </div>
 
-        <div class="next-steps">
-          <h3>Próximos Passos</h3>
-          <p>
-            Agora que você tem uma base sólida, aqui estão algumas ideias para
-            continuar evoluindo:
-          </p>
-
-          <div class="project-ideas">
-            <div class="project-idea">
-              <h4>Expanda Este Jogo</h4>
-              <ul>
-                <li>Adicione mais tipos de cartas e recursos</li>
-                <li>Crie um sistema de combate entre jogadores</li>
-                <li>Implemente cartas com efeitos especiais</li>
-                <li>Adicione sons e mais animações</li>
-                <li>Crie um modo campanha com história</li>
-              </ul>
-            </div>
-
-            <div class="project-idea">
-              <h4>Novos Projetos</h4>
-              <ul>
-                <li>
-                  <strong>Todo App Avançado</strong> - Com drag & drop e
-                  categorias
-                </li>
-                <li>
-                  <strong>App de Clima</strong> - Integração com APIs externas
-                </li>
-                <li>
-                  <strong>Rede Social Simples</strong> - Posts, comentários e
-                  likes
-                </li>
-                <li>
-                  <strong>E-commerce Básico</strong> - Carrinho e checkout
-                </li>
-                <li>
-                  <strong>Dashboard</strong> - Gráficos e dados em tempo real
-                </li>
-              </ul>
-            </div>
-
-            <div class="project-idea">
-              <h4>Tópicos Avançados</h4>
-              <ul>
-                <li>Testes com Jest e React Testing Library</li>
-                <li>
-                  Otimização de performance (React.memo, useMemo, useCallback)
-                </li>
-                <li>Roteamento com React Router</li>
-                <li>Gerenciamento de estado com Redux Toolkit</li>
-                <li>Server-side rendering com Next.js</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
         <div class="final-message">
           <h3>Parabéns pela Conclusão!</h3>
           <p>
             Você deu um grande passo no mundo do desenvolvimento React!
-            Lembre-se:
           </p>
-          <ul>
-            <li>
-              <strong>A prática leva à perfeição</strong> - Continue codando
-              regularmente
-            </li>
-            <li>
-              <strong>Não tenha medo de errar</strong> - Erros são
-              oportunidades de aprendizado
-            </li>
-            <li>
-              <strong>Participe da comunidade</strong> - Compartilhe
-              conhecimento e faça networking
-            </li>
-            <li>
-              <strong>Mantenha a curiosidade</strong> - Novas tecnologias
-              surgem constantemente
-            </li>
-          </ul>
-
-          <div class="inspiration">
-            <p>
-              <em
-                >"O único modo de fazer um excelente trabalho é amar o que você
-                faz." - Steve Jobs</em
-              >
-            </p>
-          </div>
-
-          <p>
-            <strong
-              >Continue criando, continue aprendendo, e acima de tudo,
-              divirta-se programando!</strong
-            >
-          </p>
+          <p>Colocar aqui formulario de avaliacao</p>
         </div>
       </section>
 
