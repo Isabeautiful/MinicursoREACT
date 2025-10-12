@@ -1592,13 +1592,13 @@ function App() {
     return (
       &lt;div className="tela-vitoria"&gt;
         &lt;div className="vitoria-container"&gt;
-          &lt;h1&gt;🎉 {state.vencedor.nome} Venceu!&lt;/h1&gt;
-          &lt;p&gt;Parabéns! 🃏&lt;/p&gt;
+          &lt;h1&gt;{state.vencedor.nome} Venceu!&lt;/h1&gt;
+          &lt;p&gt;Parabéns!&lt;/p&gt;
           &lt;button 
             onClick={() => dispatch({ type: 'INICIAR_JOGO' })}
             className="btn-principal"
           &gt;
-            🔄 Jogar Novamente
+            Jogar Novamente
           &lt;/button&gt;
         &lt;/div&gt;
       &lt;/div&gt;
@@ -1618,7 +1618,7 @@ function App() {
       &lt;div className="area-jogo-uno"&gt;
         {/* Jogador 2 */}
         &lt;div className={`jogador-area ${state.vez === 1 ? 'jogador-ativo' : ''}`}&gt;
-          &lt;h2&gt;👤 {state.jogadores[1]?.nome}&lt;/h2&gt;
+          &lt;h2&gt;{state.jogadores[1]?.nome}&lt;/h2&gt;
           &lt;div className="mao-jogador"&gt;
             {state.jogadores[1]?.mao.map((carta) => (
               &lt;CartaUno
@@ -1634,7 +1634,7 @@ function App() {
           &lt;/div&gt;
           {state.vez === 1 && (
             &lt;button onClick={() => handleComprarCarta(1)} className="btn-comprar"&gt;
-              🃏 Comprar Carta
+              Comprar Carta
             &lt;/button&gt;
           )}
         &lt;/div&gt;
@@ -1651,7 +1651,7 @@ function App() {
 
         {/* Jogador 1 */}
         &lt;div className={`jogador-area ${state.vez === 0 ? 'jogador-ativo' : ''}`}&gt;
-          &lt;h2&gt;👤 {state.jogadores[0]?.nome}&lt;/h2&gt;
+          &lt;h2&gt;{state.jogadores[0]?.nome}&lt;/h2&gt;
           &lt;div className="mao-jogador"&gt;
             {state.jogadores[0]?.mao.map((carta) => (
               &lt;CartaUno
@@ -1667,7 +1667,7 @@ function App() {
           &lt;/div&gt;
           {state.vez === 0 && (
             &lt;button onClick={() => handleComprarCarta(0)} className="btn-comprar"&gt;
-              🃏 Comprar Carta
+              Comprar Carta
             &lt;/button&gt;
           )}
         &lt;/div&gt;
@@ -2220,41 +2220,6 @@ function App() {
               <li>
                 <strong>Sistema de Vitória</strong> - Primeiro sem cartas vence
               </li>
-            </ul>
-          </div>
-
-          <div class="game-strategy">
-            <h4>Regras do UNO Simplificado:</h4>
-            <ul>
-              <li>
-                <strong>Objetivo</strong>: Ser o primeiro a ficar sem cartas
-              </li>
-              <li>
-                <strong>Jogar Cartas</strong>: Mesma cor
-                <strong>OU</strong> mesmo número da carta do topo
-              </li>
-              <li>
-                <strong>Comprar Cartas</strong>: Se não puder jogar, compre uma
-                carta do monte
-              </li>
-              <li>
-                <strong>Passar a Vez</strong>: Automaticamente após jogar ou
-                comprar
-              </li>
-              <li><strong>Vitória</strong>: Quando ficar sem cartas na mão</li>
-            </ul>
-          </div>
-
-          <div class="achievement">
-            <h4>Conquistas de Aprendizado:</h4>
-            <ul>
-              <li>useReducer para estado complexo de jogo</li>
-              <li>Componentes reutilizáveis (CartaUno, MesaUno)</li>
-              <li>TypeScript para type safety</li>
-              <li>CSS Grid e Flexbox para layout responsivo</li>
-              <li>Lógica de jogo super simples e clara</li>
-              <li>Sistema de turnos e vitória</li>
-              <li>Projeto completo e funcional!</li>
             </ul>
           </div>
         </div>
