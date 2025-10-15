@@ -37,7 +37,7 @@
       <h1>Minicurso: Aprender REACT fazendo um jogo de cartas</h1>
 
       <section id="introducao" class="main-section">
-        <h2>Introdução: Aprendendo Conceitos Primeiro</h2>
+        <h2>Introdução: Aprendendo Conceitos</h2>
         <p>
           Bem-vindo ao minicurso onde você vai aprender React desenvolvendo um
           jogo de cartas! Neste curso, vamos abordar os conceitos fundamentais
@@ -67,6 +67,511 @@
             <strong>Componentes reutilizáveis</strong> para cartas e recursos
           </li>
         </ul>
+      </section>
+
+      <!-- SEÇÃO DOM: CONCEITOS FUNDAMENTAIS -->
+      <section id="dom-conceito" class="main-section">
+        <h2>DOM: A Ponte Entre JavaScript e a Página Web</h2>
+
+        <div class="concept-explanation">
+          <h3>O Que é o DOM?</h3>
+          <p>
+            O <strong>DOM (Document Object Model)</strong> é uma interface de
+            programação que representa a estrutura de um documento HTML ou XML
+            como uma árvore de objetos. Quando uma página web é carregada, o
+            navegador cria uma representação em memória de todos os elementos da
+            página, organizando-os em uma estrutura hierárquica que pode ser
+            acessada e manipulada através de JavaScript.
+          </p>
+
+          <p>
+            Pense no DOM como uma ponte entre o conteúdo estático da sua página
+            (HTML) e a lógica dinâmica do seu código (JavaScript). Sem o DOM, o
+            JavaScript não teria como interagir com os elementos da página,
+            alterar conteúdos, responder a cliques ou modificar estilos.
+          </p>
+
+          <div class="dom-visual">
+            <h4>O Processo de Renderização</h4>
+            <p>
+              Quando você acessa uma página web, o navegador passa por estas
+              etapas:
+            </p>
+            <ol>
+              <li>
+                <strong>Parsing do HTML:</strong> O navegador lê o código HTML e
+                identifica todos os elementos, atributos e conteúdo
+              </li>
+              <li>
+                <strong>Criação do DOM:</strong> Constrói uma árvore de objetos
+                representando a estrutura do documento
+              </li>
+              <li>
+                <strong>Renderização:</strong> Usa o DOM para desenhar a página
+                na tela
+              </li>
+              <li>
+                <strong>Interação:</strong> Permite que o JavaScript modifique o
+                DOM, atualizando automaticamente a visualização
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="dom-structure">
+          <h3>A Estrutura Hierárquica do DOM</h3>
+          <p>
+            O DOM organiza os elementos em uma estrutura de árvore onde cada nó
+            representa uma parte do documento. Esta hierarquia inclui relações
+            de parentesco entre os elementos:
+          </p>
+          <ul>
+            <li>
+              <strong>Nó Raiz:</strong> O objeto <code>document</code> é a raiz
+              de toda a árvore DOM
+            </li>
+            <li>
+              <strong>Elementos Pais:</strong> Elementos que contêm outros
+              elementos
+            </li>
+            <li>
+              <strong>Elementos Filhos:</strong> Elementos contidos dentro de
+              outros elementos
+            </li>
+            <li>
+              <strong>Elementos Irmãos:</strong> Elementos que compartilham o
+              mesmo elemento pai
+            </li>
+          </ul>
+
+          <div class="code-example">
+            <h4>Exemplo Prático de Estrutura HTML</h4>
+            <p>Considere este código HTML simples:</p>
+            <div class="code-container">
+              <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Minha Página&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Meu Site&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Home&lt;/li&gt;
+                &lt;li&gt;Sobre&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;p&gt;Conteúdo principal da página&lt;/p&gt;
+        &lt;button id="botao-acao"&gt;Clique aqui&lt;/button&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre
+              >
+              <button class="copy-btn no-print">Copiar</button>
+            </div>
+          </div>
+
+          <div class="dom-tree">
+            <h4>Representação da Estrutura DOM</h4>
+            <p>
+              O navegador transforma o HTML acima na seguinte estrutura de
+              árvore:
+            </p>
+            <div class="tree-diagram">
+              <div class="tree-level">
+                <strong>document</strong> (objeto raiz)
+              </div>
+              <div class="tree-level">
+                ├── <strong>html</strong> (elemento raiz do documento)
+              </div>
+              <div class="tree-level">
+                │ ├── <strong>head</strong> (contém metadados)
+              </div>
+              <div class="tree-level">
+                │ │ └── <strong>title</strong> (título da página)
+              </div>
+              <div class="tree-level">
+                │ └── <strong>body</strong> (contém o conteúdo visível)
+              </div>
+              <div class="tree-level">
+                │ ├── <strong>header</strong> (cabeçalho da página)
+              </div>
+              <div class="tree-level">
+                │ │ ├── <strong>h1</strong> (título principal)
+              </div>
+              <div class="tree-level">
+                │ │ └── <strong>nav</strong> (menu de navegação)
+              </div>
+              <div class="tree-level">
+                │ │ └── <strong>ul</strong> (lista não ordenada)
+              </div>
+              <div class="tree-level">
+                │ │ ├── <strong>li</strong> (item da lista)
+              </div>
+              <div class="tree-level">
+                │ │ └── <strong>li</strong> (item da lista)
+              </div>
+              <div class="tree-level">
+                │ └── <strong>main</strong> (conteúdo principal)
+              </div>
+              <div class="tree-level">│ ├── <strong>p</strong> (parágrafo)</div>
+              <div class="tree-level">
+                │ └── <strong>button</strong> (botão com id "botao-acao")
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dom-manipulation">
+          <h3>Manipulação do DOM com JavaScript</h3>
+          <p>
+            A verdadeira potência do DOM está na capacidade do JavaScript de
+            selecionar, modificar, criar e remover elementos dinamicamente. Esta
+            manipulação ocorre em tempo real, permitindo criar interfaces
+            interativas e responsivas.
+          </p>
+
+          <h4>Seleção de Elementos</h4>
+          <p>
+            Antes de manipular qualquer elemento, precisamos primeiro
+            selecioná-lo no DOM. Existem várias formas de fazer isso:
+          </p>
+          <div class="code-container">
+            <pre>
+// Seleção por ID - retorna um único elemento
+const elementoUnico = document.getElementById('meu-id');
+
+// Seleção por classe - retorna uma coleção HTML
+const elementosClasse = document.getElementsByClassName('minha-classe');
+
+// Seleção por tag - retorna uma coleção HTML
+const todosParagrafos = document.getElementsByTagName('p');
+
+// Seleção por seletor CSS - métodos modernos e flexíveis
+const primeiroElemento = document.querySelector('.minha-classe');
+const todosElementos = document.querySelectorAll('div.destaque');</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+
+          <h4>Modificação de Elementos Existentes</h4>
+          <p>
+            Uma vez selecionado um elemento, podemos alterar suas propriedades,
+            conteúdo e aparência:
+          </p>
+          <div class="code-container">
+            <pre>
+// Modificar conteúdo textual
+elemento.textContent = 'Novo conteúdo de texto';
+elemento.innerHTML = 'Texto com &lt;strong&gt;formatação HTML&lt;/strong&gt;';
+
+// Alterar atributos
+elemento.setAttribute('data-info', 'valor-personalizado');
+const valor = elemento.getAttribute('id');
+
+// Modificar estilos diretamente
+elemento.style.color = 'blue';
+elemento.style.fontSize = '18px';
+elemento.style.display = 'none'; // Esconder elemento
+
+// Trabalhar com classes CSS
+elemento.classList.add('nova-classe');
+elemento.classList.remove('classe-antiga');
+elemento.classList.toggle('classe-alternativa'); // Adiciona ou remove
+elemento.classList.contains('minha-classe'); // Verifica se tem a classe</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+
+          <h4>Criação e Remoção de Elementos</h4>
+          <p>
+            Podemos criar novos elementos dinamicamente e inseri-los no DOM, ou
+            remover elementos existentes:
+          </p>
+          <div class="code-container">
+            <pre>
+// Criar um novo elemento
+const novoElemento = document.createElement('div');
+novoElemento.textContent = 'Sou um novo elemento criado dinamicamente';
+novoElemento.className = 'destaque';
+
+// Inserir no DOM
+document.body.appendChild(novoElemento); // No final do body
+elementoPai.insertBefore(novoElemento, elementoReferencia); // Antes de um elemento específico
+elementoPai.prepend(novoElemento); // Como primeiro filho
+
+// Clonar elementos existentes
+const elementoClone = elementoExistente.cloneNode(true);
+
+// Remover elementos
+elementoParaRemover.remove(); // Método moderno
+elementoPai.removeChild(elementoFilho); // Método tradicional
+
+// Limpar todos os filhos de um elemento
+elementoPai.innerHTML = ''; // Método simples
+while (elementoPai.firstChild) { // Método mais performático
+    elementoPai.removeChild(elementoPai.firstChild);
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <div class="dom-events">
+          <h3>Eventos do DOM: Criando Interatividade</h3>
+          <p>
+            Eventos são ações ou ocorrências que acontecem no navegador, como
+            cliques do mouse, pressionamento de teclas, ou carregamento da
+            página. Através do sistema de eventos do DOM, podemos "escutar"
+            essas ocorrências e executar código em resposta.
+          </p>
+
+          <h4>Tipos Comuns de Eventos</h4>
+          <p>Os eventos podem ser categorizados em vários tipos:</p>
+          <ul>
+            <li>
+              <strong>Eventos de Mouse:</strong> click, dblclick, mouseover,
+              mouseout, mousemove
+            </li>
+            <li>
+              <strong>Eventos de Teclado:</strong> keydown, keyup, keypress
+            </li>
+            <li>
+              <strong>Eventos de Formulário:</strong> submit, change, input,
+              focus, blur
+            </li>
+            <li><strong>Eventos de Janela:</strong> load, resize, scroll</li>
+            <li>
+              <strong>Eventos de Toque:</strong> touchstart, touchmove, touchend
+              (para dispositivos móveis)
+            </li>
+          </ul>
+
+          <h4>Manipulação de Eventos</h4>
+          <p>
+            Para responder a eventos, usamos o método
+            <code>addEventListener</code>:
+          </p>
+          <div class="code-container">
+            <pre>
+// Sintaxe básica
+elemento.addEventListener('tipo-do-evento', funçãoResposta);
+
+// Exemplo: Clique em um botão
+const botao = document.getElementById('meu-botao');
+botao.addEventListener('click', function(evento) {
+    console.log('Botão clicado!');
+    console.log('Elemento clicado:', evento.target);
+    console.log('Coordenadas do clique:', evento.clientX, evento.clientY);
+});
+
+// Exemplo: Tecla pressionada em um input
+const campoInput = document.querySelector('input[type="text"]');
+campoInput.addEventListener('keydown', function(evento) {
+    if (evento.key === 'Enter') {
+        console.log('Enter pressionado!');
+        evento.preventDefault(); // Impede comportamento padrão
+    }
+});
+
+// Exemplo: Formulário enviado
+const formulario = document.getElementById('meu-formulario');
+formulario.addEventListener('submit', function(evento) {
+    evento.preventDefault(); // Impede envio padrão do formulário
+    console.log('Formulário seria enviado, mas impedimos');
+    // Aqui podemos validar dados ou enviar via AJAX
+});
+
+// Exemplo: Página carregada
+window.addEventListener('load', function() {
+    console.log('Página completamente carregada, incluindo imagens');
+});
+
+// Exemplo: Mouse sobre elemento
+elemento.addEventListener('mouseover', function() {
+    elemento.style.backgroundColor = 'lightyellow';
+});
+elemento.addEventListener('mouseout', function() {
+    elemento.style.backgroundColor = '';
+});</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+
+          <h4>Delegação de Eventos</h4>
+          <p>
+            Para melhor performance, especialmente com muitos elementos, podemos
+            usar delegação de eventos - adicionar um único listener em um
+            elemento pai que captura eventos dos filhos:
+          </p>
+          <div class="code-container">
+            <pre>
+// Em vez de adicionar listeners a cada botão
+document.getElementById('lista-botoes').addEventListener('click', function(evento) {
+    if (evento.target.classList.contains('botao-item')) {
+        console.log('Botão clicado:', evento.target.textContent);
+    }
+});</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <div class="dom-challenges">
+          <h3>Desafios da Manipulação Direta do DOM</h3>
+          <p>
+            Embora poderoso, trabalhar diretamente com o DOM apresenta vários
+            desafios que se tornam mais evidentes em aplicações complexas:
+          </p>
+
+          <h4>Gerenciamento de Estado e Sincronização</h4>
+          <p>
+            Em aplicações com múltiplos elementos interdependentes, manter a
+            interface sincronizada com os dados subjacentes torna-se complexo.
+            Cada mudança de estado pode exigir atualizações manuais em vários
+            lugares do DOM, aumentando a chance de inconsistências.
+          </p>
+
+          <h4>Problemas de Performance</h4>
+          <p>
+            Operações frequentes no DOM são custosas em termos de performance.
+            Cada modificação pode disparar recalculos de layout e repaint pelo
+            navegador. Em aplicações com muitas atualizações, isso pode resultar
+            em lentidão perceptível.
+          </p>
+
+          <h4>Complexidade de Manutenção</h4>
+          <p>
+            O código que manipula o DOM diretamente tende a se espalhar por toda
+            a aplicação, tornando difícil entender o fluxo de dados e as
+            dependências entre diferentes partes da interface. Isso dificulta a
+            manutenção e a adição de novas funcionalidades.
+          </p>
+
+          <h4>Gestão de Eventos</h4>
+          <p>
+            Em interfaces complexas, gerenciar múltiplos event listeners e
+            garantir que sejam devidamente removidos quando elementos são
+            deletados pode levar a vazamentos de memória e comportamentos
+            inesperados.
+          </p>
+        </div>
+
+        <div class="react-solution-intro">
+          <h3>Como o React Simplifica o Trabalho com o DOM</h3>
+          <p>
+            O React aborda esses desafios através do conceito de
+            <strong>DOM Virtual</strong>. Em vez de manipular o DOM diretamente,
+            você descreve como sua interface deve aparecer em qualquer estado
+            possível, e o React se encarrega de atualizar eficientemente o DOM
+            real.
+          </p>
+
+          <h4>O Conceito de DOM Virtual</h4>
+          <p>
+            O DOM Virtual é uma representação em memória do DOM real. Quando o
+            estado da sua aplicação muda, o React cria uma nova versão do DOM
+            Virtual, compara com a versão anterior (processo chamado "diffing"),
+            e determina a maneira mais eficiente de atualizar o DOM real.
+          </p>
+
+          <h4>Comparação: DOM Direto vs React</h4>
+          <p>Vejamos a diferença na abordagem para um contador simples:</p>
+
+          <div class="code-comparison">
+            <div class="comparison-item">
+              <h5>Manipulação Direta do DOM</h5>
+              <div class="code-container">
+                <pre>
+// Precisa gerenciar manualmente todas as atualizações
+let contador = 0;
+const elementoContador = document.getElementById('contador');
+const elementoStatus = document.getElementById('status');
+
+function incrementar() {
+    contador++;
+    
+    // Atualizações manuais necessárias
+    elementoContador.textContent = contador;
+    
+    if (contador > 10) {
+        elementoStatus.textContent = 'Alto';
+        elementoStatus.className = 'status-alto';
+    } else {
+        elementoStatus.textContent = 'Normal';
+        elementoStatus.className = 'status-normal';
+    }
+    
+    // Mais elementos poderiam precisar de atualização...
+}</pre
+                >
+                <button class="copy-btn no-print">Copiar</button>
+              </div>
+            </div>
+
+            <div class="comparison-item">
+              <h5>Com React</h5>
+              <div class="code-container">
+                <pre>
+// Apenas declara o estado - React cuida das atualizações
+function Contador() {
+    const [contador, setContador] = useState(0);
+    
+    function incrementar() {
+        setContador(contador + 1);
+    }
+    
+    return (
+        &lt;div&gt;
+            &lt;span&gt;{contador}&lt;/span&gt;
+            &lt;div className={contador > 10 ? 'status-alto' : 'status-normal'}&gt;
+                {contador > 10 ? 'Alto' : 'Normal'}
+            &lt;/div&gt;
+            &lt;button onClick={incrementar}&gt;Incrementar&lt;/button&gt;
+        &lt;/div&gt;
+    );
+}</pre
+                >
+                <button class="copy-btn no-print">Copiar</button>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            Com React, você se preocupa apenas em descrever como a interface
+            deve ser baseada no estado atual. O React automaticamente determina
+            quais partes do DOM precisam ser atualizadas e executa essas
+            atualizações da forma mais eficiente possível.
+          </p>
+        </div>
+
+        <div class="conclusion">
+          <h3>Conclusão: A Evolução do Desenvolvimento Front-End</h3>
+          <p>
+            Entender o DOM é fundamental para qualquer desenvolvedor web, pois
+            representa a base sobre a qual todas as bibliotecas e frameworks
+            modernos são construídos. O DOM fornece a interface crua entre
+            JavaScript e a página web, permitindo a criação de experiências
+            interativas e dinâmicas.
+          </p>
+          <p>
+            No entanto, como vimos, a manipulação direta do DOM em aplicações
+            complexas apresenta desafios significativos. Bibliotecas como React
+            surgiram para abstrair essa complexidade, permitindo que os
+            desenvolvedores se concentrem na lógica da aplicação enquanto a
+            biblioteca gerencia eficientemente as atualizações da interface.
+          </p>
+          <p>
+            Nos próximos tópicos, exploraremos o TypeScript para adicionar
+            tipagem estática ao nosso JavaScript, e então mergulharemos no React
+            para construir nossa aplicação de jogo de cartas utilizando essas
+            abstrações modernas.
+          </p>
+        </div>
       </section>
 
       <!-- SEÇÃO 1: TYPESCRIPT -->
