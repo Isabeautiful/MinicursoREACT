@@ -45,7 +45,10 @@
           recursos e constroem novas cartas a partir desses recursos.
         </p>
 
-        <a href="https://www.canva.com/design/DAG2DaioYfc/X5qDzTJHuSmTA9QICsaneg/edit?utm_content=DAG2DaioYfc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Link da Apresentação de Slides</a>
+        <a
+          href="https://www.canva.com/design/DAG2DaioYfc/X5qDzTJHuSmTA9QICsaneg/edit?utm_content=DAG2DaioYfc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+          >Link da Apresentação de Slides</a
+        >
 
         <p>Vamos trabalhar com:</p>
         <ul>
@@ -1580,47 +1583,6 @@ src/
           </div>
         </div>
 
-        <!-- PASSO 2: TIPOS BÁSICOS -->
-        <div class="implementation-step">
-          <h3>Passo 2: Definindo os Tipos TypeScript</h3>
-          <p>
-            Crie o arquivo <code>types/gametypes.ts</code> com os tipos básicos:
-          </p>
-
-          <div class="code-container">
-            <pre>
-// types/gametypes.ts
-export type Cor = 'vermelho' | 'azul' | 'verde' | 'amarelo';
-
-export type ValorCarta = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
-
-export type Carta = {
-  id: string;
-  cor: Cor;
-  valor: ValorCarta;
-}
-
-export type Jogador = {
-  id: string;
-  nome: string;
-  mao: Carta[];
-  isHumano: boolean;
-}
-
-export type EstadoJogo = {
-  jogadores: Jogador[];
-  monteCompra: Carta[];
-  monteDescarte: Carta[];
-  vez: number;
-  corAtual: Cor;
-  vencedor: Jogador | null;
-  estado: 'preparacao' | 'jogando' | 'finalizado';
-}</pre
-            >
-            <button class="copy-btn no-print">Copiar</button>
-          </div>
-        </div>
-
         <!-- PASSO 3: COMPONENTE CARTA -->
         <div class="implementation-step">
           <h3>Passo 3: Componente Carta Básico</h3>
@@ -1630,7 +1592,7 @@ export type EstadoJogo = {
 
           <div class="code-container">
             <pre>
-// components/CartaUno.tsx - VERSÃO INICIAL
+// components/CartaUno.tsx
 import type { Carta } from '../types/gametypes';
 
 interface CartaUnoProps {
@@ -1659,6 +1621,30 @@ export function CartaUno({ carta }: CartaUnoProps) {
           </div>
         </div>
 
+                <!-- PASSO 2: TIPOS BÁSICOS -->
+        <div class="implementation-step">
+          <h3>Passo 2: Definindo os Tipos TypeScript</h3>
+          <p>
+            Crie o arquivo <code>types/gametypes.ts</code> com os tipos básicos:
+          </p>
+
+          <div class="code-container">
+            <pre>
+// types/gametypes.ts
+export type Cor = 'vermelho' | 'azul' | 'verde' | 'amarelo';
+
+export type ValorCarta = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
+
+export type Carta = {
+  id: string;
+  cor: Cor;
+  valor: ValorCarta;
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
         <!-- PASSO 4: APP INICIAL -->
         <div class="implementation-step">
           <h3>Passo 4: App Inicial - Testando o Componente Carta</h3>
@@ -1666,7 +1652,7 @@ export function CartaUno({ carta }: CartaUnoProps) {
 
           <div class="code-container">
             <pre>
-// App.tsx - VERSÃO INICIAL
+// App.tsx
 import { CartaUno } from './components/CartaUno';
 import './App.css';
 
@@ -1680,7 +1666,7 @@ function App() {
 
   return (
     &lt;div className="app-uno"&gt;
-      &lt;h1&gt;🎮 UNO Simplificado - Teste&lt;/h1&gt;
+      &lt;h1&gt;UNO Simplificado - Teste&lt;/h1&gt;
       &lt;div className="area-teste"&gt;
         &lt;CartaUno carta={cartaTeste} /&gt;
       &lt;/div&gt;
@@ -1699,99 +1685,111 @@ export default App;</pre
           <h3>Passo 5: Estilos Básicos</h3>
           <p>Adicione estilos básicos em <code>App.css</code>:</p>
 
-          <div class="code-container">
+          <div class="code-container css-container">
             <pre>
-/* App.css - ESTILOS BÁSICOS */
+/* VARIÁVEIS CSS: maneira de reutilizar css */
 :root {
-  --vermelho: #e74c3c;
-  --azul: #3498db;
-  --verde: #2ecc71;
-  --amarelo: #f1c40f;
-  --preto: #2c3e50;
-  --branco: #ecf0f1;
+  --vermelho: #e74c3c;    
+  --azul: #3498db;        
+  --verde: #2ecc71;       
+  --amarelo: #f1c40f;     
+  --preto: #2c3e50;       
+  --branco: #ecf0f1;     
 }
 
+/* CONFIGURAÇÃO PADRÃO PARA TODOS OS ELEMENTOS DA PÁGINA */
 * {
-  margin: 0 auto;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0 auto;         /* Centraliza elementos horizontalmente */
+  padding: 0;             /* Remove espaçamentos internos padrão */
+  box-sizing: border-box; /* Faz padding e border ficarem dentro do width/height */
 }
 
+/* ESTILOS DO CORPO DA PÁGINA */
 body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
+  /* Fundo com gradiente que vai do azul ao roxo */
+  background: linear-gradient(135deg, var(--azul) 0%, #764ba2 100%);
+  min-height: 100vh;      /* Ocupa pelo menos toda a altura da tela */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
+  color: white;           /* Cor do texto padrão */
 }
 
+/* CONTAINER PRINCIPAL DO APLICATIVO */
 .app-uno {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
+  max-width: 1200px;      /* Largura máxima do conteúdo */
+  margin: 0 auto;         /* Centraliza o container na página */
+  padding: 20px;          /* Espaçamento interno */
+  text-align: center;     /* Alinha todo o texto ao centro */
 }
 
+/* TÍTULO PRINCIPAL */
 .app-uno h1 {
-  margin-bottom: 30px;
-  font-size: 2.5em;
+  margin-bottom: 30px;    /* Espaço abaixo do título */
+  font-size: 2.5em;       /* Tamanho grande da fonte */
 }
 
-/* Cartas Básicas */
+/* ESTILO BÁSICO PARA TODAS AS CARTAS */
 .carta {
-  width: 80px;
-  height: 120px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  position: relative;
-  overflow: hidden;
+  width: 80px;           /* Largura fixa da carta */
+  height: 120px;         /* Altura fixa da carta */
+  border-radius: 8px;    /* Cantos arredondados */
+  
+  /* FLEXBOX: Sistema para organizar elementos internos */
+  display: flex;          /* Ativa o flexbox */
+  flex-direction: column; /* Organiza os elementos em coluna (um embaixo do outro) */
+  justify-content: space-between; /* Distribui espaço igual entre os elementos */
+  
+  padding: 8px;          /* Espaçamento interno */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra suave ao redor */
+  position: relative;    /* Permite posicionar elementos filhos absolutamente */
+  overflow: hidden;      /* Esconde conteúdo que sair da carta */
 }
 
-.carta::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255,255,255,0.1);
-  border-radius: 6px;
-}
-
-/* Cores das cartas */
+/* CLASSES DE CORES PARA CARTAS - usam as variáveis definidas no :root */
 .carta-vermelho { background: var(--vermelho); color: white; }
 .carta-azul { background: var(--azul); color: white; }
 .carta-verde { background: var(--verde); color: white; }
 .carta-amarelo { background: var(--amarelo); color: #2c3e50; }
 
+/* TOPO E BASE DA CARTA */
 .carta-topo, .carta-base {
-  display: flex;
-  justify-content: flex-start;
-  font-weight: bold;
-  font-size: 0.9em;
+  display: flex;                 /* Ativa flexbox para estes elementos */
+  justify-content: flex-start;   /* Alinha conteúdo ao início (esquerda) */
+  font-weight: bold;            /* Texto em negrito */
+  font-size: 0.9em;             /* Tamanho menor da fonte */
 }
 
 .carta-base {
-  justify-content: flex-end;
+  justify-content: flex-end;    /* Alinha conteúdo ao final (direita) */
 }
 
+/* CENTRO DA CARTA (onde fica o número principal) */
 .carta-centro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  font-size: 2em;
-  font-weight: bold;
+  display: flex;                /* Ativa flexbox */
+  justify-content: center;      /* Centraliza horizontalmente */
+  align-items: center;          /* Centraliza verticalmente */
+  flex: 1;                     /* Ocupa todo espaço disponível restante */
+  font-size: 2em;              /* Tamanho grande da fonte */
+  font-weight: bold;           /* Texto em negrito */
 }
 
+/* ÁREA ONDE AS CARTAS SERÃO TESTADAS/DISPLAYED */
 .area-teste {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  display: flex;               /* Ativa flexbox para organizar as cartas */
+  justify-content: center;     /* Centraliza as cartas horizontalmente */
+  gap: 20px;                   /* Espaço entre as cartas */
+  flex-wrap: wrap;             /* Permite que cartas quebrem para linha seguinte */
+}
+
+/* EFEITO VISUAL SOBRE AS CARTAS (camada transparente) */
+.carta::before {
+  content: '';                /* Cria um elemento vazio */
+  position: absolute;         /* Posiciona absolutamente dentro da carta */
+  top: 0;                     /* Começa do topo */
+  left: 0;                    /* Começa da esquerda */
+  right: 0;                   /* Vai até a direita */
+  bottom: 0;                  /* Vai até o fundo */
+  background: rgba(255,255,255,0.1); /* Cor branca com 10% de transparência */
+  border-radius: 6px;         /* Cantos arredondados */
 }</pre
             >
             <button class="copy-btn no-print">Copiar</button>
@@ -1808,6 +1806,7 @@ body {
 
           <div class="code-container">
             <pre>
+// types/gametypes.ts
 // ... tipos anteriores ...
 
 // Baralho simplificado - apenas números
@@ -1847,6 +1846,39 @@ cores.forEach(cor => {
         </div>
 
         <!-- PASSO 7: REDUCER INICIAL -->
+        <!-- PASSO 2: TIPOS BÁSICOS -->
+        <div class="implementation-step">
+          <h3>Passo 7.0: Definindo os Tipos TypeScript do Reducer</h3>
+          <p>
+            Crie o arquivo <code>types/gametypes.ts</code> com os tipos básicos:
+          </p>
+
+          <div class="code-container">
+            <pre>
+// types/gametypes.ts
+// ... tipos anteriores ...
+export type Jogador = {
+  id: string;
+  nome: string;
+  mao: Carta[];
+  isHumano: boolean;
+}
+
+export type EstadoJogo = {
+  jogadores: Jogador[];
+  monteCompra: Carta[];
+  monteDescarte: Carta[];
+  vez: number;
+  corAtual: Cor;
+  vencedor: Jogador | null;
+  estado: 'preparacao' | 'jogando' | 'finalizado';
+}
+</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
         <div class="implementation-step">
           <h3>Passo 7: Reducer Básico - Iniciar Jogo</h3>
           <p>Crie <code>context/unoReducer.ts</code> com a ação básica:</p>
@@ -1854,7 +1886,7 @@ cores.forEach(cor => {
           <div class="code-container">
             <pre>
 // context/unoReducer.ts
-import type { EstadoJogo, Carta, Jogador } from '../types/gametypes';
+import type { EstadoJogo, Jogador } from '../types/gametypes';
 import { BARALHO_COMPLETO } from '../types/gametypes';
 
 type AcaoUno =
@@ -1939,7 +1971,7 @@ function App() {
 
   return (
     &lt;div className="app-uno"&gt;
-      &lt;h1&gt;🎮 UNO Simplificado&lt;/h1&gt;
+      &lt;h1&gt;UNO Simplificado&lt;/h1&gt;
       
       &lt;div className="info-jogo"&gt;
         &lt;p&gt;Vez: {state.jogadores[state.vez]?.nome}&lt;/p&gt;
@@ -1991,7 +2023,7 @@ export default App;</pre
           <h3>Passo 9: Estilos do Layout do Jogo</h3>
           <p>Atualize <code>App.css</code> para o layout do jogo:</p>
 
-          <div class="code-container">
+          <div class="code-container css-container">
             <pre>
 /* ... estilos anteriores ... */
 
@@ -2060,52 +2092,6 @@ export default App;</pre
           </div>
         </div>
 
-        <!-- PASSO 10: COMPONENTE MESA -->
-        <div class="implementation-step">
-          <h3>Passo 10: Componente Mesa UNO</h3>
-          <p>Crie <code>components/MesaUno.tsx</code>:</p>
-
-          <div class="code-container">
-            <pre>
-// components/MesaUno.tsx
-import type { Carta } from '../types/gametypes';
-import { CartaUno } from './CartaUno';
-
-interface MesaUnoProps {
-  cartaTopo: Carta;
-  corAtual: string;
-  monteCompra: Carta[];
-  onComprarCarta: () => void;
-}
-
-export function MesaUno({ cartaTopo, corAtual, monteCompra, onComprarCarta }: MesaUnoProps) {
-  return (
-    &lt;div className="mesa-uno"&gt;
-      &lt;div className="area-monte"&gt;
-        &lt;div className="monte-descarte"&gt;
-          &lt;CartaUno carta={cartaTopo} /&gt;
-          &lt;div className="cor-atual"&gt;
-            Cor atual: &lt;span className={`cor-${corAtual}`}&gt;{corAtual}&lt;/span&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        
-        &lt;div className="monte-compra" onClick={onComprarCarta}&gt;
-          &lt;div className="carta-virada"&gt;
-            &lt;div className="carta-verso"&gt;
-              &lt;div className="logo-uno"&gt;UNO&lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-          &lt;div className="texto-comprar"&gt;Comprar ({monteCompra.length})&lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-}</pre
-            >
-            <button class="copy-btn no-print">Copiar</button>
-          </div>
-        </div>
-
         <!-- PASSO 11: CARTA INTERATIVA -->
         <div class="implementation-step">
           <h3>Passo 11: Carta Interativa</h3>
@@ -2166,8 +2152,9 @@ export function CartaUno({ carta, onClick, selecionada = false, jogavel = true, 
 
           <div class="code-container">
             <pre>
-// context/unoReducer.ts - ATUALIZADO
-// ... imports e tipos anteriores ...
+// context/unoReducer.ts
+import type { EstadoJogo, Carta, Jogador } from '../types/gametypes';
+import { BARALHO_COMPLETO } from '../types/gametypes';
 
 type AcaoUno =
   | { type: 'INICIAR_JOGO' }
@@ -2177,7 +2164,7 @@ export function unoReducer(state: EstadoJogo, action: AcaoUno): EstadoJogo {
   switch (action.type) {
     case 'INICIAR_JOGO':
       return iniciarJogo();
-    
+
     case 'JOGAR_CARTA':
       return jogarCarta(state, action.carta, action.jogadorIndex);
     
@@ -2185,8 +2172,6 @@ export function unoReducer(state: EstadoJogo, action: AcaoUno): EstadoJogo {
       return state;
   }
 }
-
-// ... função iniciarJogo anterior ...
 
 function jogarCarta(state: EstadoJogo, carta: Carta, jogadorIndex: number): EstadoJogo {
   if (jogadorIndex !== state.vez) return state;
@@ -2232,6 +2217,53 @@ function jogarCarta(state: EstadoJogo, carta: Carta, jogadorIndex: number): Esta
 function podeJogarCarta(carta: Carta, cartaTopo: Carta, corAtual: string): boolean {
   // Mesma cor ou mesmo valor
   return carta.cor === corAtual || carta.valor === cartaTopo.valor;
+}
+//Função Inicar Jogo abaixo...</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
+        <!-- PASSO 10: COMPONENTE MESA -->
+        <div class="implementation-step">
+          <h3>Passo 10: Componente Mesa UNO</h3>
+          <p>Crie <code>components/MesaUno.tsx</code>:</p>
+
+          <div class="code-container">
+            <pre>
+// components/MesaUno.tsx
+import type { Carta } from '../types/gametypes';
+import { CartaUno } from './CartaUno';
+
+interface MesaUnoProps {
+  cartaTopo: Carta;
+  corAtual: string;
+  monteCompra: Carta[];
+  onComprarCarta: () => void;
+}
+
+export function MesaUno({ cartaTopo, corAtual, monteCompra, onComprarCarta }: MesaUnoProps) {
+  return (
+    &lt;div className="mesa-uno"&gt;
+      &lt;div className="area-monte"&gt;
+        &lt;div className="monte-descarte"&gt;
+          &lt;CartaUno carta={cartaTopo} /&gt;
+          &lt;div className="cor-atual"&gt;
+            Cor atual: &lt;span className={`cor-${corAtual}`}&gt;{corAtual}&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div className="monte-compra" onClick={onComprarCarta}&gt;
+          &lt;div className="carta-virada"&gt;
+            &lt;div className="carta-verso"&gt;
+              &lt;div className="logo-uno"&gt;UNO&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div className="texto-comprar"&gt;Comprar ({monteCompra.length})&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
 }</pre
             >
             <button class="copy-btn no-print">Copiar</button>
@@ -2284,7 +2316,7 @@ function App() {
   return (
     &lt;div className="app-uno"&gt;
       &lt;header className="header-uno"&gt;
-        &lt;h1&gt;🎮 UNO Simplificado&lt;/h1&gt;
+        &lt;h1&gt;UNO Simplificado&lt;/h1&gt;
         &lt;div className="info-jogo"&gt;
           &lt;span&gt;Vez: &lt;strong&gt;{jogadorAtual?.nome}&lt;/strong&gt;&lt;/span&gt;
           &lt;span&gt;Cor atual: &lt;span className={`cor-${state.corAtual}`}&gt;{state.corAtual}&lt;/span&gt;&lt;/span&gt;
@@ -2296,11 +2328,12 @@ function App() {
         &lt;div className={`jogador-area ${state.vez === 1 ? 'jogador-ativo' : ''}`}&gt;
           &lt;h2&gt;{state.jogadores[1]?.nome}&lt;/h2&gt;
           &lt;div className="mao-jogador"&gt;
-            {state.jogadores[1]?.mao.map((carta) => (
+            {state.jogadores[1]?.mao.map((carta) =&gt; (
               &lt;CartaUno
                 key={carta.id}
                 carta={carta}
-                jogavel={podeJogarCarta(carta) && state.vez === 1}
+                onClick={() =&gt; handleJogarCarta(carta, 1)}
+                jogavel={podeJogarCarta(carta) &amp;&amp; state.vez === 1}
               /&gt;
             ))}
           &lt;/div&gt;
@@ -2562,7 +2595,7 @@ function App() {
   return (
     &lt;div className="app-uno"&gt;
       &lt;header className="header-uno"&gt;
-        &lt;h1&gt;🎮 UNO Simplificado&lt;/h1&gt;
+        &lt;h1&gt;UNO Simplificado&lt;/h1&gt;
         &lt;div className="info-jogo"&gt;
           &lt;span&gt;Vez: &lt;strong&gt;{jogadorAtual?.nome}&lt;/strong&gt;&lt;/span&gt;
           &lt;span&gt;Cor atual: &lt;span className={`cor-${state.corAtual}`}&gt;{state.corAtual}&lt;/span&gt;&lt;/span&gt;
@@ -2641,7 +2674,7 @@ export default App;</pre
           <h3>Passo 16: Estilos Completos</h3>
           <p>Adicione os estilos finais em <code>App.css</code>:</p>
 
-          <div class="code-container">
+          <div class="code-container css-container">
             <pre>
 /* App.css - UNO Simplificado */
 :root {
