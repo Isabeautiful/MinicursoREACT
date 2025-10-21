@@ -7,7 +7,7 @@
       Criando Seu Primeiro Jogo com React: Um Minicurso Prático para Iniciantes
     </title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="icon" href="logo.png" type="image/x-icon" />
 
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,17 +44,30 @@
     </nav>
 
     <main id="main-doc">
-      <h1>Criando Seu Primeiro Jogo com React: Um Minicurso Prático para Iniciantes</h1>
+      <h1>
+        Criando Seu Primeiro Jogo com React: Um Minicurso Prático para
+        Iniciantes
+      </h1>
 
       <section id="introducao" class="main-section">
         <h2>Introdução: Aprendendo Conceitos</h2>
+        <p>Bem-vindo ao minicurso prático de React e TypeScript!</p>
+
         <p>
-          Bem-vindo ao minicurso prático de React e TypeScript!
+          Aqui, você aprenderá a criar um jogo de cartas completo, partindo dos
+          conceitos fundamentais, vamos abordar a configuração do ambiente com
+          TypeScript, a modelagem de dados para cartas e recursos, o
+          gerenciamento de estado com useReducer, a implementação das regras de
+          jogo, validações e a adição de animações com Framer Motion.
         </p>
 
-        <p>Aqui, você aprenderá a criar um jogo de cartas completo, partindo dos conceitos fundamentais, vamos abordar a configuração do ambiente com TypeScript, a modelagem de dados para cartas e recursos, o gerenciamento de estado com useReducer, a implementação das regras de jogo, validações e a adição de animações com Framer Motion.</p>
-
-        <p>Ao final, você terá construído um jogo funcional de UNO simplificado, com um código bem estruturado e pronto para expansão. Este minicurso é ideal para desenvolvedores React de nível iniciante que desejam aprofundar seus conhecimentos criando projetos interativos e dinâmicos.</p>
+        <p>
+          Ao final, você terá construído um jogo funcional de UNO simplificado,
+          com um código bem estruturado e pronto para expansão. Este minicurso é
+          ideal para desenvolvedores React de nível iniciante que desejam
+          aprofundar seus conhecimentos criando projetos interativos e
+          dinâmicos.
+        </p>
 
         <a
           href="https://www.canva.com/design/DAG2DaioYfc/X5qDzTJHuSmTA9QICsaneg/edit?utm_content=DAG2DaioYfc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
@@ -1429,8 +1442,15 @@ function ContadorReducer() {
         </p>
 
         <p>
-          Abra o terminal no diretório onde deseja criar o projeto e execute os
-          comandos para criar o projeto com React + TypeScript
+          Abra o terminal no VSCode, no diretório onde deseja criar o projeto e
+          execute os comandos para criar o projeto com React + TypeScript
+        </p>
+
+        <p>
+          <b
+            >OBS: lembre-se que para colar algo NO TERMINAL você tem que apertar
+            <code>CTRL + SHIFT + V</code></b
+          >
         </p>
 
         <div class="code-container">
@@ -1438,15 +1458,31 @@ function ContadorReducer() {
           <button class="copy-btn no-print">Copiar</button>
         </div>
 
+        <p>
+          Ele executará o programa automaticamente em
+          <code>http://localhost:5173</code>, aperte <code>CTRL + C</code> no
+          terminal para encerrar a execução
+        </p>
+
+        <p>
+          Agora, você precisa entrar no diretório criado chamado card-game para
+          instalar o framer motion, para fazer isso, copie e cole o codigo
+          abaixo no terminal
+        </p>
+
         <div class="code-container">
           <pre>cd card-game</pre>
           <button class="copy-btn no-print">Copiar</button>
         </div>
 
+        <p>Agora, instale o framer motion com o comando abaixo:</p>
+
         <div class="code-container">
           <pre>npm install framer-motion</pre>
           <button class="copy-btn no-print">Copiar</button>
         </div>
+
+        <p>Execute a aplicação usando o comando abaixo:</p>
 
         <div class="code-container">
           <pre>npm run dev</pre>
@@ -1505,6 +1541,15 @@ card-game/
               técnica: ele "planta" (monta) o componente <code>App</code> dentro
               do elemento HTML com id <code>root</code>.
             </p>
+
+            <p>
+              O <code> StrictMode </code>no React é uma ferramenta de
+              desenvolvimento que ajuda a identificar práticas inadequadas e
+              potenciais problemas na aplicação. Quando usado no main.tsx (ou
+              main.jsx), ele envolve toda a aplicação e ativa verificações
+              adicionais apenas em ambiente de desenvolvimento.
+            </p>
+
             <div class="code-container">
               <pre>
 // src/main.tsx - Exemplo simplificado
@@ -1624,17 +1669,18 @@ src/
           </div>
         </div>
 
-        <!-- PASSO 3: COMPONENTE CARTA -->
+        <!-- PASSO 2: COMPONENTE CARTA -->
         <div class="implementation-step">
-          <h3>Passo 3: Componente Carta Básico</h3>
+          <h3>Passo 2: Componente Carta Básico</h3>
           <p>
-            Crie <code>components/CartaUno.tsx</code> - versão inicial simples:
+            Crie <code>components/CartaUno.tsx</code> na sua versão inicial
+            simples:
           </p>
 
           <div class="code-container">
             <pre>
 // components/CartaUno.tsx
-import type { Carta } from '../types/gametypes';
+import type { Carta } from '../types/gametypes.ts';
 
 interface CartaUnoProps {
   carta: Carta;
@@ -1662,11 +1708,12 @@ export function CartaUno({ carta }: CartaUnoProps) {
           </div>
         </div>
 
-        <!-- PASSO 2: TIPOS BÁSICOS -->
+        <!-- PASSO 3: TIPOS BÁSICOS -->
         <div class="implementation-step">
-          <h3>Passo 2: Definindo os Tipos TypeScript</h3>
+          <h3>Passo 3: Definindo os Tipos TypeScript</h3>
           <p>
-            Crie o arquivo <code>types/gametypes.ts</code> com os tipos básicos:
+            Crie o arquivo no diretório <code>types/gametypes.ts</code> com os
+            tipos básicos da carta que acabamos de criar:
           </p>
 
           <div class="code-container">
@@ -1689,7 +1736,7 @@ export type Carta = {
         <!-- PASSO 4: APP INICIAL -->
         <div class="implementation-step">
           <h3>Passo 4: App Inicial - Testando o Componente Carta</h3>
-          <p>Vamos criar um App básico para testar nosso componente:</p>
+          <p>Vamos alterar o App para testar nosso componente:</p>
 
           <div class="code-container">
             <pre>
@@ -1841,6 +1888,10 @@ body {
         <div class="implementation-step">
           <h3>Passo 6: Criando o Baralho Completo</h3>
           <p>
+            Agora que criamos uma carta com sucesso, vamos criar o baralho
+            completo
+          </p>
+          <p>
             Vamos atualizar <code>types/gametypes.ts</code> para incluir o
             baralho:
           </p>
@@ -1887,11 +1938,16 @@ cores.forEach(cor => {
         </div>
 
         <!-- PASSO 7: REDUCER INICIAL -->
-        <!-- PASSO 2: TIPOS BÁSICOS -->
         <div class="implementation-step">
           <h3>Passo 7.0: Definindo os Tipos TypeScript do Reducer</h3>
           <p>
-            Crie o arquivo <code>types/gametypes.ts</code> com os tipos básicos:
+            Vamos começar a fazer a lógica do Reducer para criar o sistema do
+            jogo, começando pelo "INICIAR JOGO"
+          </p>
+          <p>
+            Primeiro, adicione o codigo abaixo no arquivo
+            <code>types/gametypes.ts</code> com os tipos básicos do estado do
+            jogo:
           </p>
 
           <div class="code-container">
@@ -1922,7 +1978,10 @@ export type EstadoJogo = {
 
         <div class="implementation-step">
           <h3>Passo 7: Reducer Básico - Iniciar Jogo</h3>
-          <p>Crie <code>context/unoReducer.ts</code> com a ação básica:</p>
+          <p>
+            Crie <code>context/unoReducer.ts</code> com a ação de Iniciar Jogo,
+            ela irá embaralhar a carta e distribuir 7 cartas para cada jogador:
+          </p>
 
           <div class="code-container">
             <pre>
@@ -1986,6 +2045,20 @@ function iniciarJogo(): EstadoJogo {
           <h3>Passo 8: App com useReducer</h3>
           <p>Atualize <code>App.tsx</code> para usar o reducer:</p>
 
+          <p>
+            Estamos fazendo a interface de um jogo UNO para dois jogadores
+            (jogador 1 e jogador 2), vamos usar o reducer para controlar o
+            estado do jogo e fazer a interface refletir esse estado. O jogo
+            começa automaticamente e exibe as mãos dos dois jogadores e uma mesa
+            de teste
+          </p>
+
+          <p>
+            No entanto, note que este código apenas exibe o estado inicial do
+            jogo. Para que o jogo seja jogável, seria necessário adicionar
+            interações (como clicar em uma carta para jogar) e mais ações no
+            reducer (para lidar com as regras do UNO).
+          </p>
           <div class="code-container">
             <pre>
 // App.tsx - COM REDUCER
@@ -2062,7 +2135,7 @@ export default App;</pre
         <!-- PASSO 9: ESTILOS DO JOGO -->
         <div class="implementation-step">
           <h3>Passo 9: Estilos do Layout do Jogo</h3>
-          <p>Atualize <code>App.css</code> para o layout do jogo:</p>
+          <p>Atualize <code>App.css</code> para alterar o layout do jogo:</p>
 
           <div class="code-container css-container">
             <pre>
@@ -2133,9 +2206,16 @@ export default App;</pre
           </div>
         </div>
 
-        <!-- PASSO 11: CARTA INTERATIVA -->
+        <!-- PASSO 10: CARTA INTERATIVA -->
         <div class="implementation-step">
-          <h3>Passo 11: Carta Interativa</h3>
+          <h3>Passo 10: Carta Interativa</h3>
+
+          <p>
+            Vimos então que a nossa aplicação, apesar de bem estruturada, não
+            possui interação com clique nas cartas e nem mais funcionalidades no
+            reducer, vamos fazer as interações com as cartas
+          </p>
+
           <p>Atualize <code>CartaUno.tsx</code> para ser interativa:</p>
 
           <div class="code-container">
@@ -2186,34 +2266,38 @@ export function CartaUno({ carta, onClick, selecionada = false, jogavel = true, 
           </div>
         </div>
 
-        <!-- PASSO 12: LÓGICA DE JOGAR CARTA -->
+        <!-- PASSO 11: LÓGICA DE JOGAR CARTA -->
         <div class="implementation-step">
-          <h3>Passo 12: Lógica de Jogar Carta</h3>
+          <h3>Passo 11: Lógica de Jogar Carta</h3>
           <p>Atualize o reducer para incluir jogar carta:</p>
 
           <div class="code-container">
             <pre>
-// context/unoReducer.ts
-import type { EstadoJogo, Carta, Jogador } from '../types/gametypes';
-import { BARALHO_COMPLETO } from '../types/gametypes';
+  | { type: 'JOGAR_CARTA'; carta: Carta; jogadorIndex: number };</pre
+            >
+            <button class="copy-btn">Copiar Nova Ação</button>
+          </div>
 
-type AcaoUno =
-  | { type: 'INICIAR_JOGO' }
-  | { type: 'JOGAR_CARTA'; carta: Carta; jogadorIndex: number };
+          <h3>11.1. Importação do Tipo Carta</h3>
+          <div class="code-container">
+            <pre>
+import type { EstadoJogo, Carta, Jogador } from '../types/gametypes';</pre
+            >
+            <button class="copy-btn">Copiar Importação</button>
+          </div>
 
-export function unoReducer(state: EstadoJogo, action: AcaoUno): EstadoJogo {
-  switch (action.type) {
-    case 'INICIAR_JOGO':
-      return iniciarJogo();
-
+          <h3>11.2. Novo Case no Switch</h3>
+          <div class="code-container">
+            <pre>
     case 'JOGAR_CARTA':
-      return jogarCarta(state, action.carta, action.jogadorIndex);
-    
-    default:
-      return state;
-  }
-}
+      return jogarCarta(state, action.carta, action.jogadorIndex);</pre
+            >
+            <button class="copy-btn">Copiar Case</button>
+          </div>
 
+          <h3>11.3. Função jogarCarta</h3>
+          <div class="code-container">
+            <pre>
 function jogarCarta(state: EstadoJogo, carta: Carta, jogadorIndex: number): EstadoJogo {
   if (jogadorIndex !== state.vez) return state;
   
@@ -2253,21 +2337,26 @@ function jogarCarta(state: EstadoJogo, carta: Carta, jogadorIndex: number): Esta
     vez: proximaVez,
     corAtual: carta.cor
   };
-}
+}</pre
+            >
+            <button class="copy-btn">Copiar Função jogarCarta</button>
+          </div>
 
+          <h3>11.4. Função podeJogarCarta</h3>
+          <div class="code-container">
+            <pre>
 function podeJogarCarta(carta: Carta, cartaTopo: Carta, corAtual: string): boolean {
   // Mesma cor ou mesmo valor
   return carta.cor === corAtual || carta.valor === cartaTopo.valor;
-}
-//Função Inicar Jogo abaixo...</pre
+}</pre
             >
-            <button class="copy-btn no-print">Copiar</button>
+            <button class="copy-btn">Copiar Função podeJogarCarta</button>
           </div>
         </div>
 
-        <!-- PASSO 10: COMPONENTE MESA -->
+        <!-- PASSO 12: COMPONENTE MESA -->
         <div class="implementation-step">
-          <h3>Passo 10: Componente Mesa UNO</h3>
+          <h3>Passo 12: Componente Mesa UNO</h3>
           <p>Crie <code>components/MesaUno.tsx</code>:</p>
 
           <div class="code-container">
@@ -2314,7 +2403,10 @@ export function MesaUno({ cartaTopo, corAtual, monteCompra, onComprarCarta }: Me
         <!-- PASSO 13: APP INTERATIVO -->
         <div class="implementation-step">
           <h3>Passo 13: App Interativo</h3>
-          <p>Atualize <code>App.tsx</code> para ser interativo:</p>
+          <p>
+            Atualize <code>App.tsx</code> para fazer com que o usuario possa
+            interagir com as cartas (jogar carta):
+          </p>
 
           <div class="code-container">
             <pre>
@@ -2420,108 +2512,24 @@ export default App;</pre
           <h3>Passo 14: Lógica de Comprar Cartas</h3>
           <p>Complete o reducer com a ação de comprar carta:</p>
 
+          <h3>14.1. Nova Ação no Tipo AcaoUno</h3>
+          <div class="code-container">
+            <pre>  | { type: 'COMPRAR_CARTA'; jogadorIndex: number };</pre>
+            <button class="copy-btn">Copiar Nova Ação</button>
+          </div>
+
+          <h3>14.2. Novo Case no Switch</h3>
           <div class="code-container">
             <pre>
-// context/unoReducer.ts
-import type { EstadoJogo, Carta, Jogador } from '../types/gametypes';
-import { BARALHO_COMPLETO } from '../types/gametypes';
-
-type AcaoUno =
-  | { type: 'INICIAR_JOGO' }
-  | { type: 'JOGAR_CARTA'; carta: Carta; jogadorIndex: number }
-  | { type: 'COMPRAR_CARTA'; jogadorIndex: number };
-
-export function unoReducer(state: EstadoJogo, action: AcaoUno): EstadoJogo {
-  switch (action.type) {
-    case 'INICIAR_JOGO':
-      return iniciarJogo();
-    
-    case 'JOGAR_CARTA':
-      return jogarCarta(state, action.carta, action.jogadorIndex);
-    
     case 'COMPRAR_CARTA':
-      return comprarCarta(state, action.jogadorIndex);
-    
-    default:
-      return state;
-  }
-}
+      return comprarCarta(state, action.jogadorIndex);</pre
+            >
+            <button class="copy-btn">Copiar Case</button>
+          </div>
 
-function iniciarJogo(): EstadoJogo {
-  // Embaralhar baralho
-  const baralhoEmbaralhado = [...BARALHO_COMPLETO].sort(() => Math.random() - 0.5);
-  
-  // Distribuir 7 cartas para cada jogador (2 jogadores humanos)
-  const jogadores: Jogador[] = [
-    {
-      id: 'jogador-1',
-      nome: 'Jogador 1',
-      mao: baralhoEmbaralhado.splice(0, 7),
-      isHumano: true
-    },
-    {
-      id: 'jogador-2',
-      nome: 'Jogador 2',
-      mao: baralhoEmbaralhado.splice(0, 7),
-      isHumano: true
-    }
-  ];
-
-  // Primeira carta do descarte
-  const cartaInicial = baralhoEmbaralhado.pop()!;
-
-  return {
-    jogadores,
-    monteCompra: baralhoEmbaralhado,
-    monteDescarte: [cartaInicial],
-    vez: 0, // Jogador 1 começa
-    corAtual: cartaInicial.cor,
-    vencedor: null,
-    estado: 'jogando'
-  };
-}
-
-function jogarCarta(state: EstadoJogo, carta: Carta, jogadorIndex: number): EstadoJogo {
-  if (jogadorIndex !== state.vez) return state;
-  
-  const jogador = state.jogadores[jogadorIndex];
-  
-  // Verificar se a carta é jogável
-  if (!podeJogarCarta(carta, state.monteDescarte[0], state.corAtual)) {
-    return state;
-  }
-
-  // Remover carta da mão do jogador
-  const novaMao = jogador.mao.filter(c => c.id !== carta.id);
-  const novosJogadores = [...state.jogadores];
-  novosJogadores[jogadorIndex] = { ...jogador, mao: novaMao };
-
-  // Adicionar carta ao descarte
-  const novoDescarte = [carta, ...state.monteDescarte];
-
-  // Verificar vitória
-  if (novaMao.length === 0) {
-    return {
-      ...state,
-      jogadores: novosJogadores,
-      monteDescarte: novoDescarte,
-      vencedor: jogador,
-      estado: 'finalizado'
-    };
-  }
-
-  // Passar para o próximo jogador
-  const proximaVez = (state.vez + 1) % state.jogadores.length;
-
-  return {
-    ...state,
-    jogadores: novosJogadores,
-    monteDescarte: novoDescarte,
-    vez: proximaVez,
-    corAtual: carta.cor
-  };
-}
-
+          <h3>14.3. Função comprarCarta</h3>
+          <div class="code-container">
+            <pre>
 function comprarCarta(state: EstadoJogo, jogadorIndex: number): EstadoJogo {
   if (jogadorIndex !== state.vez) return state;
   
@@ -2556,14 +2564,9 @@ function comprarCarta(state: EstadoJogo, jogadorIndex: number): EstadoJogo {
     monteCompra: [...state.monteCompra],
     vez: proximaVez
   };
-}
-
-function podeJogarCarta(carta: Carta, cartaTopo: Carta, corAtual: string): boolean {
-  // Mesma cor ou mesmo valor
-  return carta.cor === corAtual || carta.valor === cartaTopo.valor;
 }</pre
             >
-            <button class="copy-btn no-print">Copiar</button>
+            <button class="copy-btn">Copiar Função comprarCarta</button>
           </div>
         </div>
 
