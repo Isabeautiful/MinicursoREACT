@@ -18,29 +18,29 @@
   </head>
 
   <body>
-  <nav id="navbar" class="no-print">
-    <img src="./logo.png" alt="logoInova" class="logo no-print" />
-    <a href="#introducao" class="nav-link">Introdução</a>
-    
-    <!-- Dropdown para Fundamentação Teórica -->
-    <div class="dropdown">
-      <button class="dropdown-btn">Fundamentação Teórica</button>
-      <div class="dropdown-content">
-        <a href="#dom-conceito" class="nav-link">DOM</a>
-        <a href="#typescript-conceito" class="nav-link">TypeScript</a>
-        <a href="#react-conceito" class="nav-link">React</a>
-        <a href="#componentes-conceito" class="nav-link">Componentes</a>
-        <a href="#jsx-conceito" class="nav-link">JSX</a>
-        <a href="#props-conceito" class="nav-link">Props</a>
-        <a href="#estado-conceito" class="nav-link">Estado</a>
-        <a href="#hooks-conceito" class="nav-link">Hooks</a>
+    <nav id="navbar" class="no-print">
+      <img src="./logo.png" alt="logoInova" class="logo no-print" />
+      <a href="#introducao" class="nav-link">Introdução</a>
+
+      <!-- Dropdown para Fundamentação Teórica -->
+      <div class="dropdown">
+        <button class="dropdown-btn">Fundamentação Teórica</button>
+        <div class="dropdown-content">
+          <a href="#dom-conceito" class="nav-link">DOM</a>
+          <a href="#typescript-conceito" class="nav-link">TypeScript</a>
+          <a href="#react-conceito" class="nav-link">React</a>
+          <a href="#componentes-conceito" class="nav-link">Componentes</a>
+          <a href="#jsx-conceito" class="nav-link">JSX</a>
+          <a href="#props-conceito" class="nav-link">Props</a>
+          <a href="#estado-conceito" class="nav-link">Estado</a>
+          <a href="#hooks-conceito" class="nav-link">Hooks</a>
+        </div>
       </div>
-    </div>
-    
-    <a href="#instalacao" class="nav-link">Instalação</a>
-    <a href="#implementacao-jogo" class="nav-link">Implementação</a>
-    <a href="#conclusao" class="nav-link">Conclusão</a>
-  </nav>
+
+      <a href="#instalacao" class="nav-link">Instalação</a>
+      <a href="#implementacao-jogo" class="nav-link">Implementação</a>
+      <a href="#conclusao" class="nav-link">Conclusão</a>
+    </nav>
 
     <main id="main-doc">
       <h1>Minicurso: Aprender REACT fazendo um jogo de cartas</h1>
@@ -1390,6 +1390,36 @@ function ContadorReducer() {
           <li><strong>Git</strong> para controle de versão</li>
         </ul>
 
+        <h3>O que é o Vite?</h3>
+        <p>
+          O <strong>Vite</strong> (que significa "rápido" em francês) é uma
+          ferramenta de build moderna que oferece uma experiência de
+          desenvolvimento muito mais ágil comparada a ferramentas tradicionais.
+        </p>
+        <p>Suas principais vantagens incluem:</p>
+        <ul>
+          <li>
+            <strong>Servidor de desenvolvimento ultrarrápido</strong> - Inicia
+            em milissegundos
+          </li>
+          <li>
+            <strong>HMR (Hot Module Replacement) eficiente</strong> -
+            Atualizações instantâneas sem recarregar a página
+          </li>
+          <li>
+            <strong>Build otimizada</strong> - Usa Rollup para produção com
+            código otimizado
+          </li>
+          <li>
+            <strong>Configuração simplificada</strong> - Funciona bem com
+            configurações padrão
+          </li>
+        </ul>
+        <p>
+          Por essas razões, escolhemos o Vite em vez do create-react-app para
+          nosso projeto de jogo de cartas.
+        </p>
+
         <h3>Criando o projeto com Vite</h3>
         <p>
           Vamos usar o Vite para criar nosso projeto, pois é mais rápido e
@@ -1630,7 +1660,7 @@ export function CartaUno({ carta }: CartaUnoProps) {
           </div>
         </div>
 
-                <!-- PASSO 2: TIPOS BÁSICOS -->
+        <!-- PASSO 2: TIPOS BÁSICOS -->
         <div class="implementation-step">
           <h3>Passo 2: Definindo os Tipos TypeScript</h3>
           <p>
@@ -3064,31 +3094,30 @@ body {
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-
         // Toggle para o dropdown
-      const dropdownBtn = document.querySelector(".dropdown-btn");
-      const dropdown = document.querySelector(".dropdown");
-      
-      if (dropdownBtn && dropdown) {
-        dropdownBtn.addEventListener("click", function(e) {
-          e.preventDefault();
-          dropdown.classList.toggle("active");
-        });
-      }
-      
-      // Fechar dropdown ao clicar em um link
-      document.querySelectorAll('.dropdown-content a').forEach(link => {
-        link.addEventListener('click', function() {
-          dropdown.classList.remove("active");
-        });
-      });
-      
-      // Fechar dropdown ao clicar fora dele
-      document.addEventListener('click', function(e) {
-        if (!dropdown.contains(e.target)) {
-          dropdown.classList.remove("active");
+        const dropdownBtn = document.querySelector(".dropdown-btn");
+        const dropdown = document.querySelector(".dropdown");
+
+        if (dropdownBtn && dropdown) {
+          dropdownBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            dropdown.classList.toggle("active");
+          });
         }
-      });
+
+        // Fechar dropdown ao clicar em um link
+        document.querySelectorAll(".dropdown-content a").forEach((link) => {
+          link.addEventListener("click", function () {
+            dropdown.classList.remove("active");
+          });
+        });
+
+        // Fechar dropdown ao clicar fora dele
+        document.addEventListener("click", function (e) {
+          if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove("active");
+          }
+        });
 
         // Selecionar todos os containers de código
         const codeContainers = document.querySelectorAll(".code-container");
