@@ -338,3 +338,69 @@ pre {
     margin-left: 0;
   }
 }
+
+/* Estilos para o dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  width: 100%;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  color: var(--primary);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.dropdown-btn:hover {
+  background-color: var(--hover-light);
+  color: var(--white);
+}
+
+.dropdown-content {
+  display: none;
+  position: static;
+  background-color: color-mix(in srgb, var(--gray) 90%, white);
+  width: 100%;
+  box-shadow: none;
+}
+
+.dropdown.active .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  padding-left: 40px;
+  font-size: 0.9em;
+}
+
+.dropdown-btn::after {
+  content: " ▼";
+  float: right;
+  font-size: 0.8em;
+}
+
+.dropdown.active .dropdown-btn::after {
+  content: " ▲";
+}
+
+/* Estilo para impressão - esconder dropdown e mostrar links diretamente */
+@media print {
+  .dropdown-btn {
+    display: none;
+  }
+  
+  .dropdown-content {
+    display: block;
+    position: static;
+  }
+  
+  .dropdown-content a {
+    padding-left: 20px;
+  }
+}

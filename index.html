@@ -18,20 +18,29 @@
   </head>
 
   <body>
-    <nav id="navbar" class="no-print">
-      <img src="./logo.png" alt="logoInova" class="logo no-print" />
-      <a href="#introducao" class="nav-link">Introdução</a>
-      <a href="#typescript-conceito" class="nav-link">TypeScript</a>
-      <a href="#react-conceito" class="nav-link">React</a>
-      <a href="#componentes-conceito" class="nav-link">Componentes</a>
-      <a href="#jsx-conceito" class="nav-link">JSX</a>
-      <a href="#props-conceito" class="nav-link">Props</a>
-      <a href="#estado-conceito" class="nav-link">Estado</a>
-      <a href="#hooks-conceito" class="nav-link">Hooks</a>
-      <a href="#instalacao" class="nav-link">Instalação</a>
-      <a href="#implementacao-jogo" class="nav-link">Implementação</a>
-      <a href="#conclusao" class="nav-link">Conclusão</a>
-    </nav>
+  <nav id="navbar" class="no-print">
+    <img src="./logo.png" alt="logoInova" class="logo no-print" />
+    <a href="#introducao" class="nav-link">Introdução</a>
+    
+    <!-- Dropdown para Fundamentação Teórica -->
+    <div class="dropdown">
+      <button class="dropdown-btn">Fundamentação Teórica</button>
+      <div class="dropdown-content">
+        <a href="#dom-conceito" class="nav-link">DOM</a>
+        <a href="#typescript-conceito" class="nav-link">TypeScript</a>
+        <a href="#react-conceito" class="nav-link">React</a>
+        <a href="#componentes-conceito" class="nav-link">Componentes</a>
+        <a href="#jsx-conceito" class="nav-link">JSX</a>
+        <a href="#props-conceito" class="nav-link">Props</a>
+        <a href="#estado-conceito" class="nav-link">Estado</a>
+        <a href="#hooks-conceito" class="nav-link">Hooks</a>
+      </div>
+    </div>
+    
+    <a href="#instalacao" class="nav-link">Instalação</a>
+    <a href="#implementacao-jogo" class="nav-link">Implementação</a>
+    <a href="#conclusao" class="nav-link">Conclusão</a>
+  </nav>
 
     <main id="main-doc">
       <h1>Minicurso: Aprender REACT fazendo um jogo de cartas</h1>
@@ -3055,6 +3064,32 @@ body {
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+
+        // Toggle para o dropdown
+      const dropdownBtn = document.querySelector(".dropdown-btn");
+      const dropdown = document.querySelector(".dropdown");
+      
+      if (dropdownBtn && dropdown) {
+        dropdownBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          dropdown.classList.toggle("active");
+        });
+      }
+      
+      // Fechar dropdown ao clicar em um link
+      document.querySelectorAll('.dropdown-content a').forEach(link => {
+        link.addEventListener('click', function() {
+          dropdown.classList.remove("active");
+        });
+      });
+      
+      // Fechar dropdown ao clicar fora dele
+      document.addEventListener('click', function(e) {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove("active");
+        }
+      });
+
         // Selecionar todos os containers de código
         const codeContainers = document.querySelectorAll(".code-container");
 
