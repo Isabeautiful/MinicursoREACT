@@ -3017,6 +3017,158 @@ body {
           </div>
         </div>
 
+        <div class="implementation-step">
+          <h3>Passo 17: Animações com Framer Motion</h3>
+          <p>
+            O Framer Motion é uma biblioteca de animação para React que permite
+            criar animações fluidas e interativas de forma declarativa. Ele
+            fornece componentes como <code>motion.div</code> que aceitam props
+            especiais para controle de animações.
+          </p>
+
+          <h4>Principais props do Framer Motion:</h4>
+          <ul>
+            <li><code>initial</code>: Estado inicial da animação</li>
+            <li><code>animate</code>: Estado final da animação</li>
+            <li>
+              <code>transition</code>: Configuração da transição (duração, tipo,
+              etc)
+            </li>
+            <li><code>whileHover</code>: Animação ao passar o mouse</li>
+            <li><code>whileTap</code>: Animação ao clicar</li>
+          </ul>
+
+          <p>Atualize o componente <code>CartaUno.tsx</code>:</p>
+
+          <div class="code-container">
+            <pre>
+// components/CartaUno.tsx
+import type { Carta } from '../types/gametypes';
+import { motion } from "framer-motion";
+
+interface CartaUnoProps {
+  carta: Carta;
+  onClick?: () => void;
+  selecionada?: boolean;
+  jogavel?: boolean;
+  virada?: boolean;
+  naMesa?: boolean;
+}
+
+export function CartaUno({ 
+  carta, 
+  onClick, 
+  selecionada = false, 
+  jogavel = true, 
+  virada = false,
+  naMesa = false
+}: CartaUnoProps) {
+  if (virada) {
+    return (
+      &lt;motion.div 
+        className="carta carta-virada"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3 }}
+      &gt;
+        &lt;div className="carta-verso"&gt;
+          &lt;div className="logo-uno"&gt;UNO&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/motion.div&gt;
+    );
+  }
+
+  return (
+    &lt;motion.div
+      className={`carta carta-${carta.cor} ${selecionada ? 'carta-selecionada' : ''} ${!jogavel && !naMesa ? 'carta-inativa' : ''}`}
+      onClick={jogavel ? onClick : undefined}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ 
+        opacity: (jogavel || naMesa) ? 1 : 0.6,
+        y: 0 
+      }}
+      whileHover={jogavel ? { 
+        scale: 1.05, 
+        y: -5,
+        transition: { duration: 0.2 }
+      } : {}}
+      whileTap={jogavel ? { scale: 0.95 } : {}}
+      transition={{ 
+        type: "spring", 
+        stiffness: 300, 
+        damping: 20 
+      }}
+    &gt;
+      &lt;div className="carta-topo"&gt;
+        &lt;span className="carta-valor-pequeno"&gt;{carta.valor}&lt;/span&gt;
+      &lt;/div&gt;
+      
+      &lt;div className="carta-centro"&gt;
+        &lt;span className="carta-valor-grande"&gt;{carta.valor}&lt;/span&gt;
+      &lt;/div&gt;
+      
+      &lt;div className="carta-base"&gt;
+        &lt;span className="carta-valor-pequeno"&gt;{carta.valor}&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/motion.div&gt;
+  );
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+
+          <p>Atualize o componente <code>MesaUno.tsx</code>:</p>
+
+          <div class="code-container">
+            <pre>
+// components/MesaUno.tsx
+import type { Carta } from '../types/gametypes';
+import { CartaUno } from './CartaUno';
+import { motion } from "framer-motion";
+
+interface MesaUnoProps {
+  cartaTopo: Carta;
+  corAtual: string;
+  monteCompra: Carta[];
+  onComprarCarta: () => void;
+}
+
+export function MesaUno({ cartaTopo, corAtual, monteCompra, onComprarCarta }: MesaUnoProps) {
+  return (
+    &lt;div className="mesa-uno"&gt;
+      &lt;div className="area-monte"&gt;
+        &lt;div className="monte-descarte"&gt;
+          &lt;motion.div
+            key={cartaTopo.id}
+            initial={{ scale: 0.8, rotate: -10 }}
+            animate={{ scale: 1, rotate: 0, opacity: 1}}
+            transition={{ type: "spring", stiffness: 200 }}
+          &gt;
+            &lt;CartaUno carta={cartaTopo} jogavel={false} naMesa={true} /&gt;
+          &lt;/motion.div&gt;
+          &lt;div className="cor-atual"&gt;
+            Cor atual: &lt;span className={`cor-${corAtual}`}&gt;{corAtual}&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;motion.div 
+          className="monte-compra" 
+          onClick={onComprarCarta}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        &gt;
+          &lt;CartaUno carta={monteCompra[0]} virada={true} jogavel={true} /&gt;
+          &lt;div className="texto-comprar"&gt;Comprar ({monteCompra.length})&lt;/div&gt;
+        &lt;/motion.div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</pre
+            >
+            <button class="copy-btn no-print">Copiar</button>
+          </div>
+        </div>
+
         <div class="implementation-complete">
           <h3>🎉 UNO Simplificado Concluído!</h3>
 
@@ -3049,6 +3201,9 @@ body {
                 <strong>Passo 14-15</strong>: Comprar cartas e app completo
               </li>
               <li><strong>Passo 16</strong>: Estilos finais e polimento</li>
+              <li>
+                <strong>Passo 17</strong>: Animações com Framer Motion
+              </li>
             </ul>
           </div>
         </div>
@@ -3069,6 +3224,7 @@ body {
                 <li>Props e comunicação entre componentes</li>
                 <li>Estado local e global</li>
                 <li>Hooks do React (useState, useEffect, useReducer)</li>
+                <li>Como utilizar o Framer Motion para animações</li>
               </ul>
             </div>
 
@@ -3089,7 +3245,10 @@ body {
           <h3>Parabéns pela Conclusão!</h3>
           <p>Você deu um grande passo no mundo do desenvolvimento React!</p>
 
-          <p>Nos siga no <a href="https://www.instagram.com/inovagames.ufjf/">instagram</a></p>
+          <p>
+            Nos siga no
+            <a href="https://www.instagram.com/inovagames.ufjf/">instagram</a>
+          </p>
 
           <h3>Sua opinião é muito importante!</h3>
           <p>
