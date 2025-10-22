@@ -314,67 +314,114 @@ console.log(multiplicar(4, 5));  // 20</pre
           <button class="copy-btn no-print">Copiar</button>
         </div>
 
-        <h4>3. Manipulação do DOM</h4>
-        <p>
-          O <strong>DOM</strong> (Document Object Model) é uma representação em
-          árvore da página HTML. JavaScript pode
-          <strong>selecionar elementos</strong> da página,
-          <strong>modificar seu conteúdo</strong>,
-          <strong>alterar estilos</strong> e
-          <strong>adicionar interatividade</strong> através de eventos como
-          cliques, digitação, etc.
-        </p>
-        <div class="code-container">
-          <pre>
-// Selecionar elementos
-const botao = document.getElementById("meuBotao");
-const paragrafos = document.querySelectorAll("p");
+<h4>3. Métodos de Array (Muito Usados no React)</h4>
+<p>
+  <strong>Arrays</strong> são listas de itens, e JavaScript fornece
+  muitos métodos úteis para trabalhar com eles. No React, estes métodos
+  são essenciais para renderizar listas de componentes e manipular
+  dados. Aqui estão os métodos mais importantes:
+</p>
 
-// Adicionar evento de clique
-botao.addEventListener("click", function() {
-    console.log("Botão clicado!");
-    botao.textContent = "Clicado!";
-});
+<div class="methods-table-container">
+  <table class="methods-table">
+    <thead>
+      <tr>
+        <th>Método</th>
+        <th>Uso</th>
+        <th>Modifica Original</th>
+        <th>Retorna</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>map()</code></td>
+        <td>Transformar elementos</td>
+        <td>❌</td>
+        <td>Novo array</td>
+      </tr>
+      <tr>
+        <td><code>filter()</code></td>
+        <td>Filtrar elementos</td>
+        <td>❌</td>
+        <td>Novo array</td>
+      </tr>
+      <tr>
+        <td><code>sort()</code></td>
+        <td>Ordenar elementos</td>
+        <td>✅</td>
+        <td>Array ordenado</td>
+      </tr>
+      <tr>
+        <td><code>splice()</code></td>
+        <td>Adicionar/remover</td>
+        <td>✅</td>
+        <td>Elementos removidos</td>
+      </tr>
+      <tr>
+        <td><code>pop()</code></td>
+        <td>Remover último</td>
+        <td>✅</td>
+        <td>Elemento removido</td>
+      </tr>
+      <tr>
+        <td><code>...spread</code></td>
+        <td>Copiar arrays</td>
+        <td>❌</td>
+        <td>Nova cópia</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-// Modificar elementos
-const titulo = document.querySelector("h1");
-titulo.style.color = "blue";
-titulo.textContent = "Novo Título";</pre
-          >
-          <button class="copy-btn no-print">Copiar</button>
-        </div>
-
-        <h4>4. Métodos de Array (Muito Usados no React)</h4>
-        <p>
-          <strong>Arrays</strong> são listas de itens, e JavaScript fornece
-          muitos métodos úteis para trabalhar com eles. No React, estes métodos
-          são essenciais para renderizar listas de componentes e manipular
-          dados. Os mais importantes são <code>map()</code>,
-          <code>filter()</code>, <code>find()</code> e <code>forEach()</code>.
-        </p>
-        <div class="code-container">
-          <pre>
+<div class="code-container">
+  <pre>
 const numeros = [1, 2, 3, 4, 5];
 
-// map - transforma cada elemento
+// map() - transforma cada elemento (NÃO modifica o original)
 const dobrados = numeros.map(num => num * 2);
 // Resultado: [2, 4, 6, 8, 10]
 
-// filter - filtra elementos
+// filter() - filtra elementos (NÃO modifica o original)
 const pares = numeros.filter(num => num % 2 === 0);
 // Resultado: [2, 4]
 
-// find - encontra um elemento
+// find() - encontra um elemento (NÃO modifica o original)
 const maiorQueTres = numeros.find(num => num > 3);
 // Resultado: 4
 
-// forEach - executa para cada elemento
+// forEach() - executa para cada elemento (NÃO modifica o original)
 numeros.forEach(num => {
     console.log("Número:", num);
-});</pre
-          >
-          <button class="copy-btn no-print">Copiar</button>
-        </div>
+});
+// Resultado: Imprime cada número no console
+
+// sort() - ordena elementos (MODIFICA o original)
+const desordenados = [3, 1, 4, 1, 5];
+const ordenados = [...desordenados].sort((a, b) => a - b);
+// Resultado ordenados: [1, 1, 3, 4, 5]
+// desordenados ainda é: [3, 1, 4, 1, 5] (porque usamos spread)
+
+// splice() - adiciona/remove elementos (MODIFICA o original)
+const frutas = ["maçã", "banana", "laranja"];
+const removidos = frutas.splice(1, 1, "uva");
+// frutas agora: ["maçã", "uva", "laranja"]
+// removidos: ["banana"]
+
+// pop() - remove último elemento (MODIFICA o original)
+const cores = ["vermelho", "verde", "azul"];
+const ultimaCor = cores.pop();
+// cores agora: ["vermelho", "verde"]
+// ultimaCor: "azul"
+
+// ...spread - copia e expande arrays (NÃO modifica o original)
+const original = [1, 2, 3];
+const copia = [...original];
+const comNovos = [...original, 4, 5];
+// original ainda é: [1, 2, 3]
+// copia: [1, 2, 3]
+// comNovos: [1, 2, 3, 4, 5]</pre>
+  <button class="copy-btn no-print">Copiar</button>
+</div>
 
         <h3>JavaScript Moderno (ES6+) para React</h3>
         <p>
@@ -389,12 +436,7 @@ const pessoa = { nome: "Ana", idade: 25, cidade: "RJ" };
 const { nome, idade } = pessoa;
 // Equivale a: const nome = pessoa.nome; const idade = pessoa.idade;
 
-// 2. Spread Operator (...) - expande arrays ou objetos
-const numeros = [1, 2, 3];
-const novosNumeros = [...numeros, 4, 5];
-// Resultado: [1, 2, 3, 4, 5]
-
-// 3. Template Literals - strings com variáveis e múltiplas linhas
+// 2. Template Literals - strings com variáveis e múltiplas linhas
 const saudacao = `Olá, ${nome}! Você tem ${idade} anos.`;
 // Resultado: "Olá, Ana! Você tem 25 anos."
 </pre

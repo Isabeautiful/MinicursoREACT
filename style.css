@@ -404,3 +404,52 @@ pre {
     padding-left: 20px;
   }
 }
+
+.methods-table-container {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+.methods-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.methods-table th {
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.methods-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.methods-table tr:last-child td {
+  border-bottom: none;
+}
+
+.methods-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.methods-table code {
+  background: #e9ecef;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.methods-table td:nth-child(3),
+.methods-table td:nth-child(4) {
+  text-align: center;
+}
+
+.methods-table td:nth-child(3) {
+  font-size: 1.2em;
+}
