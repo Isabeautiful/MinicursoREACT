@@ -27,6 +27,12 @@
       <div class="dropdown">
         <button class="dropdown-btn">Fundamentação Teórica</button>
         <div class="dropdown-content">
+          <!-- NOVO: Pré-requisitos Web -->
+          <a href="#pre-requisitos-web" class="nav-link">Pré-requisitos Web</a>
+          <a href="#html-conceito" class="nav-link">HTML</a>
+          <a href="#css-conceito" class="nav-link">CSS</a>
+          <a href="#javascript-conceito" class="nav-link">JavaScript</a>
+          <!-- Demais links existentes -->
           <a href="#dom-conceito" class="nav-link">DOM</a>
           <a href="#typescript-conceito" class="nav-link">TypeScript</a>
           <a href="#react-conceito" class="nav-link">React</a>
@@ -63,10 +69,13 @@
 
         <p>
           Ao final, você terá construído um jogo funcional de UNO simplificado,
-          com um código bem estruturado e pronto para expansão. Este minicurso é
-          ideal para desenvolvedores React de nível iniciante que desejam
-          aprofundar seus conhecimentos criando projetos interativos e
-          dinâmicos.
+          com um código bem estruturado e pronto para expansão.
+        </p>
+
+        <p>
+          Este minicurso é ideal para desenvolvedores React de nível iniciante
+          que desejam aprofundar seus conhecimentos de desenvolvimento Web
+          Frontend.
         </p>
 
         <a
@@ -96,6 +105,302 @@
             <strong>Componentes reutilizáveis</strong> para cartas e recursos
           </li>
         </ul>
+      </section>
+
+      <!-- SEÇÃO: PRÉ-REQUISITOS WEB -->
+      <section id="pre-requisitos-web" class="main-section">
+        <h2>Pré-requisitos Web: HTML, CSS e JavaScript</h2>
+        <p>
+          Antes de mergulhar no React, é fundamental entender as três
+          tecnologias básicas da web:
+          <strong>HTML, CSS e JavaScript</strong>. Juntas, elas formam a base de
+          toda aplicação web moderna.
+        </p>
+      </section>
+
+      <!-- SEÇÃO: HTML -->
+      <section id="html-conceito" class="main-section">
+        <h2>HTML: A Estrutura da Web</h2>
+
+        <h3>O que é HTML?</h3>
+        <p>
+          HTML (<strong>H</strong>yper<strong>T</strong>ext
+          <strong>M</strong>arkup <strong>L</strong>anguage) é a linguagem de
+          marcação usada para criar a <strong>estrutura</strong> das páginas
+          web. Pense no HTML como o "esqueleto" de um site.
+        </p>
+
+        <h3>Elementos HTML Básicos</h3>
+        <div class="code-container">
+          <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Minha Página&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Meu Site&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;a href="#home"&gt;Home&lt;/a&gt;
+            &lt;a href="#sobre"&gt;Sobre&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Seção Principal&lt;/h2&gt;
+            &lt;p&gt;Este é um parágrafo de texto.&lt;/p&gt;
+            &lt;button&gt;Clique Aqui&lt;/button&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;Rodapé da página&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre
+          >
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <h3>Elementos HTML que você verá no React:</h3>
+        <ul>
+          <li><code>&lt;div&gt;</code> - Container genérico</li>
+          <li><code>&lt;button&gt;</code> - Botões clicáveis</li>
+          <li><code>&lt;span&gt;</code> - Container de texto inline</li>
+          <li><code>&lt;input&gt;</code> - Campos de entrada</li>
+          <li><code>&lt;img&gt;</code> - Imagens</li>
+          <li><code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code> - Listas</li>
+        </ul>
+      </section>
+
+      <!-- SEÇÃO: CSS -->
+      <section id="css-conceito" class="main-section">
+        <h2>CSS: Estilizando a Web</h2>
+
+        <h3>O que é CSS?</h3>
+        <p>
+          CSS (<strong>C</strong>ascading <strong>S</strong>tyle
+          <strong>S</strong>heets) é a linguagem usada para
+          <strong>estilizar</strong> páginas web. Enquanto o HTML define a
+          estrutura, o CSS controla a <strong>aparência</strong>.
+        </p>
+
+        <h3>Conceitos Básicos do CSS</h3>
+        <div class="code-container">
+          <pre>
+/* Seleciona elementos pela tag */
+button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Seleciona elementos por classe */
+.botao-especial {
+    background-color: red;
+    font-size: 16px;
+}
+
+/* Seleciona elementos por ID */
+#botao-unico {
+    background-color: green;
+}
+
+/* Estilos para hover (quando o mouse passa por cima) */
+button:hover {
+    background-color: darkblue;
+    cursor: pointer;
+}
+
+/* Flexbox para layout */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}</pre
+          >
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <h3>CSS no React</h3>
+        <p>No React, usamos CSS de formas diferentes:</p>
+        <ul>
+          <li><strong>CSS Modules</strong>: Arquivos CSS separados</li>
+          <li><strong>Styled Components</strong>: CSS dentro do JavaScript</li>
+          <li><strong>Inline Styles</strong>: Estilos direto nos elementos</li>
+          <li><strong>Tailwind CSS</strong>: Classes utilitárias</li>
+        </ul>
+      </section>
+
+      <!-- SEÇÃO: JAVASCRIPT -->
+      <section id="javascript-conceito" class="main-section">
+        <h2>JavaScript: A Linguagem da Web</h2>
+
+        <h3>O que é JavaScript?</h3>
+        <p>
+          JavaScript é a linguagem de programação que torna as páginas web
+          <strong>interativas</strong> e dinâmicas. Enquanto HTML e CSS cuidam
+          da estrutura e aparência, o JavaScript adiciona
+          <strong>comportamento</strong> - desde validação de formulários até
+          animações complexas e comunicação com servidores.
+        </p>
+
+        <h3>Conceitos Fundamentais do JavaScript</h3>
+
+        <h4>1. Variáveis e Tipos de Dados</h4>
+        <p>
+          As <strong>variáveis</strong> são como caixas que armazenam dados. No
+          JavaScript moderno, usamos <code>let</code> para variáveis que podem
+          mudar e <code>const</code> para constantes. Os principais
+          <strong>tipos de dados</strong> incluem strings (texto), numbers
+          (números), booleans (verdadeiro/falso), arrays (listas) e objects
+          (objetos).
+        </p>
+        <div class="code-container">
+          <pre>
+// Variáveis
+let nome = "João";          // String (texto)
+const idade = 25;           // Number (número) - constante
+var ativo = true;           // Boolean (verdadeiro/falso)
+
+// Arrays (listas)
+const frutas = ["maçã", "banana", "laranja"];
+const numeros = [1, 2, 3, 4, 5];
+
+// Objetos
+const pessoa = {
+    nome: "Maria",
+    idade: 30,
+    cidade: "São Paulo",
+    ativo: true
+};</pre
+          >
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <h4>2. Funções</h4>
+        <p>
+          <strong>Funções</strong> são blocos de código reutilizáveis que
+          realizam uma tarefa específica. Elas podem receber
+          <strong>parâmetros</strong> (dados de entrada) e retornar um valor. No
+          JavaScript moderno, as
+          <strong>arrow functions</strong> (<code>=&gt;</code>) são a forma mais
+          comum de escrever funções, especialmente no React.
+        </p>
+        <div class="code-container">
+          <pre>
+// Função tradicional
+function somar(a, b) {
+    return a + b;
+}
+
+// Arrow function (moderna)
+const multiplicar = (a, b) => {
+    return a * b;
+};
+
+// Função simplificada (quando tem apenas uma expressão)
+const dividir = (a, b) => a / b;
+
+// Usando funções
+console.log(somar(2, 3));        // 5
+console.log(multiplicar(4, 5));  // 20</pre
+          >
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <h4>3. Manipulação do DOM</h4>
+        <p>
+          O <strong>DOM</strong> (Document Object Model) é uma representação em
+          árvore da página HTML. JavaScript pode
+          <strong>selecionar elementos</strong> da página,
+          <strong>modificar seu conteúdo</strong>,
+          <strong>alterar estilos</strong> e
+          <strong>adicionar interatividade</strong> através de eventos como
+          cliques, digitação, etc.
+        </p>
+        <div class="code-container">
+          <pre>
+// Selecionar elementos
+const botao = document.getElementById("meuBotao");
+const paragrafos = document.querySelectorAll("p");
+
+// Adicionar evento de clique
+botao.addEventListener("click", function() {
+    console.log("Botão clicado!");
+    botao.textContent = "Clicado!";
+});
+
+// Modificar elementos
+const titulo = document.querySelector("h1");
+titulo.style.color = "blue";
+titulo.textContent = "Novo Título";</pre
+          >
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <h4>4. Métodos de Array (Muito Usados no React)</h4>
+        <p>
+          <strong>Arrays</strong> são listas de itens, e JavaScript fornece
+          muitos métodos úteis para trabalhar com eles. No React, estes métodos
+          são essenciais para renderizar listas de componentes e manipular
+          dados. Os mais importantes são <code>map()</code>,
+          <code>filter()</code>, <code>find()</code> e <code>forEach()</code>.
+        </p>
+        <div class="code-container">
+          <pre>
+const numeros = [1, 2, 3, 4, 5];
+
+// map - transforma cada elemento
+const dobrados = numeros.map(num => num * 2);
+// Resultado: [2, 4, 6, 8, 10]
+
+// filter - filtra elementos
+const pares = numeros.filter(num => num % 2 === 0);
+// Resultado: [2, 4]
+
+// find - encontra um elemento
+const maiorQueTres = numeros.find(num => num > 3);
+// Resultado: 4
+
+// forEach - executa para cada elemento
+numeros.forEach(num => {
+    console.log("Número:", num);
+});</pre
+          >
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
+
+        <h3>JavaScript Moderno (ES6+) para React</h3>
+        <p>
+          O React faz uso intensivo dos recursos modernos do JavaScript (ES6+).
+          Estes recursos tornam o código mais limpo, conciso e fácil de manter.
+          Os conceitos mais importantes que você precisa entender são:
+        </p>
+        <div class="code-container">
+          <pre>
+// 1. Destructuring Assignment - extrai valores de arrays ou objetos
+const pessoa = { nome: "Ana", idade: 25, cidade: "RJ" };
+const { nome, idade } = pessoa;
+// Equivale a: const nome = pessoa.nome; const idade = pessoa.idade;
+
+// 2. Spread Operator (...) - expande arrays ou objetos
+const numeros = [1, 2, 3];
+const novosNumeros = [...numeros, 4, 5];
+// Resultado: [1, 2, 3, 4, 5]
+
+// 3. Template Literals - strings com variáveis e múltiplas linhas
+const saudacao = `Olá, ${nome}! Você tem ${idade} anos.`;
+// Resultado: "Olá, Ana! Você tem 25 anos."
+</pre
+          >
+          <button class="copy-btn no-print">Copiar</button>
+        </div>
       </section>
 
       <!-- SEÇÃO DOM: CONCEITOS FUNDAMENTAIS -->
@@ -1166,43 +1471,7 @@ setContador(1); // A tela atualiza AUTOMATICAMENTE</pre
           <pre>
 import { useState, useEffect, useRef } from 'react';
 
-// Exemplo 1: useEffect para API call (componentDidMount)
-function ListaUsuarios() {
-    const [usuarios, setUsuarios] = useState([]);
-    const [carregando, setCarregando] = useState(true);
-    const [erro, setErro] = useState(null);
-    
-    // Executa apenas uma vez quando o componente monta
-    useEffect(() => {
-        async function carregarUsuarios() {
-            try {
-                setCarregando(true);
-                const resposta = await fetch('https://jsonplaceholder.typicode.com/users');
-                const dados = await resposta.json();
-                setUsuarios(dados);
-            } catch (err) {
-                setErro('Erro ao carregar usuários');
-            } finally {
-                setCarregando(false);
-            }
-        }
-        
-        carregarUsuarios();
-    }, []); // Array de dependências vazio = executa apenas uma vez
-    
-    if (carregando) return &lt;div&gt;Carregando...&lt;/div&gt;;
-    if (erro) return &lt;div&gt;{erro}&lt;/div&gt;;
-    
-    return (
-        &lt;ul&gt;
-            {usuarios.map(usuario => (
-                &lt;li key={usuario.id}&gt;{usuario.name}&lt;/li&gt;
-            ))}
-        &lt;/ul&gt;
-    );
-}
-
-// Exemplo 2: useEffect com dependências (componentDidUpdate)
+// Exemplo: useEffect com dependências (componentDidUpdate)
 function ContadorComHistorico() {
     const [contador, setContador] = useState(0);
     const [historico, setHistorico] = useState([]);
@@ -3201,9 +3470,7 @@ export function MesaUno({ cartaTopo, corAtual, monteCompra, onComprarCarta }: Me
                 <strong>Passo 14-15</strong>: Comprar cartas e app completo
               </li>
               <li><strong>Passo 16</strong>: Estilos finais e polimento</li>
-              <li>
-                <strong>Passo 17</strong>: Animações com Framer Motion
-              </li>
+              <li><strong>Passo 17</strong>: Animações com Framer Motion</li>
             </ul>
           </div>
         </div>
