@@ -1682,7 +1682,7 @@ src/
 // components/CartaUno.tsx
 import type { Carta } from '../types/gametypes.ts';
 
-interface CartaUnoProps {
+type CartaUnoProps = {
   carta: Carta;
 }
 
@@ -2223,7 +2223,7 @@ export default App;</pre
 // components/CartaUno.tsx - INTERATIVA
 import type { Carta } from '../types/gametypes';
 
-interface CartaUnoProps {
+type CartaUnoProps = {
   carta: Carta;
   onClick?: () => void;
   selecionada?: boolean;
@@ -2365,7 +2365,7 @@ function podeJogarCarta(carta: Carta, cartaTopo: Carta, corAtual: string): boole
 import type { Carta } from '../types/gametypes';
 import { CartaUno } from './CartaUno';
 
-interface MesaUnoProps {
+type MesaUnoProps = {
   cartaTopo: Carta;
   corAtual: string;
   monteCompra: Carta[];
